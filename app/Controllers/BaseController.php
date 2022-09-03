@@ -2,23 +2,15 @@
 
 namespace App\Controllers;
 
+use App\Models\AuthException;
 use CodeIgniter\Controller;
 use CodeIgniter\HTTP\CLIRequest;
 use CodeIgniter\HTTP\IncomingRequest;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 use Psr\Log\LoggerInterface;
+use function App\Helpers\user;
 
-/**
- * Class BaseController
- *
- * BaseController provides a convenient place for loading components
- * and performing functions that are needed by all your controllers.
- * Extend this class in any new controllers:
- *     class Home extends BaseController
- *
- * For security be sure to declare any new methods as protected or private.
- */
 abstract class BaseController extends Controller
 {
     /**
@@ -42,11 +34,28 @@ abstract class BaseController extends Controller
      */
     public function initController(RequestInterface $request, ResponseInterface $response, LoggerInterface $logger)
     {
-        // Do Not Edit This Line
         parent::initController($request, $response, $logger);
+    }
 
-        // Preload any models, libraries, etc, here.
+    /**
+     * @throws AuthException
+     */
+    public function render($name, $data = null, $renderNavbar = true): string
+    {
+        $renderedContent = view('components/header');
 
-        // E.g.: $this->session = \Config\Services::session();
+        if ($renderNavbar) {
+            helper('auth');
+            $renderedContent .= view('components/navbar', ['user' => user()]);
+        }
+
+        if (!is_null($data)) {
+            $renderedContent .= view($name, $data);
+        } else {
+            $renderedContent .= view($name);
+        }
+
+        $renderedContent .= view('components/footer');
+        return $renderedContent;
     }
 }
