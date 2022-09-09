@@ -11,7 +11,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarMobileToggle">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item dropdown" <?= !is_null($user) && $user->admin ? '' : 'hidden' ?>>
+                <li class="nav-item dropdown" <?= !is_null($user) && $user->isAdmin() ? '' : 'hidden' ?>>
                     <a class="nav-link dropdown-toggle" id="adminMenu" role="button"
                        data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="fas fa-tachometer-alt"></i> <?= lang('menu.admin') ?>
@@ -39,16 +39,10 @@
                     </ul>
                 </li>
                 <!-- If not logged in -->
-                <li class="nav-item dropdown" <?= !is_null($user) ? 'hidden' : '' ?>>
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                       data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="fas fa-sign-in-alt"></i> <?= lang('menu.login') ?>
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="<?= base_url('logout') ?>"><i
-                                        class="fas fa-sign-out-alt"></i> <?= lang('menu.self.logout') ?></a></li>
-                    </ul>
-                </li>
+                <div class="navbar-nav ms-auto" <?= !is_null($user) ? 'hidden' : '' ?>>
+                    <a href="<?= base_url('login') ?>" class="nav-item nav-link"><i class="fas fa-sign-in-alt"></i>
+                        <?= lang('menu.self.login') ?></a>
+                </div>
             </ul>
         </div>
     </div>

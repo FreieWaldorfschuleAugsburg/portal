@@ -12,7 +12,7 @@ use LDAP\Connection;
  */
 function isLoggedIn(): bool
 {
-    return !is_null(user());
+    return !is_null(getCurrentUser());
 }
 
 /**
@@ -20,11 +20,11 @@ function isLoggedIn(): bool
  */
 function isAdmin(): bool
 {
-    $user = user();
+    $user = getCurrentUser();
     if (is_null($user))
         return false;
 
-    return $user->admin;
+    return $user->isAdmin();
 }
 
 /**
@@ -45,7 +45,7 @@ function logout(): void
 /**
  * @throws AuthException
  */
-function user(): ?UserModel
+function getCurrentUser(): ?UserModel
 {
     $userName = session('USER');
     if (!$userName) {
@@ -85,19 +85,14 @@ function createUserModel(Connection $ldap, string $username): UserModel
     }
 
     // Check groups memberships
-    $adminGroup = getenv('ad.adminGroup');
-    $userGroupAccumulation = getenv('ad.userGroups');
-    $userGroups = explode(',', $userGroupAccumulation);
+    helper('group');
+    $allGroups = getAllGroups();
+    $userGroups = [];
 
-    $admin = false;
     foreach ($data['memberof'] as $value) {
-        if (str_contains($value, "CN=$adminGroup")) {
-            $admin = true;
-        }
-
-        foreach ($userGroups as $possibleGroup) {
-            if (!str_contains($value, "CN=$possibleGroup")) {
-                unset($userGroups[$possibleGroup]);
+        foreach ($allGroups as $group) {
+            if (str_contains($value, "CN=$group->internalName")) {
+                $userGroups[] = $group;
             }
         }
     }
@@ -107,7 +102,7 @@ function createUserModel(Connection $ldap, string $username): UserModel
         throw new AuthException('noPermissions');
     }
 
-    return new UserModel($username, $data['displayname'][0], $userGroups, $admin);
+    return new UserModel($username, $data['displayname'][0], $userGroups);
 }
 
 /**
@@ -141,5 +136,5 @@ function createConnection(string $username, string $password): Connection
 
 function handleAuthException(AuthException $exception): RedirectResponse
 {
-    return redirect('/')->with('error', $exception->getMessage());
+    return redirect('login')->with('error', $exception->getMessage());
 }

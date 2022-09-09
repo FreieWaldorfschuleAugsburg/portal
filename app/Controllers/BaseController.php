@@ -9,6 +9,7 @@ use CodeIgniter\HTTP\IncomingRequest;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 use Psr\Log\LoggerInterface;
+use function App\Helpers\getCurrentUser;
 use function App\Helpers\user;
 
 abstract class BaseController extends Controller
@@ -46,7 +47,7 @@ abstract class BaseController extends Controller
 
         if ($renderNavbar) {
             helper('auth');
-            $renderedContent .= view('components/navbar', ['user' => user()]);
+            $renderedContent .= view('components/navbar', ['user' => getCurrentUser()]);
         }
 
         if (!is_null($data)) {

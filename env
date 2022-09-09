@@ -27,3 +27,14 @@ ad.admin.username = ''
 ad.admin.password = ''
 ad.adminGroup = ''
 ad.userGroups = ''
+
+#--------------------------------------------------------------------
+# DATABASE
+#--------------------------------------------------------------------
+
+database.default.hostname = ''
+database.default.database = ''
+database.default.username = ''
+database.default.password = ''
+database.default.DBDriver = MySQLi
+database.default.DBPrefix =

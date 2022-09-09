@@ -6,14 +6,23 @@ class UserModel
 {
     public string $username;
     public string $displayName;
-    public array $userGroups;
-    public bool $admin;
+    /** @var GroupModel[] */
+    public array $groups;
 
-    function __construct($username, $displayName, $userGroups, $admin)
+    function __construct($username, $displayName, $groups)
     {
         $this->username = $username;
         $this->displayName = $displayName;
-        $this->userGroups = $userGroups;
-        $this->admin = $admin;
+        $this->groups = $groups;
+    }
+
+    public function isAdmin(): bool
+    {
+        foreach ($this->groups as $group) {
+            if ($group->admin)
+                return true;
+        }
+
+        return false;
     }
 }
