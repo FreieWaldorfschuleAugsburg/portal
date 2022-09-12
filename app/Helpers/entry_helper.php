@@ -17,7 +17,7 @@ function entries(?UserModel $user): array
 
     $entries = [];
     foreach ($result as $row) {
-        $entries[] = createEntryModel($row);
+        $entries[] = createEntryModel($db, $row);
     }
 
     foreach ($entries as $key => $value) {
@@ -40,13 +40,34 @@ function entries(?UserModel $user): array
         }
     }
 
+    foreach ($entries as $entry) {
+        foreach ($entry->buttons as $key => $value) {
+            if ($value->entitledGroups) {
+                if (is_null($user)) {
+                    unset($entry->buttons[$key]);
+                } else {
+                    $found = false;
+                    foreach ($value->entitledGroups as $entitledGroup) {
+                        if (in_array($entitledGroup, $user->groups)) {
+                            $found = true;
+                            break;
+                        }
+                    }
+
+                    if (!$found) {
+                        unset($entry->buttons[$key]);
+                    }
+                }
+            }
+        }
+    }
+
     return $entries;
 }
 
-function createEntryModel($entryRow): EntryModel
+function createEntryModel($db, $entryRow): EntryModel
 {
-    $db = db_connect('default');
-    $entitlementResult = $db->table('portal_entitlements')->where('entry_id', $entryRow->id)->select()->get()->getResult();
+    $entitlementResult = $db->table('portal_entry_entitlements')->where('entry_id', $entryRow->id)->select()->get()->getResult();
 
     helper('group');
     $entitledGroups = [];
@@ -58,15 +79,26 @@ function createEntryModel($entryRow): EntryModel
 
     $buttonResult = $db->table('portal_buttons')->where('entry_id', $entryRow->id)->select()->get()->getResult();
 
+
     $buttons = [];
     foreach ($buttonResult as $buttonRow) {
-        $buttons[] = createEntryButtonModel($buttonRow);
+        $buttons[] = createEntryButtonModel($db, $buttonRow);
     }
 
     return new EntryModel($entryRow->id, $entryRow->name, $entryRow->description, $entitledGroups, $buttons);
 }
 
-function createEntryButtonModel($buttonRow): EntryButtonModel
+function createEntryButtonModel($db, $buttonRow): EntryButtonModel
 {
-    return new EntryButtonModel($buttonRow->id, $buttonRow->name, EntryButtonColor::from($buttonRow->color), $buttonRow->url);
+    $entitlementResult = $db->table('portal_button_entitlements')->where('button_id', $buttonRow->id)->select()->get()->getResult();
+
+    helper('group');
+    $entitledGroups = [];
+    foreach ($entitlementResult as $entitlementRow) {
+        $group = getGroupById($entitlementRow->group_id);
+        if (!is_null($group))
+            $entitledGroups[] = $group;
+    }
+
+    return new EntryButtonModel($buttonRow->id, $buttonRow->name, EntryButtonColor::from($buttonRow->color), $entitledGroups, $buttonRow->url);
 }
