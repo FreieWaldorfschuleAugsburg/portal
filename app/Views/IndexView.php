@@ -1,16 +1,21 @@
 <div class="row mt-3 justify-content-center">
-    <div class="col-lg-12">
-        <div class="alert alert-warning mb-3">
-            <h5><?= lang('index.disclaimer.title') ?></h5>
-            <?= lang('index.disclaimer.text') ?>
-        </div>
 
+    <div class="marquee">
+        <p><b>Guten Tag!</b> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt
+            ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et
+            ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum
+            dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore
+            magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita
+            kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+    </div>
+
+    <div class="col-lg-12">
         <?= !empty(session('error')) ? '<div class="alert alert-danger mb-3"> <i class="fas fa-exclamation-triangle"></i> <b>' . lang('index.error') . '</b> ' . session('error') . '</div>' : '' ?>
 
         <div class="row">
             <?php
             foreach ($entries as $entry) {
-                echo '<div class="col-sm-6 mt-3">';
+                echo '<div class="col-sm-4 mt-3">';
                 echo '<div class="card">';
                 echo '<div class="card-body">';
                 echo '<h5 class="card-title">' . $entry->name . '</h5>';
