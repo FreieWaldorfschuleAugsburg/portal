@@ -1,12 +1,16 @@
 <div class="row mt-3 justify-content-center">
 
     <div class="marquee">
-        <p><b>Guten Tag!</b> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt
-            ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et
-            ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum
-            dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore
-            magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita
-            kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+        <p><b>Guten Tag!</b> Eine Waldorfschule (auch: Rudolf-Steiner-Schule und in Deutschland Freie Waldorfschule)
+            ist eine Schule, an der nach der von Rudolf Steiner (1861–1925) begründeten Waldorfpädagogik unterrichtet
+            wird. Die Waldorfpädagogik beruht auf der anthroposophischen Menschenkunde von Rudolf Steiner. In
+            Deutschland sind Waldorfschulen staatlich genehmigte oder staatlich anerkannte Ersatzschulen in freier
+            Trägerschaft. Seit der zweiten Hälfte des 20. Jahrhunderts werden Waldorfschulen auch in anderen Ländern
+            aufgebaut. Nach Angaben des Bundes der Freien Waldorfschulen mit Stand vom Mai 2020 gibt es weltweit 1214
+            Waldorfschulen. Die meisten von ihnen befinden sich in Deutschland (252), gefolgt von den USA (123) und den
+            Niederlanden (115). In der Schweiz gibt es 32 und in Österreich 21 Waldorfschulen. Die meisten
+            Waldorfschulen im Verhältnis zur Einwohnerzahl sind in Estland (10). Nach dem Ende der Sowjetunion
+            entstanden in Russland 20 Waldorfschulen.</p>
     </div>
 
     <div class="col-lg-12">
