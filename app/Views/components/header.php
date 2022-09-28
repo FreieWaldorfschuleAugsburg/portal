@@ -8,7 +8,7 @@
     <meta name="theme-color" content="#111111" media="(prefers-color-scheme: light)">
     <meta name="theme-color" content="#eeeeee" media="(prefers-color-scheme: dark)">
 
-    <title><?= lang('app.name') ?></title>
+    <title><?= lang('app.name.short') ?></title>
 
     <meta name="color-scheme" content="light dark">
 

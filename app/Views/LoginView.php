@@ -2,7 +2,7 @@
     <div class="row mt-5 justify-content-center">
         <div class="col-lg-8">
             <img src="<?= base_url('/') ?>/assets/img/logo.png" onclick="window.location = '<?= base_url('/') ?>'" style="cursor: pointer" width="100" height="100" alt="" class="mx-auto d-block">
-            <h1 class="text-center mb-5" onclick="window.location = '<?= base_url('/') ?>'" style="cursor: pointer"><?= lang('app.name') ?></h1>
+            <h1 class="text-center mb-5" onclick="window.location = '<?= base_url('/') ?>'" style="cursor: pointer"><?= lang('app.name.headline') ?></h1>
 
             <div class="card">
                 <div class="card-header">
