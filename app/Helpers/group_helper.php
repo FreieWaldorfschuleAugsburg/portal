@@ -2,35 +2,67 @@
 
 namespace App\Helpers;
 
+use App\Models\AuthException;
+use App\Entities\Group;
 use App\Models\GroupModel;
+use Ramsey\Uuid\Uuid;
 
 /**
- * @return GroupModel[]
+ * @throws AuthException
  */
-function getAllGroups(): array
-{
-    $db = db_connect('default');
-    $result = $db->table('portal_groups')->select()->get()->getResult();
 
-    $groups = [];
-    foreach ($result as $row) {
-        $groups[] = createGroupModel($row);
-    }
-    return $groups;
-}
 
-function getGroupById(int $id): ?GroupModel
+function getAllActiveDirectoryGroups(): array
 {
-    $db = db_connect('default');
-    $result = $db->table('portal_groups')->where('id', $id)->select()->get()->getResult();
-    if (!$result) {
-        return null;
+    $connection = getAdminConnection();
+    $groups = \LdapRecord\Models\ActiveDirectory\Group:: paginate();
+    $groupNames = [];
+
+    foreach ($groups as $group) {
+        $groupNames[] = $group->getName();
     }
 
-    return createGroupModel($result[0]);
+    sort($groupNames);
+    return $groupNames;
+
 }
 
-function createGroupModel($row): GroupModel
+function createGroupEntity(string $name, string $roleId): Group
 {
-    return new GroupModel($row->id, $row->name, $row->internal_name, $row->admin);
+    $group = new Group();
+    $group->group_id = Uuid::uuid4();
+    $group->internal_name = $name;
+    $group->role_id = $roleId;
+
+    return $group;
 }
+
+function getRoleGroups(string $roleId): array
+{
+    $groupModel = new GroupModel();
+    return $groupModel->where('role_id', $roleId)->findAll();
+}
+
+
+function deleteGroups(string $roleId): void
+{
+    $groupModel = new GroupModel();
+    $groupModel->where('role_id', $roleId)->delete();
+
+}
+
+/**
+ * @throws \ReflectionException
+ */
+function storeGroup(Group $group): void
+{
+    $groupModel = new GroupModel();
+    $groupModel->insert($group);
+
+}
+
+
+
+
+
+
