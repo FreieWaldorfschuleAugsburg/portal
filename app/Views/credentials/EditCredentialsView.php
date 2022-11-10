@@ -1,7 +1,7 @@
 <main class="px-5 xl:px-24 2xl:px-60 space-y-3 mt-5 dark:text-white">
 
     <div class="flex gap-5 items-center">
-        <p class="font-inter-semibold text-h2-big dark:text-white"><?= lang('credential.headings.create') ?></p>
+        <p class="font-inter-semibold text-h2-big dark:text-white"><?= lang('credential.headings.edit') ?></p>
     </div>
 
 
@@ -11,28 +11,33 @@
         <section class="flex flex-col gap-2">
             <div class="flex flex-col gap-1 dark:text-gray-400 text-gray-700 font-inter-medium">
                 <label for="name" class=""><?= lang('credential.fields.title') ?></label>
-                <input type="text" name="name" id="name""
+                <input type="text" name="name" id="name" value="<?= $credentials->credential_name ?>"
                        class="rounded p-2.5 lg:p-3 bg-neutral-100 dark:bg-slate-900 border-none focus:outline-none">
             </div>
 
 
             <div class="w-full flex gap-2">
                 <div class="flex flex-col gap-2 w-full" id="dynamicFields">
-                    <div class="grid grid-cols-2 gap-3">
-                        <div class="flex flex-col gap-1 w-full">
-                            <label for="title"
-                                   class="font-inter-medium text-gray-400"><?= lang('credential.fields.fieldname') ?></label>
-                            <input type="text" name="field_name[]" id="field_name[]"
-                                   class="rounded p-2.5 lg:p-3 bg-neutral-100 dark:bg-slate-900 border-none focus:outline-none">
-                        </div>
+                    <?php foreach ($credentials->credential_fields as $credential_field): ?>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div class="flex flex-col gap-1 w-full">
+                                <label for="field_name[]"
+                                       class="font-inter-medium text-gray-400"><?= lang('credential.fields.fieldname') ?></label>
+                                <input type="text" name="field_name[]" id="field_name[]"
+                                       value="<?= $credential_field->field_name ?>"
+                                       class="rounded p-2.5 lg:p-3 bg-neutral-100 dark:bg-slate-900 border-none
+                                   focus:outline-none">
+                            </div>
 
-                        <div class="flex flex-col gap-1 w-full">
-                            <label for="title"
-                                   class="font-inter-medium text-gray-400"><?= lang('credential.fields.value') ?></label>
-                            <input type="text" name="field_value[]" id="field_value[]"
-                                   class="rounded p-2.5 lg:p-3 bg-neutral-100 dark:bg-slate-900 border-none focus:outline-none">
+                            <div class="flex flex-col gap-1 w-full">
+                                <label for="field_value[]"
+                                       class="font-inter-medium text-gray-400"><?= lang('credential.fields.value') ?></label>
+                                <input type="text" name="field_value[]" id="field_value[]"
+                                       value="<?= $credential_field->field_value ?>"
+                                       class="rounded p-2.5 lg:p-3 bg-neutral-100 dark:bg-slate-900 border-none focus:outline-none">
+                            </div>
                         </div>
-                    </div>
+                    <?php endforeach; ?>
                 </div>
 
             </div>
@@ -55,7 +60,8 @@
                     <?php foreach ($roles
 
                                    as $role): ?>
-                        <option class="rounded  p-2.5 lg:p-3" value="<?= $role->role_id ?>">
+                        <option class="rounded  p-2.5 lg:p-3"
+                                value="<?= $role->role_id ?>" <?= $credentials->role_id === $role->role_id ? 'selected' : '' ?>>
                             <?= $role->role_name ?>
                         </option>
                     <?php endforeach; ?>
@@ -73,7 +79,7 @@
 
 </main>
 
-<script src="public/assets/js/DynamicFields.js" defer>
+<script src="<?= base_url('assets/js/DynamicFields.js') ?>" defer>
 </script>
 
 

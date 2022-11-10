@@ -811,10 +811,6 @@ select {
   height: 2rem;
 }
 
-.h-12 {
-  height: 3rem;
-}
-
 .h-72 {
   height: 18rem;
 }
@@ -855,10 +851,6 @@ select {
   width: 2.5rem;
 }
 
-.w-12 {
-  width: 3rem;
-}
-
 .w-52 {
   width: 13rem;
 }
@@ -873,14 +865,6 @@ select {
 
 .flex-shrink-0 {
   flex-shrink: 0;
-}
-
-.flex-grow {
-  flex-grow: 1;
-}
-
-.cursor-pointer {
-  cursor: pointer;
 }
 
 .appearance-none {
@@ -929,12 +913,12 @@ select {
   gap: 0.75rem;
 }
 
-.gap-5 {
-  gap: 1.25rem;
-}
-
 .gap-2 {
   gap: 0.5rem;
+}
+
+.gap-5 {
+  gap: 1.25rem;
 }
 
 .space-y-5 > :not([hidden]) ~ :not([hidden]) {
@@ -1049,11 +1033,6 @@ select {
   background-color: rgb(245 245 245 / var(--tw-bg-opacity));
 }
 
-.bg-red-600 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(220 38 38 / var(--tw-bg-opacity));
-}
-
 .bg-transparent {
   background-color: transparent;
 }
@@ -1061,6 +1040,11 @@ select {
 .bg-neutral-200 {
   --tw-bg-opacity: 1;
   background-color: rgb(229 229 229 / var(--tw-bg-opacity));
+}
+
+.bg-red-600 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(220 38 38 / var(--tw-bg-opacity));
 }
 
 .bg-blue-400 {
@@ -1174,10 +1158,6 @@ select {
 
 .font-poppins-medium {
   font-family: Poppins Medium;
-}
-
-.font-inter-bold {
-  font-family: Inter Bold;
 }
 
 .text-h2-big {
@@ -1298,107 +1278,6 @@ select {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-@font-face {
-  font-family: 'Inter Bold';
-
-  font-style: normal;
-
-  src: url("../fonts/Inter-Bold.woff2");
-}
-
-@font-face {
-  font-family: 'Inter Light';
-
-  font-style: normal;
-
-  src: url("../fonts/Inter-Light.woff2");
-}
-
-@font-face {
-  font-family: 'Inter Medium';
-
-  font-style: normal;
-
-  src: url("../fonts/Inter-Medium.woff2");
-}
-
-@font-face {
-  font-family: 'Inter Regular';
-
-  font-style: normal;
-
-  src: url("../fonts/Inter-Regular.woff2");
-}
-
-@font-face {
-  font-family: 'Inter SemiBold';
-
-  font-style: normal;
-
-  src: url("../fonts/Inter-SemiBold.woff2");
-}
-
-@font-face {
-  font-family: 'Poppins Bold';
-
-  font-style: normal;
-
-  src: url("../fonts/Poppins-Bold.ttf");
-}
-
-@font-face {
-  font-family: 'Poppins Light';
-
-  font-style: normal;
-
-  src: url("../fonts/Poppins-Light.ttf");
-}
-
-@font-face {
-  font-family: 'Poppins Medium';
-
-  font-style: normal;
-
-  src: url("../fonts/Poppins-Medium.ttf");
-}
-
-@font-face {
-  font-family: 'Poppins Regular';
-
-  font-style: normal;
-
-  src: url("../fonts/Poppins-Regular.ttf");
-}
-
-@font-face {
-  font-family: 'Poppins SemiBold';
-
-  font-style: normal;
-
-  src: url("../fonts/Poppins-SemiBold.ttf");
-}
-
-@media (prefers-color-scheme: light) {
-  html {
-    background-color: white;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    background-color: #0A0F1B;
-  }
-}
-
-::-webkit-scrollbar {
-  width: 0;
-  /* Remove scrollbar space */
-  background: transparent;
-  /* Optional: just make scrollbar invisible */
-}
-
-/*Desktop*/
-
 .hover\:scale-95:hover {
   --tw-scale-x: .95;
   --tw-scale-y: .95;
@@ -1515,14 +1394,6 @@ select {
 }
 
 @media (min-width: 1024px) {
-  .lg\:flex {
-    display: flex;
-  }
-
-  .lg\:hidden {
-    display: none;
-  }
-
   .lg\:w-6\/12 {
     width: 50%;
   }
@@ -1531,16 +1402,17 @@ select {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .lg\:flex-row {
-    flex-direction: row;
-  }
-
   .lg\:p-3 {
     padding: 0.75rem;
   }
 
   .lg\:p-4 {
     padding: 1rem;
+  }
+
+  .lg\:px-60 {
+    padding-left: 15rem;
+    padding-right: 15rem;
   }
 
   .lg\:text-h1-small {
@@ -1559,17 +1431,5 @@ select {
 @media (min-width: 1280px) {
   .xl\:grid-cols-3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .xl\:px-24 {
-    padding-left: 6rem;
-    padding-right: 6rem;
-  }
-}
-
-@media (min-width: 1536px) {
-  .\32xl\:px-60 {
-    padding-left: 15rem;
-    padding-right: 15rem;
   }
 }

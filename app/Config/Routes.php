@@ -67,6 +67,9 @@ $routes->get('/credentials', 'CredentialController::index');
 $routes->get('/credentials/new', 'CredentialController::create');
 $routes->post('/credentials/new', 'CredentialController::store');
 
+$routes->get('/credentials/edit/(:any)', 'CredentialController::edit/$1', ['filter' => AdminFilter::class]);
+
+
 //Regarding roles
 $routes->get('/roles', 'RoleController::index', ['filter' => AdminFilter::class]);
 $routes->get('/roles/edit/(:any)', 'RoleController::edit/$1', ['filter' => AdminFilter::class]);
