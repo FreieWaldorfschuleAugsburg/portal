@@ -64,7 +64,8 @@ $routes->post('/categories', 'CategoryController::store');
 
 //Regarding credentials
 $routes->get('/credentials', 'CredentialController::index');
-$routes->post('/credentials', 'CredentialController::store');
+$routes->get('/credentials/new', 'CredentialController::create');
+$routes->post('/credentials/new', 'CredentialController::store');
 
 //Regarding roles
 $routes->get('/roles', 'RoleController::index', ['filter' => AdminFilter::class]);

@@ -1,12 +1,12 @@
-<main class="px-5 lg:px-60 space-y-5 mt-5">
+<main class="px-5 xl:px-24 2xl:px-60 space-y-5 mt-5">
 
 
     <div class="flex gap-5 items-center">
 
-        <p class="font-inter-semibold text-h2-big dark:text-white"><?= lang('role.headings.view') ?></p>
+        <p class="font-inter-semibold text-h1-small dark:text-white"><?= lang('role.headings.view') ?></p>
 
-        <a href="<?= base_url('roles/new') ?>" class="font-inter-medium text-white bg-blue-600 rounded ">
-            <button class="p-3 text-category">Neu erstellen</button>
+        <a href="<?= base_url('roles/new') ?>" class="font-inter-medium dark:text-white bg-blue-600 rounded text-white">
+            <button class="p-3">Neu erstellen</button>
         </a>
     </div>
     <div class=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-5 mt-5">

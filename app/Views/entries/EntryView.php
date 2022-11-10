@@ -1,4 +1,4 @@
-<main class="px-5 lg:px-60 space-y-3 mt-5 min-h-screen">
+<main class="px-5 xl:px-24 2xl:px-60 space-y-3 mt-5 min-h-screen">
 
 
     <div class="flex gap-5 items-center">

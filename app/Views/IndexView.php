@@ -1,10 +1,10 @@
-<header class="px-5 lg:px-60">
+<header class="px-5 xl:px-24 2xl:px-60">
     <div class="bg-red-100 dark:bg-red-600/20 dark:text-red-300 rounded outline outline-red-600 outline-1 px-5 py-3 mt-3 font-inter-medium">
         <?= lang('app.tooltip.preview') ?>
     </div>
 
 </header>
-<div class="flex w-full px-5 lg:px-60 py-5 ">
+<div class="flex w-full px-5 xl:px-24 2xl:px-60 py-5 ">
     <section class="flex flex-col gap-1 w-full">
         <?php foreach ($entries
 

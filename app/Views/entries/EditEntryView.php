@@ -1,4 +1,4 @@
-<main class="px-5 lg:px-60 space-y-3 mt-5  dark:text-white">
+<main class="px-5 xl:px-24 2xl:px-60 space-y-3 mt-5  dark:text-white">
 
     <div class="flex gap-5 items-center">
         <p class="font-inter-semibold text-h2-big dark:text-white"><?= lang('entry.headings.edit') ?></p>
@@ -72,7 +72,11 @@
                            class=" rounded-full w-8 h-8 bg-transparent border-none appearance-none">
                 </div>
 
-                <div class="col-span-2 rounded bg-neutral-200 dark:bg-dark w-full flex items-center justify-center p-3">
+                <div class="col-span-2 rounded bg-neutral-200 dark:bg-dark w-full flex gap-5 items-center justify-center p-3">
+                    <div>
+                        <img class="w-12 h-12" src="<?=base_url("uploads/$entry->entry_id.png")?>" alt="">
+                    </div>
+
                     <label class="dark:text-gray-400 flex flex-col justify-center items-center" for="image">
                         <img src="<?= base_url('assets') ?>/img/upload.png" class="w-10" alt="">
                         <span class="font-inter-regular text-category"><?= lang('entry.image.label') ?></span>

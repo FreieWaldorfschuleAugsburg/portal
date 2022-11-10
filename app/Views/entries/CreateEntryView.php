@@ -1,4 +1,4 @@
-<main class="px-5 lg:px-60 space-y-3 mt-5  dark:text-white">
+<main class="px-5 xl:px-24 2xl:px-60 space-y-3 mt-5  dark:text-white">
 
     <div class="flex gap-5 items-center">
         <p class="font-inter-semibold text-h2-big dark:text-white"><?= lang('entry.headings.create') ?></p>
