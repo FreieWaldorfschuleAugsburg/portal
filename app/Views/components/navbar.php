@@ -1,51 +1,70 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container">
-        <a class="navbar-brand" href="<?= base_url('/') ?>">
-            <img src="<?= base_url('/') ?>/assets/img/logo.png" width="30" height="30" class="d-inline-block align-top"
-                 alt="">
-            <?= lang('app.name.full') ?>
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMobileToggle"
-                aria-controls="navbarMobileToggle" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarMobileToggle">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item dropdown" <?= !is_null($user) && $user->isAdmin() ? '' : 'hidden' ?>>
-                    <a class="nav-link dropdown-toggle" id="adminMenu" role="button"
-                       data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="fas fa-tachometer-alt"></i> <?= lang('menu.admin') ?>
-                    </a>
-                    <ul class="dropdown-menu rounded-3" aria-labelledby="adminMenu">
-                        <li><a class="dropdown-item" href="<?= base_url('admin/vouchers') ?>"><i
-                                        class="fas fa-ticket"></i>
-                                <?= lang('menu.admin.vouchers') ?></a></li>
-                        <li><a class="dropdown-item" href="<?= base_url('admin/students') ?>"><i
-                                        class="fas fa-graduation-cap"></i>
-                                <?= lang('menu.admin.students') ?></a></li>
-                    </ul>
-                </li>
-            </ul>
-            <ul class="navbar-nav">
-                <!-- If logged in -->
-                <li class="nav-item dropdown" <?= is_null($user) ? 'hidden' : '' ?>>
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                       data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="fas fa-user"></i> <?= !is_null($user) ? $user->displayName : '' ?>
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="<?= base_url('logout') ?>"><i
-                                        class="fas fa-sign-out-alt"></i> <?= lang('menu.self.logout') ?></a></li>
-                    </ul>
-                </li>
-                <!-- If not logged in -->
-                <div class="navbar-nav ms-auto" <?= !is_null($user) ? 'hidden' : '' ?>>
-                    <a href="<?= base_url('login') ?>" class="nav-item nav-link"><i class="fas fa-sign-in-alt"></i>
-                        <?= lang('menu.self.login') ?></a>
-                </div>
-            </ul>
+<div class="px-5 xl:px-24 2xl:px-60 py-3 dark:text-white dark:bg-slate-900 bg-neutral-100">
+    <div class="flex w-full  justify-between items-center">
+        <div class="flex items-center gap-3">
+            <img src="<?= base_url('assets/img') ?>/waldorf_logo.png" class="w-10" alt="">
+            <a href="<?= base_url() ?>"
+               class="dark:text-white font-inter-semibold text-h1-small"><?= lang('app.name.short') ?></a>
         </div>
-    </div>
-</nav>
 
-<div class="container px-4 mt-4">
+        <!--If not logged in-->
+        <div class="flex flex-col <?= \App\Helpers\isLoggedIn() ? "hidden" : '' ?>">
+            <div class="relative inline-flex items-center justify-center p-0.5 ">
+                <a href="<?= base_url('login') ?>"
+                   class="relative px-5 py-2.5 bg-blue-600 rounded-md font-inter-medium text-white "><?= lang('menu.self.login') ?></a>
+            </div>
+
+        </div>
+
+        <!--    If logged in-->
+        <div class="flex flex-col <?= !\App\Helpers\isLoggedIn() ? "hidden" : '' ?>" id="nav-button">
+            <div class="items-center justify-center p-0.5 flex gap-5 cursor-pointer">
+                <p class="text-body font-inter-medium "><?= session('DISPLAYNAME') ?></p>
+                <img class="h-8 w-auto" src="<?= base_url() ?>/assets/img/menu.png" alt="">
+                <a class="hidden rounded p-2.5 bg-blue-600 rounded text-center text-white font-inter-medium  <?= \App\Helpers\isLoggedIn() ? 'lg:flex' : '' ?>"
+                   href="<?= base_url('logout') ?>">Abmelden</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="hidden justify-between items-center px-5 bg-neutral-100 xl:px-24 2xl:px-60 dark:bg-slate-900 pb-5 <?= \App\Helpers\isLoggedIn() ? 'lg:flex' : '' ?>" id="navbar">
+
+    <ul class=" dark:text-gray-300 font-inter-medium flex flex-col lg:flex-row gap-2 justify-center">
+        <li class="rounded p-1.5">
+            <a href="<?= base_url() ?>">Home</a>
+        </li>
+        <li class="rounded p-1.5" <?= session('ADMIN') ? '' : 'hidden' ?>>
+            <a href="<?= base_url('entries') ?>">Einträge</a>
+        </li>
+        <li class="rounded p-1.5" <?= session('ADMIN') ? '' : 'hidden' ?>>
+            <a href="<?= base_url('roles') ?>">Rollen</a>
+        </li>
+
+        <li class="rounded p-1.5">
+            <a href="<?= base_url('credentials') ?>" <?= session('ADMIN') ? '' : 'hidden' ?>>Zugangsdaten</a>
+        </li>
+        <li class="lg:hidden rounded p-2.5 bg-blue-600 rounded text-center text-white">
+            <a href="<?= base_url('logout') ?>">Ausloggen</a>
+        </li>
+
+
+    </ul>
+
+
+</div>
+
+
+<style>
+
+    .button {
+
+    }
+
+
+</style>
+
+
+
+
+

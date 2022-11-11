@@ -9,7 +9,7 @@ class UserModel
     /** @var GroupModel[] */
     public array $groups;
 
-    function __construct($username, $displayName, $groups)
+    function __construct(string $username, string $displayName, array $groups)
     {
         $this->username = $username;
         $this->displayName = $displayName;

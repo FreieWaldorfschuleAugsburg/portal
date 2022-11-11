@@ -4,6 +4,8 @@ namespace App\Controllers;
 
 use App\Models\AuthException;
 use CodeIgniter\HTTP\RedirectResponse;
+use LdapRecord\Query\ObjectNotFoundException;
+use function App\Helpers\getCurrentUser;
 use function App\Helpers\handleAuthException;
 use function App\Helpers\isLoggedIn;
 use function App\Helpers\login;
@@ -27,10 +29,13 @@ class AuthenticationController extends BaseController
         }
 
         // This will never throw an exception since we're not rendering the navbar
-        return $this->render('LoginView', NULL, false);
+        return $this->render(name: 'LoginView', data: NULL, renderNavbar: true);
     }
 
-    public function handleLogin(): string|RedirectResponse
+    /**
+     * @throws AuthException
+     */
+    public function handleLogin()
     {
         $username = trim($this->request->getPost('username'));
         $password = trim($this->request->getPost('password'));
@@ -39,10 +44,10 @@ class AuthenticationController extends BaseController
 
         try {
             login($username, $password);
+
         } catch (AuthException $e) {
             return handleAuthException($e);
         }
-
         return redirect('/');
     }
 

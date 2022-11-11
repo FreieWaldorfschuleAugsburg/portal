@@ -2,18 +2,19 @@
 
 namespace App\Models;
 
-class GroupModel
-{
-    public int $id;
-    public string $name;
-    public string $internalName;
-    public bool $admin;
+use App\Entities\Group;
+use CodeIgniter\Model;
 
-    function __construct($id, $name, $internalName, $admin)
-    {
-        $this->id = $id;
-        $this->name = $name;
-        $this->internalName = $internalName;
-        $this->admin = $admin;
-    }
+class GroupModel extends Model
+{
+    protected $table = 'portal_groups';
+    protected $primaryKey = 'group_id';
+
+    protected $allowedFields = [
+        'group_id',
+        'internal_name',
+        'role_id'
+    ];
+    protected $returnType = Group::class;
+
 }

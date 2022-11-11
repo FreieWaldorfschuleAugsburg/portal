@@ -2,22 +2,26 @@
 
 namespace App\Models;
 
-class EntryModel
-{
-    public int $id;
-    public string $name;
-    public string $description;
-    /** @var GroupModel[] */
-    public array $entitledGroups;
-    /** @var EntryButtonModel[] */
-    public array $buttons;
+use App\Entities\Entry;
+use CodeIgniter\Model;
+use Michalsn\Uuid\UuidModel;
 
-    function __construct($id, $name, $description, $entitledGroups, $buttons)
-    {
-        $this->id = $id;
-        $this->name = $name;
-        $this->description = $description;
-        $this->entitledGroups = $entitledGroups;
-        $this->buttons = $buttons;
-    }
+class EntryModel extends Model
+{
+    protected $table = 'portal_entries';
+    protected $primaryKey = 'entry_id';
+
+    protected $allowedFields = [
+        'entry_id',
+        'entry_name',
+        'entry_url',
+        'entitled_role',
+        'category_id',
+        'entry_color_1',
+        'entry_color_2'
+    ];
+    protected $useTimestamps = false;
+
+    protected $returnType = Entry::class;
+
 }
