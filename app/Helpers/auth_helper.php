@@ -15,12 +15,25 @@ use LdapRecord\Models\ModelNotFoundException;
 use LdapRecord\Query\ObjectNotFoundException;
 
 /**
- * @throws AuthException
  */
 function isLoggedIn(): bool
 {
     return !is_null(session('USERNAME'));
 }
+
+function hideForNonAdmin()
+{
+    return session('ADMIN') ? '' : 'hidden';
+}
+
+/**
+ * @throws AuthException
+ */
+function hideForLoggedOut()
+{
+    return isLoggedIn() ? '' : 'hidden';
+}
+
 
 /**
  * @throws AuthException
@@ -184,7 +197,7 @@ function findUserByUsername(string $username): array|\LdapRecord\Models\Model|Re
 /**
  * @throws AuthException
  */
-function getUserRoles(): array | null
+function getUserRoles(): array|null
 {
     $userRoles = null;
     if (isLoggedIn()) {

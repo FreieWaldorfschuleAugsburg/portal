@@ -1,5 +1,5 @@
 <header class="px-5 xl:px-24 2xl:px-60">
-    <div class="bg-red-100 dark:bg-red-600/20 dark:text-red-300 rounded outline outline-red-600 outline-1 px-5 py-3 mt-3 font-inter-medium">
+    <div class="bg-red-600/20 text-red-300 rounded outline outline-red-600 outline-1 px-5 py-3 mt-3 font-inter-medium">
         <?= lang('app.tooltip.preview') ?>
     </div>
 
@@ -10,7 +10,7 @@
 
                        as $category): ?>
 
-            <h1 class="font-inter-semibold text-h2-big dark:text-white"><?= $category->categoryName ?></h1>
+            <h1 class="font-inter-semibold text-h2-big text-white"><?= $category->categoryName ?></h1>
             <section
                     class="w-full rounded-xl overflow-x-scroll gap-3 wrapper ">
                 <?php foreach ($category->categoryItems as $entry): ?>
@@ -23,7 +23,6 @@
                         </div>
                     </a>
                     <style>
-
 
                         .text-break {
                             word-break: break-all;

@@ -1,7 +1,11 @@
 <?php
 
 return [
-    'createNew' => 'Neu Erstellen'
+    'createNew' => 'Neu Erstellen',
+    'view' => 'Ansehen',
+    'add' => 'Hinzufügen',
+    'remove' => 'Entfernen',
+    'copy' => 'Kopieren'
 
 
 ];

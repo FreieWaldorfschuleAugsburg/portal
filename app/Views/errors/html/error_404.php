@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title><?= lang('app.name') ?></title>
+    <title><?= lang('app.name.short') ?></title>
 
     <link href="<?= base_url('/') ?>/assets/img/logo.png" rel="icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -20,7 +20,7 @@
     <div class="row mt-5 justify-content-center">
         <div class="col-lg-8 text-center">
             <img src="<?= base_url('/') ?>/assets/img/logo.png" width="100" height="100" alt="" class="mx-auto d-block">
-            <h1 class="mb-5"><?= lang('app.name') ?></h1>
+            <h1 class="mb-5"><?= lang('app.name.short') ?></h1>
             <hr>
             <h4><?= lang('app.error.404.title') ?></h4>
             <p><?= lang('app.error.404.text') ?><br/>
