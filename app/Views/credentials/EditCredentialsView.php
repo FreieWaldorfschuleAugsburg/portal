@@ -8,15 +8,22 @@
     <?= form_open_multipart('') ?>
 
     <div class="flex flex-col gap-3">
-        <section class="flex flex-col gap-2">
+        <section class="flex flex-col gap-3 ">
             <div class="flex flex-col gap-1 text-gray-400 font-inter-medium">
                 <label for="name" class=""><?= lang('credential.fields.title') ?></label>
                 <input type="text" name="name" id="name" value="<?= $credentials->credential_name ?>"
                        class="rounded p-2.5 lg:p-3 bg-slate-900 border-none focus:outline-none">
             </div>
 
+            <div class="flex items-center gap-2 font-inter-medium text-gray-400">
+                <input type="checkbox" id="show_on_home" name="show_on_home" value="true"
+                       class="h-4 w-4 appearance-none rounded bg-slate-900 focus:outline-none focus:bg-gray-900" <?= $credentials->show_on_home ? 'checked' : '' ?>
+                <label for="show_on_home"
+                       class="text-ellipsis overflow-hidden whitespace-nowrap ">Auf dem Startbildschirm anzeigen</label>
+            </div>
 
-            <div class="w-full flex gap-2">
+
+            <div class="w-full flex gap-2 font-inter-medium">
                 <div class="flex flex-col gap-2 w-full" id="dynamicFields">
                     <?php foreach ($credentials->credential_fields as $credential_field): ?>
                         <div class="grid grid-cols-2 gap-3" id="credentialInputField">
@@ -46,21 +53,21 @@
 
             </div>
 
-                <button class="bg-blue-600 text-white p-3 rounded font-inter-medium flex-grow" id="addField"
-                        type="button">
-                    <?= lang('buttons.add') ?>
-                </button>
+            <button class="bg-blue-600 text-white p-3 rounded font-inter-medium flex-grow" id="addField"
+                    type="button">
+                <?= lang('buttons.add') ?>
+            </button>
             <div class="flex flex-col gap-1 text-gray-400 font-inter-medium">
                 <label for="role" class=""><?= lang('entry.role') ?></label>
                 <select name="role" id="role"
-                        class=" p-2.5 lg:p-3 select rounded w-full :bg-slate-900 border-none appearance-non focus:outline-none hover:bg-ye">
+                        class=" p-2.5 lg:p-3 select rounded w-full bg-slate-900 border-none appearance-non focus:outline-none">
                     <option class="rounded p-2.5 lg:p-3" value="">
                         Alle
                     </option>
                     <?php foreach ($roles
 
                                    as $role): ?>
-                        <option class="rounded  p-2.5 lg:p-3"
+                        <option class="rounded p-2.5 lg:p-3"
                                 value="<?= $role->role_id ?>" <?= $credentials->role_id === $role->role_id ? 'selected' : '' ?>>
                             <?= $role->role_name ?>
                         </option>
@@ -69,7 +76,7 @@
             </div>
 
         </section>
-        <button type="submit" class="bg-blue-600 text-white text-body font-inter-medium rounded py-5">
+        <button type="submit" class="bg-blue-600 text-white text-body font-inter-medium rounded py-3">
             <?= lang('entry.button.save') ?>
         </button>
 

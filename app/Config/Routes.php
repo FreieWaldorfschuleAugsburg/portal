@@ -68,7 +68,6 @@ $routes->get('/credentials/edit/(:any)', 'CredentialController::edit/$1', ['filt
 $routes->post('/credentials/edit/(:any)', 'CredentialController::update/$1', ['filter' => AdminFilter::class]);
 $routes->get('/credentials/(:any)', 'CredentialController::view/$1', ['filter' => LoggedInFilter::class]);
 
-
 //Regarding roles
 $routes->get('/roles', 'RoleController::index', ['filter' => AdminFilter::class]);
 $routes->get('/roles/edit/(:any)', 'RoleController::edit/$1', ['filter' => AdminFilter::class]);

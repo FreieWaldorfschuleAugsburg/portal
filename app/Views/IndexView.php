@@ -1,6 +1,17 @@
 <header class="px-5 xl:px-24 2xl:px-60">
-    <div class="bg-red-600/20 text-red-300 rounded outline outline-red-600 outline-1 px-5 py-3 mt-3 font-inter-medium">
-        <?= lang('app.tooltip.preview') ?>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mt-3">
+        <?php foreach ($credentials
+
+                       as $credential): ?>
+            <div class="flex gap-3 ">
+                <div class="bg-blue-600/20 text-white rounded outline outline-blue-600 outline-1 px-5 py-3 flex flex-1 gap-2">
+                    <p class="font-inter-medium"><?= lang('flags.credentials.new') ?></p>
+                    <a class="font-inter-regular underline"><?= $credential->credential_name ?></a>
+                </div>
+                <a class="bg-blue-600 p-3 text-white font-inter-medium rounded"
+                   href="<?= base_url('credentials/' . $credential->credential_id) ?>">Ansehen</a>
+            </div>
+        <?php endforeach; ?>
     </div>
 
 </header>

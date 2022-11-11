@@ -14,14 +14,25 @@ use Ramsey\Uuid\Uuid;
  */
 
 
-function getAllCredentialsForRoles($roles = null,): array
+function getAllCredentialsForRoles($roles = null, $filter = null): array
 
 {
     $admin = session('ADMIN');
     $credentialBuilder = db_connect()->table('portal_credentials_joined');
-    $allCredentials = $credentialBuilder->get()->getResult();
+    $allCredentials = [];
+    if (!$filter) {
+        $allCredentials = $credentialBuilder->get()->getResult();
+    } else {
+        foreach ($filter as $index => $filterValue) {
+            $filteredResults = $credentialBuilder->getWhere([$index => $filterValue])->getResult();
+            foreach ($filteredResults as $filteredResult) {
+                if (!in_array($filteredResult, $allCredentials)) {
+                    $allCredentials[] = $filteredResult;
+                }
+            }
+        }
+    }
     $credentials = [];
-
     foreach ($allCredentials as $credential) {
         $credential->credential_fields = getCredentialFields($credential->credential_id);
         if (!$admin) {
@@ -88,6 +99,7 @@ function createCredentials(\CodeIgniter\HTTP\IncomingRequest $request, string $c
     $credentialEntity->credential_id = $credentialId;
     $credentialEntity->credential_name = $request->getPost('name');
     $credentialEntity->role_id = strlen($request->getPost('role')) > 1 ? $request->getPost('role') : null;
+    $credentialEntity->show_on_home = $request->getPost('show_on_home') ? filter_var($request->getPost('show_on_home'), FILTER_VALIDATE_BOOLEAN) : false;
     return $credentialEntity;
 }
 

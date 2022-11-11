@@ -67,6 +67,9 @@ class CredentialController extends BaseController
         try {
             $credentialModel = new CredentialModel();
             $credentials = createCredentials($request, $credentialId);
+//            echo "<pre>";
+//            print_r($credentials);
+//            echo "</pre>";
             updateCredentials($credentialId, $request, $credentials);
         } catch (\ReflectionException $e) {
         }

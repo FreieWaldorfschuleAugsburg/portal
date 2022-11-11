@@ -17,7 +17,7 @@
                 <div class="space-y-2">
                     <div>
                         <div class="flex flex-col items-start gap-3 mb-2">
-                            <p class=" bg-blue-700/50 text-indigo-200 p-1.5 px-3 text-xs rounded font-inter-regular bg-blue-400">
+                            <p class="bg-blue-600/50 text-white p-1.5 px-3 text-xs rounded font-inter-regular bg-blue-400">
                                 <?= $credential->role_name ?: "Alle" ?></p>
                         </div>
                         <div class="w-30 lg:w-52">

@@ -18,7 +18,7 @@
             <div class=" bg-gray-900 text-white font-inter-regular px-5 py-3 rounded-lg flex justify-between">
                 <div>
                     <div class=" flex flex-col items-start gap-1 ">
-                        <p class=" bg-blue-700/50 text-indigo-200 p-1.5 px-3 text-xs rounded font-inter-regular bg-blue-400">
+                        <p class="bg-blue-600/50 text-white p-1.5 px-3 text-xs rounded font-inter-regular bg-blue-400">
                             <?= $entry->role_name ?: "Alle" ?></p>
                         <p class="text-gray-500"><?= $entry->category_name ?></p>
                     </div>

@@ -28,7 +28,7 @@
                 <div class="max-h-20 overflow-scroll">
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-3 items-start">
                         <?php foreach ($role->groups as $group): ?>
-                            <p class="bg-blue-600/50  text-indigo-200 p-1.5 px-3 text-2xs rounded text-ellipsis overflow-hidden whitespace-nowrap font-inter-regular">
+                            <p class="bg-blue-600/50 text-white p-1.5 px-3 text-2xs rounded text-ellipsis overflow-hidden whitespace-nowrap font-inter-regular">
                                 <?= $group->internal_name ?> </p>
                         <?php endforeach; ?>
                     </div>
