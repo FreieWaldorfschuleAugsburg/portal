@@ -75,6 +75,8 @@ function createEntryFromForm(IncomingRequest $request, $entryId)
     if (getEntry($entryId) != null) {
         $entry = getEntry($entryId);
     }
+    $categoryId = null;
+
     try {
         $categoryFields = $request->getPost('category_input[]');
         if ($categoryFields && sizeof($categoryFields) > 0) {
@@ -82,7 +84,7 @@ function createEntryFromForm(IncomingRequest $request, $entryId)
                 if (strlen($categoryField) > 0) {
                     $category = createAndStoreCategory($categoryField);
                     if ($index === 0) {
-                        $entry->category_id = $category->category_id;
+                        $categoryId = $category->category_id;
                     }
                 }
             }
@@ -95,9 +97,7 @@ function createEntryFromForm(IncomingRequest $request, $entryId)
     $entry->entry_name = $request->getPost('name');
     $entry->entry_url = $request->getPost('url');
     $entry->entitled_role = strlen($request->getPost('role')) > 1 ? $request->getPost('role') : null;
-    if (!$entry->category_id) {
-        $entry->category_id = $request->getPost('category');
-    }
+    $entry->category_id = $categoryId ?: $request->getPost('category');
     $entry->entry_color_1 = $request->getPost('color1');
     $entry->entry_color_2 = $request->getPost('color2');
 
