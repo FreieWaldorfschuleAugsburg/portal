@@ -1,15 +1,17 @@
 <header class="px-5 xl:px-24 2xl:px-60">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mt-3">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mt-5">
         <?php foreach ($credentials
 
                        as $credential): ?>
-            <div class="flex gap-3 ">
-                <div class="bg-blue-600/20 text-white rounded outline outline-blue-600 outline-1 px-5 py-3 flex flex-1 gap-2">
-                    <p class="font-inter-medium"><?= lang('flags.credentials.new') ?></p>
-                    <a class="font-inter-regular underline"><?= $credential->credential_name ?></a>
+            <div class="flex gap-3 bg-gradient-to-br from-[#0BAB64] to-[#3BB78F] rounded-xl justify-between px-3 py-5 transition hover:scale-95 ease-in-out">
+                <div>
+                    <div class=" text-white r outline-1 flex flex-col flex-1 ">
+                        <p class="text-category sm:text-category font-inter-light text-white opacity-70 "><?= lang('flags.credentials.new') ?></p>
+                        <a class="text-h2-small md:text-h2-big tracking-tight font-inter-semibold leading-6 md:leading-8 lg:leading-8"><?= $credential->credential_name ?></a>
+                    </div>
                 </div>
-                <a class="bg-blue-600 p-3 text-white font-inter-medium rounded"
-                   href="<?= base_url('credentials/' . $credential->credential_id) ?>">Ansehen</a>
+                <a class="bg-white bg-opacity-30 px-5 py-3 text-white text-center font-inter-medium rounded-xl flex items-center justify-center"
+                   href="<?= base_url('credentials/' . $credential->credential_id) ?>"><p>Ansehen</p></a>
             </div>
         <?php endforeach; ?>
     </div>

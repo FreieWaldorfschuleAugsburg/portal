@@ -2,7 +2,7 @@
 
 return [
    'credentials' => [
-       'new' => 'Zugangsdaten verfügbar: '
+       'new' => 'Zugangsdaten '
    ]
 
 

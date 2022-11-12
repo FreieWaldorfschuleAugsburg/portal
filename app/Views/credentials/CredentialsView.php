@@ -2,7 +2,7 @@
 
     <div class="flex gap-5 items-center">
 
-        <p class="font-inter-semibold text-h2-big lg:text-h1-small  text-white"><?= lang('credential.headings.view') ?></p>
+        <p class="font-inter-semibold text-h2-big lg:text-h1-small text-white"><?= lang('credential.headings.view') ?></p>
 
         <a href="<?= base_url('credentials/new') ?>"
            class="font-inter-medium  text-white bg-blue-600 rounded text-white ">
