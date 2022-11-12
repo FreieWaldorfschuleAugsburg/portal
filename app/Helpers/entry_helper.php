@@ -75,14 +75,15 @@ function createEntryFromForm(IncomingRequest $request, $entryId)
     if (getEntry($entryId) != null) {
         $entry = getEntry($entryId);
     }
-
     try {
         $categoryFields = $request->getPost('category_input[]');
-        if ($categoryFields) {
+        if ($categoryFields && sizeof($categoryFields) > 0) {
             foreach ($categoryFields as $index => $categoryField) {
-                $category = createAndStoreCategory($categoryField);
-                if ($index === 0) {
-                    $entry->category_id = $category->category_id;
+                if (strlen($categoryField) > 0) {
+                    $category = createAndStoreCategory($categoryField);
+                    if ($index === 0) {
+                        $entry->category_id = $category->category_id;
+                    }
                 }
             }
         }
