@@ -15,9 +15,7 @@ function getEntriesByCategory($roles = null)
 {
     $builder = db_connect()->table(getenv('database.views.entriesWithCategoryAndRole'));
     $entries = [];
-
     $allCategories = db_connect()->table('portal_categories')->get()->getResult();
-
     foreach ($allCategories as $category) {
         $categoryEntries = $builder->getWhere(['role_id' => null, 'category_id' => $category->category_id])->getResult();
         if ($roles != null) {

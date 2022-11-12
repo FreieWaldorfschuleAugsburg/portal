@@ -3,40 +3,86 @@
 use App\Entities\CredentialField;
 use App\Entities\Credentials;
 use App\Models\CredentialModel;
-use CodeIgniter\HTTP\IncomingRequest as IncomingRequestAlias;
+use App\Models\CredentialFieldModel;
+use CodeIgniter\HTTP\IncomingRequest;
 use Ramsey\Uuid\Uuid;
 
 /**
  * @throws ReflectionException
+ * @throws \App\Models\AuthException
  *
  */
 
 
-function getAllCredentials(): array
+function getAllCredentialsForRoles($roles = null, $filter = null): array
+
 {
+    $admin = session('ADMIN');
     $credentialBuilder = db_connect()->table('portal_credentials_joined');
-    $credentialFieldBuilder = db_connect()->table('portal_credentials_custom_fields');
-    $credentialsArray = $credentialBuilder->get()->getResult();
-    $resultsArray = [];
-    foreach ($credentialsArray as $credential) {
-        $credentialFieldArray = getCredentialFields($credential->credential_id);
-        $credential->credential_fields = $credentialsArray;
-        if (!in_array($credential, $resultsArray)) {
-            $resultsArray[] = $credential;
+    $allCredentials = [];
+    if (!$filter) {
+        $allCredentials = $credentialBuilder->get()->getResult();
+    } else {
+        foreach ($filter as $index => $filterValue) {
+            $filteredResults = $credentialBuilder->getWhere([$index => $filterValue])->getResult();
+            foreach ($filteredResults as $filteredResult) {
+                if (!in_array($filteredResult, $allCredentials)) {
+                    $allCredentials[] = $filteredResult;
+                }
+            }
         }
     }
-    return $resultsArray;
+    $credentials = [];
+    foreach ($allCredentials as $credential) {
+        $credential->credential_fields = getCredentialFields($credential->credential_id);
+        if (!$admin) {
+            if ($credential->role_id != null) {
+                if ($roles != null) {
+                    foreach ($roles as $role) {
+                        if ($credential->role_id === $role) {
+                            $credentials[] = $credential;
+                        }
+                    }
+                }
+            } else {
+                $credentials[] = $credential;
+            }
+        } else {
+            $credentials[] = $credential;
+        }
+
+
+    }
+    return $credentials;
 
 
 }
 
-function getCredentials($credentialId): array|object
+/**
+ * @throws \App\Models\AuthException
+ */
+function getCredentials($credentialId, $roles = null): array|object
 {
+    $admin = session('ADMIN');
     $credentialModel = new CredentialModel();
-    $credentials = $credentialModel->find($credentialId);
-    $credentialFields = getCredentialFields($credentialId);
-    $credentials->credential_fields = $credentialFields;
-    return $credentials;
+    $credential = $credentialModel->find($credentialId);
+    $credential->credential_fields = getCredentialFields($credential->credential_id);
+    if (!$admin) {
+        if ($credential->role_id != null) {
+            if ($roles != null) {
+                foreach ($roles as $role) {
+                    if ($credential->role_id === $role) {
+                        return $credential;
+                    }
+                }
+            }
+        } else {
+            return $credential;
+        }
+    } else {
+        return $credential;
+    }
+    throw new \App\Models\AuthException('noPermissions');
 }
 
 
@@ -47,13 +93,13 @@ function getCredentialFields(string $credentialId)
 }
 
 
-function createCredentials(\CodeIgniter\HTTP\IncomingRequest $request): Credentials
+function createCredentials(\CodeIgniter\HTTP\IncomingRequest $request, string $credentialId): Credentials
 {
     $credentialEntity = new Credentials();
-    $credentialEntity->credential_id = Uuid::uuid4();
+    $credentialEntity->credential_id = $credentialId;
     $credentialEntity->credential_name = $request->getPost('name');
     $credentialEntity->role_id = strlen($request->getPost('role')) > 1 ? $request->getPost('role') : null;
-
+    $credentialEntity->show_on_home = $request->getPost('show_on_home') ? filter_var($request->getPost('show_on_home'), FILTER_VALIDATE_BOOLEAN) : false;
     return $credentialEntity;
 }
 
@@ -63,7 +109,7 @@ function createCredentials(\CodeIgniter\HTTP\IncomingRequest $request): Credenti
  */
 function insertCredentials(Credentials $credentials, array $credentialFields): void
 {
-    $credentialModel = new CredentialModelAlias();
+    $credentialModel = new CredentialModel();
     $credentialModel->insert($credentials);
     insertCredentialFields($credentialFields);
 }
@@ -71,20 +117,22 @@ function insertCredentials(Credentials $credentials, array $credentialFields): v
 /**
  * @throws ReflectionException
  */
-function updateCredentials(string $credentialId, \App\Entities\Credentials $credentials): bool
+function updateCredentials(string $credentialId, IncomingRequest $request, \App\Entities\Credentials $credentials): bool
 {
-    $credentialModel = new CredentialModelAlias();
+    $credentialModel = new CredentialModel();
+    $credentialFields = createCredentialFields($request, $credentialId);
+    updateCredentialFields($credentialId, $credentialFields);
     return $credentialModel->update($credentialId, $credentials);
 }
 
 function deleteCredentials(string $credentialId): void
 {
-    $credentialModel = new CredentialModelAlias();
+    $credentialModel = new CredentialModel();
     $credentialModel->delete($credentialId);
 }
 
 
-function createCredentialFields(IncomingRequestAlias $request, string $credentialId): array
+function createCredentialFields(IncomingRequest $request, string $credentialId): array
 {
     $credentialFields = [];
     $field_names = $request->getPost('field_name');
@@ -108,7 +156,7 @@ function createCredentialFields(IncomingRequestAlias $request, string $credentia
  */
 function insertCredentialFields(array $credentialFields): void
 {
-    $credentialFieldModel = new CredentialModelAlias();
+    $credentialFieldModel = new CredentialFieldModel();
     try {
         $credentialFieldModel->insertBatch($credentialFields);
     } catch (ReflectionException $exception) {
@@ -119,10 +167,11 @@ function insertCredentialFields(array $credentialFields): void
 /**
  * @throws ReflectionException
  */
-function updateDynamicFields(string $credentialId, array $dynamicFieldArray): void
+function updateCredentialFields(string $credentialId, array $credentialFields): void
 {
-    $credentialFieldModel = new CredentialModelAlias();
-    $credentialFieldModel->updateBatch($dynamicFieldArray);
+    $credentialFieldModel = new CredentialFieldModel();
+    $credentialFieldModel->where('credential_id', $credentialId)->delete();
+    $credentialFieldModel->insertBatch($credentialFields);
 }
 
 

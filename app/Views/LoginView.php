@@ -1,4 +1,4 @@
-<section class="px-5 dark:text-white flex flex-col justify-center items-center">
+<section class="px-5 text-white flex flex-col justify-center items-center">
 
 
     <div class="w-full sm:w-4/6 lg:w-6/12">
@@ -17,20 +17,20 @@
 
             </div>
             <form method="post"
-                  class="px-5 py-8 bg-gray-100 dark:bg-gray-900 dark:border border-gray-700 rounded-lg mt-5 space-y-5">
+                  class="px-5 py-8 bg-gray-900 border border-gray-700 rounded-lg mt-5 space-y-5">
 
                 <div class="flex flex-col gap-1">
-                    <label class="font-inter-medium dark:text-gray-300 text-gray-800 text-category lg:text-body"
+                    <label class="font-inter-medium text-gray-300 text-category lg:text-body"
                            for="username"><?= lang('login.username') ?></label>
-                    <input class="rounded p-1.5 lg:p-3 dark:bg-transparent border-gray-300 bg-gray-200 dark:border dark:border-gray-600 outline-none focus:outline-none"
+                    <input class="rounded p-1.5 lg:p-3 bg-transparent border-gray-300 border border-gray-600 outline-none focus:outline-none"
                            type="text"
                            name="username"
                            id="username">
                 </div>
                 <div class="flex flex-col gap-1 font-inter-medium">
-                    <label class="font-inter-medium dark:text-gray-300 text-gray-800 text-category lg:text-body"
+                    <label class="font-inter-medium text-gray-300 text-category lg:text-body"
                            for="password"><?= lang('login.password') ?></label>
-                    <input class="rounded p-1.5 lg:p-3 dark:bg-transparent border-gray-300 bg-gray-200 dark:border dark:border-gray-600 outline-none focus:outline-none"
+                    <input class="rounded p-1.5 lg:p-3 bg-transparent border-gray-300 border border-gray-600 outline-none focus:outline-none"
                            type="password"
                            name="password"
                            id="password">

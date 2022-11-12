@@ -3,9 +3,9 @@
 
     <div class="flex gap-5 items-center">
 
-        <p class="font-inter-semibold text-h1-small dark:text-white">Einträge</p>
+        <p class="font-inter-semibold text-h1-small text-white">Einträge</p>
 
-        <a href="<?= base_url('entries/new') ?>" class="font-inter-medium dark:text-white bg-blue-600 rounded text-white ">
+        <a href="<?= base_url('entries/new') ?>" class="font-inter-medium  text-white bg-blue-600 rounded">
             <button class="p-3">Neu erstellen</button>
         </a>
     </div>
@@ -15,10 +15,10 @@
         <?php foreach ($entries
 
                        as $entry): ?>
-            <div class="dark:bg-gray-900 bg-neutral-200 dark:text-white font-inter-regular px-5 py-3 rounded-lg flex justify-between">
+            <div class=" bg-gray-900 text-white font-inter-regular px-5 py-3 rounded-lg flex justify-between">
                 <div>
                     <div class=" flex flex-col items-start gap-1 ">
-                        <p class="dark:bg-blue-700/50 dark:text-indigo-200 p-1.5 px-3 text-xs rounded font-inter-regular bg-blue-400">
+                        <p class="bg-blue-600/50 text-white p-1.5 px-3 text-xs rounded font-inter-regular bg-blue-400">
                             <?= $entry->role_name ?: "Alle" ?></p>
                         <p class="text-gray-500"><?= $entry->category_name ?></p>
                     </div>

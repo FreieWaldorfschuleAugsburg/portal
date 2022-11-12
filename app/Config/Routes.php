@@ -4,6 +4,7 @@ namespace Config;
 
 // Create a new instance of our RouteCollection class.
 use App\Filters\AdminFilter;
+use App\Filters\LoggedInFilter;
 
 $routes = Services::routes();
 
@@ -47,10 +48,10 @@ $routes->get('/logout', 'AuthenticationController::logout');
 
 //Regarding entries
 $routes->get('/entries', 'EntryController::index', ['filter' => AdminFilter::class]);
-$routes->post('/entries', 'EntryController::store');
+$routes->post('/entries', 'EntryController::store', ['filter' => AdminFilter::class]);
 
 $routes->get('/entries/new', 'EntryController::create', ['filter' => AdminFilter::class]);
-$routes->post('/entries/new', 'EntryController::store');
+$routes->post('/entries/new', 'EntryController::store', ['filter' => AdminFilter::class]);
 
 
 $routes->get('/entries/edit/(:any)', 'EntryController::edit/$1', ['filter' => AdminFilter::class]);
@@ -58,17 +59,14 @@ $routes->post('/entries/edit/(:any)', 'EntryController::update/$1', ['filter' =>
 $routes->get('/entries/delete/(:any)', 'EntryController::delete/$1', ['filter' => AdminFilter::class]);
 
 
-//Regarding categories
-$routes->get('/categories', 'CategoryController::index');
-$routes->post('/categories', 'CategoryController::store');
-
 //Regarding credentials
-$routes->get('/credentials', 'CredentialController::index');
-$routes->get('/credentials/new', 'CredentialController::create');
-$routes->post('/credentials/new', 'CredentialController::store');
+$routes->get('/credentials', 'CredentialController::index', ['filter' => LoggedInFilter::class]);
+$routes->get('/credentials/new', 'CredentialController::create', ['filter' => AdminFilter::class]);
+$routes->post('/credentials/new', 'CredentialController::store', ['filter' => AdminFilter::class]);
 
 $routes->get('/credentials/edit/(:any)', 'CredentialController::edit/$1', ['filter' => AdminFilter::class]);
-
+$routes->post('/credentials/edit/(:any)', 'CredentialController::update/$1', ['filter' => AdminFilter::class]);
+$routes->get('/credentials/(:any)', 'CredentialController::view/$1', ['filter' => LoggedInFilter::class]);
 
 //Regarding roles
 $routes->get('/roles', 'RoleController::index', ['filter' => AdminFilter::class]);
@@ -79,7 +77,7 @@ $routes->get('/roles/delete/(:any)', 'RoleController::delete/$1', ['filter' => A
 
 
 $routes->get('/roles/new', 'RoleController::create', ['filter' => AdminFilter::class]);
-$routes->post('/roles/new', 'RoleController::store');
+$routes->post('/roles/new', 'RoleController::store', ['filter' => AdminFilter::class]);
 
 
 /*
