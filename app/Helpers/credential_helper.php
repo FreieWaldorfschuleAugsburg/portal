@@ -88,8 +88,11 @@ function getCredentials($credentialId, $roles = null): array|object
 
 function getCredentialFields(string $credentialId)
 {
-    $builder = db_connect()->table('portal_credentials_custom_fields');
-    return $builder->getWhere(['credential_id' => $credentialId])->getResult();
+    $credentialFieldModel = new CredentialFieldModel();
+    return $credentialFieldModel->where(['credential_id' => $credentialId])->findAll();
+
+
+
 }
 
 

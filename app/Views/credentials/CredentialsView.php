@@ -27,12 +27,12 @@
 
                     <div class="flex gap-3">
                         <a href="<?= base_url('credentials/edit/' . $credential->credential_id) ?>"
-                           class="bg-blue-600 text-xs md:text-category text-white text-center p-3 rounded" <?= \App\Helpers\hideForNonAdmin() ?>>
+                           class="bg-blue-600 text-category text-white text-center p-3 rounded" <?= \App\Helpers\hideForNonAdmin() ?>>
                             <?= lang('entry.button.edit') ?>
                         </a>
 
                         <a href="<?= base_url('credentials/' . $credential->credential_id) ?>"
-                           class="bg-blue-600 text-xs md:text-category text-white text-center p-3 rounded">
+                           class="bg-blue-600 text-category text-white text-center p-3 rounded">
                             <?= lang('buttons.view') ?>
                         </a>
                     </div>

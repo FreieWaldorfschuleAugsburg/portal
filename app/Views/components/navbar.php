@@ -31,11 +31,14 @@
 <div class="hidden justify-between items-center px-5  xl:px-24 2xl:px-60 bg-slate-900 pb-5 <?= \App\Helpers\isLoggedIn() ? 'lg:flex' : '' ?>" id="navbar">
 
     <ul class="text-gray-300 font-inter-medium flex flex-col lg:flex-row gap-2 justify-center">
-        <li class="rounded p-1.5" <?= session('ADMIN') ? '' : 'hidden' ?>>
+        <li class="rounded p-1.5" <?=\App\Helpers\hideForNonAdmin()?>>
             <a href="<?= base_url('entries') ?>">Einträge</a>
         </li>
-        <li class="rounded p-1.5" <?= session('ADMIN') ? '' : 'hidden' ?>>
+        <li class="rounded p-1.5" <?=\App\Helpers\hideForNonAdmin()?>>
             <a href="<?= base_url('roles') ?>">Rollen</a>
+        </li>
+        <li class="rounded p-1.5" <?=\App\Helpers\hideForNonAdmin()?>>
+            <a href="<?= base_url('categories') ?>">Kategorien</a>
         </li>
 
         <li class="rounded p-1.5">

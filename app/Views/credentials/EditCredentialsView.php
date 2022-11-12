@@ -80,6 +80,13 @@
             <?= lang('entry.button.save') ?>
         </button>
 
+        <a href="<?= base_url('credentials/delete') . "/" . $credentials->credential_id ?>"
+           class="bg-red-600 text-white text-body font-inter-medium rounded py-3 text-center">
+            <?= lang('entry.button.delete') ?>
+        </a>
+
+
+
     </div>
     </form>
 

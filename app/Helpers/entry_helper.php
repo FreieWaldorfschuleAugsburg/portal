@@ -68,21 +68,37 @@ function getEntryWithRoleAndCategory(string $entryId)
 }
 
 
-function createEntryFromForm($request, $entryId)
+function createEntryFromForm(IncomingRequest $request, $entryId)
 {
 
     $entry = new Entry();
     if (getEntry($entryId) != null) {
         $entry = getEntry($entryId);
     }
+
+    try {
+        $categoryFields = $request->getPost('category_input[]');
+        if ($categoryFields) {
+            foreach ($categoryFields as $index => $categoryField) {
+                $category = createAndStoreCategory($categoryField);
+                if ($index === 0) {
+                    $entry->category_id = $category->category_id;
+                }
+            }
+        }
+    } catch (\ReflectionException $e) {
+    }
+
+
     $entry->entry_id = $entryId;
     $entry->entry_name = $request->getPost('name');
     $entry->entry_url = $request->getPost('url');
     $entry->entitled_role = strlen($request->getPost('role')) > 1 ? $request->getPost('role') : null;
-    $entry->category_id = $request->getPost('category');
+    if (!$entry->category_id) {
+        $entry->category_id = $request->getPost('category');
+    }
     $entry->entry_color_1 = $request->getPost('color1');
     $entry->entry_color_2 = $request->getPost('color2');
-
 
     return $entry;
 
@@ -96,7 +112,7 @@ function saveEntry($entry)
     $entryModel = new EntryModel();
     try {
         $entryModel->update($entry->entry_id, $entry);
-    } catch (DataException $exception){
+    } catch (DataException $exception) {
 
     }
 

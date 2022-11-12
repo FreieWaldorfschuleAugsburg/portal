@@ -8,7 +8,7 @@ use CodeIgniter\Model;
 
 class CredentialFieldModel extends Model
 {
-    protected $table = 'portal_credentials_custom_fields';
+    protected $table = 'portal_credentials_fields';
     protected $primaryKey = 'field_id';
     protected $returnType = CredentialField::class;
     protected $allowedFields = [

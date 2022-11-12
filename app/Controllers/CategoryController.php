@@ -9,18 +9,24 @@ class CategoryController extends BaseController
 {
     public function index()
     {
-        helper('auth');
-        protectRoute();
-
-
-
-
-
-
-
+        $categories = getCategories();
+        return $this->render('categories/CategoryView', ['categories' => $categories]);
     }
 
-    public function store(IncomingRequest $request){
+    /**
+     * @throws \ReflectionException
+     */
+    public function update()
+    {
+        $updatedCategories = $this->request->getPost('category');
+        $addedCategories = $this->request->getPost('new_category');
+        updateOrDeleteCategories($updatedCategories);
+        if ($addedCategories) {
+            foreach ($addedCategories as $addedCategory) {
+              createAndStoreCategory($addedCategory);
+            }
+        }
+        return redirect('categories');
 
     }
 

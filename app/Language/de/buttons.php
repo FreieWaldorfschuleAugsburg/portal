@@ -5,7 +5,9 @@ return [
     'view' => 'Ansehen',
     'add' => 'Hinzufügen',
     'remove' => 'Entfernen',
-    'copy' => 'Kopieren'
+    'copy' => 'Kopieren',
+    'edit' => 'Bearbeiten',
+    'save' => 'Speichern'
 
 
 ];

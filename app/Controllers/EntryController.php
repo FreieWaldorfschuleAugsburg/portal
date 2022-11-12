@@ -89,7 +89,7 @@ class EntryController extends BaseController
     public function update($entryId)
     {
         $request = $this->request;
-        $entry = createEntryFromForm($request, $entryId);#
+        $entry = createEntryFromForm($request, $entryId);
         try {
             $img = $request->getFile('image');
             if (!$img->hasMoved()) {

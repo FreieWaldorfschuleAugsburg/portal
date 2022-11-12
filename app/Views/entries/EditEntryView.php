@@ -23,18 +23,32 @@
 
         <div class="flex flex-col gap-1  text-gray-400 font-inter-medium">
             <label for="category" class="text-gray-400"><?= lang('entry.category') ?></label>
-            <select name="category" id="category"
-                    class=" p-2.5 lg:p-3 select rounded w-full bg-slate-900 border-none focus:outline-none">
-                <?php foreach ($categories
+            <div class="flex gap-2">
+                <select name="category" id="category"
+                        class=" p-2.5 lg:p-3 select rounded w-full flex-1 bg-slate-900 border-none focus:outline-none">
+                    <?php foreach ($categories
 
-                               as $category): ?>
-                    <option class="rounded p-2.5 lg:p-3" value="<?= $category->category_id ?>"
-                    <?= $entry->category_id === $category->category_id ? 'selected' : '' ?> ">
-                        <?= $category->category_name ?>
-                    </option>
-                <?php endforeach; ?>
-            </select>
+                                   as $category): ?>
+                        <option class="rounded p-2.5 lg:p-3" value="<?= $category->category_id ?>"  <?= $entry->category_id === $category->category_id ? 'selected' : '' ?>>
+
+                            <?= $category->category_name ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+                <div class="flex flex-col gap-2" id="category_input_container">
+                    <div id="category_input_template" class="flex gap-2">
+                        <input type="text" name="category_input[]" id="category_input[]" hidden placeholder="Name eingeben..."
+                               class="rounded p-2.5 lg:p-3 bg-slate-900 border-none focus:outline-none flex-1">
+                        <button class="bg-blue-600 rounded p-3 text-white" id="addCategory"
+                                type="button"><?= lang('buttons.add') ?></button>
+                        <button type="button" id="removeCategory" hidden
+                                class="p-3 bg-red-600 rounded removeField"><?= lang('buttons.remove') ?></button>
+
+                    </div>
+                </div>
+            </div>
         </div>
+
 
         <div class="flex flex-col gap-1  text-gray-400 font-inter-medium">
             <label for="role" class="text-gray-400"><?= lang('entry.role') ?></label>
@@ -47,12 +61,14 @@
                 <?php foreach ($roles
 
                                as $role): ?>
-                    <option class="rounded p-2.5 lg:p-3" value="<?= $role->role_id ?>"
-                    <?= $entry->role_id === $role->role_id ? 'selected' : '' ?> ">
+                    <option class="rounded p-2.5 lg:p-3" value="<?= $role->role_id ?>">
+                        <?= $entry->role_id === $role->role_id ? 'selected' : '' ?>
                         <?= $role->role_name ?>
                     </option>
                 <?php endforeach; ?>
             </select>
+
+
         </div>
 
         <section>
@@ -74,7 +90,7 @@
 
                 <div class="col-span-2 rounded bg-dark w-full flex gap-5 items-center justify-center p-3">
                     <div>
-                        <img class="w-12 h-12" src="<?=base_url("uploads/$entry->entry_id.png")?>" alt="">
+                        <img class="w-12 h-12" src="<?= base_url("uploads/$entry->entry_id.png") ?>" alt="">
                     </div>
 
                     <label class=" text-gray-400 flex flex-col justify-center items-center" for="image">
@@ -107,5 +123,5 @@
     </section>
     </form>
 
-
 </main>
+<script src="<?= base_url('assets/js/Category.js') ?>" defer></script>

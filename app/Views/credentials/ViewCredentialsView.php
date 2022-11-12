@@ -15,8 +15,8 @@
                                 <label for="field_name[]"
                                        class=" text-gray-400"><?= $credential_field->field_name ?></label>
                                 <div class="flex gap-2 w-full">
-                                    <p class="bg-slate-900 p-3 rounded flex-1" id="fieldValue"><?= $credential_field->field_value ?></p>
-                                    <button type="button" id="copyValue" class="bg-blue-600 p-3 rounded text-white"><?= lang('buttons.copy') ?></button>
+                                    <p class="bg-slate-900 p-3 rounded truncate flex-1" id="fieldValue"><?= $credential_field->field_value ?></p>
+                                    <button type="button" id="copyValue" class="bg-blue-600 p-3 rounded text-white "><?= lang('buttons.copy') ?></button>
                                 </div>
                             </div>
                         <?php endforeach; ?>

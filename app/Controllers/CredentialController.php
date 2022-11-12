@@ -3,8 +3,8 @@
 namespace App\Controllers;
 
 use App\Models\AuthException;
-use App\Models\CredentialModel;
-use CodeIgniter\HTTP\IncomingRequest;
+use CodeIgniter\Database\Exceptions\DataException;
+use ReflectionException;
 use function App\Helpers\getAllRoles;
 use function App\Helpers\getUserRoles;
 use Ramsey\Uuid\Uuid;
@@ -13,10 +13,10 @@ class CredentialController extends BaseController
 {
 
     /**
-     * @throws \ReflectionException
      * @throws AuthException
+     * @throws ReflectionException
      */
-    public function index()
+    public function index(): string
     {
         $roles = getUserRoles();
         $credentials = getAllCredentialsForRoles($roles);
@@ -24,12 +24,18 @@ class CredentialController extends BaseController
 
     }
 
-    public function create()
+    /**
+     * @throws AuthException
+     */
+    public function create(): string
     {
         return $this->render('credentials/CreateCredentialsView', ['roles' => getAllRoles()]);
     }
 
-    public function view(string $credentialId)
+    /**
+     * @throws AuthException
+     */
+    public function view(string $credentialId): string
     {
         $roles = getUserRoles();
         $credentials = getCredentials($credentialId, $roles);
@@ -38,7 +44,10 @@ class CredentialController extends BaseController
     }
 
 
-    public function edit(string $credentialId)
+    /**
+     * @throws AuthException
+     */
+    public function edit(string $credentialId): string
     {
         $credentials = getCredentials($credentialId);
         return $this->render('credentials/EditCredentialsView', ['credentials' => $credentials, 'roles' => getAllRoles()]);
@@ -46,32 +55,35 @@ class CredentialController extends BaseController
     }
 
 
-    /**
-     * @throws \ReflectionException
-     */
-    public function store()
+    public function store(): \CodeIgniter\HTTP\RedirectResponse
     {
         $request = $this->request;
         $credentials = createCredentials($request, Uuid::uuid4());
         $credentialFields = createCredentialFields($request, $credentials->credential_id);
         try {
             insertCredentials($credentials, $credentialFields);
-        } catch (\ReflectionException $e) {
+        } catch (ReflectionException $e) {
         }
         return redirect('credentials');
     }
 
-    public function update(string $credentialId)
+    public function update(string $credentialId): \CodeIgniter\HTTP\RedirectResponse
     {
         $request = $this->request;
         try {
-            $credentialModel = new CredentialModel();
             $credentials = createCredentials($request, $credentialId);
-//            echo "<pre>";
-//            print_r($credentials);
-//            echo "</pre>";
             updateCredentials($credentialId, $request, $credentials);
-        } catch (\ReflectionException $e) {
+        } catch (ReflectionException $e) {
+        }
+        return redirect('credentials');
+    }
+
+    public function delete(string $credentialId): \CodeIgniter\HTTP\RedirectResponse
+    {
+        try {
+            deleteCredentials($credentialId);
+        } catch (DataException $exception) {
+
         }
         return redirect('credentials');
     }
