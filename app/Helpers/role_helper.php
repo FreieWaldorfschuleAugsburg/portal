@@ -23,10 +23,7 @@ function saveRole($role)
 {
     $roleModel = new RoleModel();
     $roleModel->save($role);
-
     deleteGroups($role->role_id);
-
-
     foreach ($role->groups as $group) {
         storeGroup(createGroupEntity($group, $role->role_id));
     }

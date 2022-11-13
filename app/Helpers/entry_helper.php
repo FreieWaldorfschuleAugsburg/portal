@@ -26,7 +26,6 @@ function getEntriesByCategory($roles = null)
                         $categoryEntries[] = $entryWithRole;
                     }
                 }
-
             }
         }
         if (sizeof($categoryEntries) > 0) {

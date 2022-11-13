@@ -67,21 +67,19 @@ function getCredentials($credentialId, $roles = null): array|object
     $credentialModel = new CredentialModel();
     $credential = $credentialModel->find($credentialId);
     $credential->credential_fields = getCredentialFields($credential->credential_id);
-    if (!$admin) {
-        if ($credential->role_id != null) {
-            if ($roles != null) {
-                foreach ($roles as $role) {
-                    if ($credential->role_id === $role) {
-                        return $credential;
-                    }
+
+    if ($admin || $credential->role_id == null) {
+        return $credential;
+    } else {
+        if ($roles != null) {
+            foreach ($roles as $role) {
+                if ($credential->role_id === $role) {
+                    return $credential;
                 }
             }
-        } else {
-            return $credential;
         }
-    } else {
-        return $credential;
     }
+
     throw new \App\Models\AuthException('noPermissions');
 }
 
@@ -90,7 +88,6 @@ function getCredentialFields(string $credentialId)
 {
     $credentialFieldModel = new CredentialFieldModel();
     return $credentialFieldModel->where(['credential_id' => $credentialId])->findAll();
-
 
 
 }
