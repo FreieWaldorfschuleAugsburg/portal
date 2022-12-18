@@ -27,7 +27,7 @@
             <section
                     class="w-full rounded-xl overflow-x-scroll gap-3 wrapper ">
                 <?php foreach ($category->categoryItems as $entry): ?>
-                    <a href="<?= $entry->entry_url ?>" target="_blank"
+                    <a href="<?= $entry->entry_url ?>"
                        class="flex rounded-xl link-<?= $entry->entry_id ?> flex-shrink-0 transition hover:scale-95 ease-in-out shadow self-start ">
                         <div class="text-white px-3 py-3">
                             <p class="text-category sm:text-category font-inter-light text-white opacity-70 "><?= $entry->category_name ?></p>
