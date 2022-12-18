@@ -12,7 +12,7 @@ class CredentialModel extends Model
     protected $primaryKey = 'credential_id';
     protected $returnType = Credentials::class;
     protected $allowedFields = [
-        'credential_id', 'credential_name', 'role_id', 'show_on_home'
+        'credential_id', 'credential_name', 'role_id', 'show_on_home', 'documentation_url'
     ];
 
 

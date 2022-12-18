@@ -98,6 +98,7 @@ function createCredentials(\CodeIgniter\HTTP\IncomingRequest $request, string $c
     $credentialEntity = new Credentials();
     $credentialEntity->credential_id = $credentialId;
     $credentialEntity->credential_name = $request->getPost('name');
+    $credentialEntity->documentation_url = $request->getPost('documentation');
     $credentialEntity->role_id = strlen($request->getPost('role')) > 1 ? $request->getPost('role') : null;
     $credentialEntity->show_on_home = $request->getPost('show_on_home') ? filter_var($request->getPost('show_on_home'), FILTER_VALIDATE_BOOLEAN) : false;
     return $credentialEntity;

@@ -75,6 +75,12 @@
                 </select>
             </div>
 
+            <div class="flex flex-col gap-1 text-gray-400 font-inter-medium">
+                <label for="documentation" class=""><?= lang('credential.fields.documentation') ?></label>
+                <input type="text" name="documentation" id="documentation" value="<?= $credentials->documentation_url ?>"
+                       class="rounded p-2.5 lg:p-3 bg-slate-900 border-none focus:outline-none">
+            </div>
+
         </section>
         <button type="submit" class="bg-blue-600 text-white text-body font-inter-medium rounded py-3">
             <?= lang('entry.button.save') ?>

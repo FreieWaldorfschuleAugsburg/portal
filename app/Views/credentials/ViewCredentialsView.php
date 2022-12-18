@@ -9,14 +9,16 @@
         <section class="flex flex-col gap-2">
             <div class="w-full flex gap-2">
                 <div class="flex flex-col gap-2 w-full" id="dynamicFields">
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-3">
+                    <div class="grid grid-cols-1 lg:grid-cols-1 gap-3">
                         <?php foreach ($credentials->credential_fields as $credential_field): ?>
                             <div class="flex flex-col gap-1 w-full font-inter-medium">
                                 <label for="field_name[]"
                                        class=" text-gray-400"><?= $credential_field->field_name ?></label>
                                 <div class="flex gap-2 w-full">
-                                    <p class="bg-slate-900 p-3 rounded truncate flex-1" id="fieldValue"><?= $credential_field->field_value ?></p>
-                                    <button type="button" id="copyValue" class="bg-blue-600 p-3 rounded text-white "><?= lang('buttons.copy') ?></button>
+                                    <p class="bg-slate-900 p-3 rounded truncate flex-1"
+                                       id="fieldValue"><?= $credential_field->field_value ?></p>
+                                    <button type="button" id="copyValue"
+                                            class="bg-blue-600 p-3 rounded text-white "><?= lang('buttons.copy') ?></button>
                                 </div>
                             </div>
                         <?php endforeach; ?>
@@ -30,6 +32,17 @@
     </div>
     </form>
 
+    <?php if ($credentials->documentation_url): ?>
+        <div class="flex gap-5 items-center">
+            <p class="font-inter-semibold text-h2-big  text-white"><?= lang('credential.headings.documentation') ?></p>
+        </div>
+
+        <div class="flex gap-5 items-center">
+            <a href="<?= $credentials->documentation_url ?>" target="_blank"><p
+                        class="font-inter-medium bg-blue-600 p-3 rounded text-white"><?= lang('credential.button.documentation') ?></p>
+            </a>
+        </div>
+    <?php endif; ?>
 
 </main>
 
