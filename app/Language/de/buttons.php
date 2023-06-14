@@ -4,6 +4,7 @@ return [
     'createNew' => 'Neu Erstellen',
     'view' => 'Ansehen',
     'add' => [
+        'default' => 'Hinzufügen',
         'text' => 'Textfeld hinzufügen',
         'file' => 'Dateifeld hinzufügen'
     ],

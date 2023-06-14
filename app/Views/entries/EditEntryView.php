@@ -40,7 +40,7 @@
                         <input type="text" name="category_input[]" id="category_input[]" hidden placeholder="Name eingeben..."
                                class="rounded p-2.5 lg:p-3 bg-slate-900 border-none focus:outline-none flex-1">
                         <button class="bg-blue-600 rounded p-3 text-white" id="addCategory"
-                                type="button"><?= lang('buttons.add') ?></button>
+                                type="button"><?= lang('buttons.add.default') ?></button>
                         <button type="button" id="removeCategory" hidden
                                 class="p-3 bg-red-600 rounded removeField"><?= lang('buttons.remove') ?></button>
 

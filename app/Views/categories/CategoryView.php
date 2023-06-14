@@ -23,7 +23,7 @@
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
             <button class="p-3 bg-green-600 rounded text-white font-inter-medium" id="addCategory"
-                    type="button"><?= lang('buttons.add') ?></button>
+                    type="button"><?= lang('buttons.add.default') ?></button>
             <button class="p-3 bg-blue-600 rounded text-white font-inter-medium"
                     type="submit"><?= lang('buttons.save') ?></button>
         </div>

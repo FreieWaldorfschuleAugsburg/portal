@@ -37,7 +37,7 @@ $paths = new Config\Paths();
 // Location of the framework bootstrap file.
 require rtrim($paths->systemDirectory, '\\/ ') . DIRECTORY_SEPARATOR . 'bootstrap.php';
 
-// Load environment settings from ..env files into $_SERVER and $_ENV
+// Load environment settings from .env files into $_SERVER and $_ENV
 require_once SYSTEMPATH . 'Config/DotEnv.php';
 (new CodeIgniter\Config\DotEnv(ROOTPATH))->load();
 
@@ -47,7 +47,7 @@ require_once SYSTEMPATH . 'Config/DotEnv.php';
  * ---------------------------------------------------------------
  *
  * The CodeIgniter class contains the core functionality to make
- * the application run, and does all of the dirty work to get
+ * the application run, and does all the dirty work to get
  * the pieces all working together.
  */
 
@@ -60,7 +60,7 @@ $app->setContext($context);
  *---------------------------------------------------------------
  * LAUNCH THE APPLICATION
  *---------------------------------------------------------------
- * Now that everything is setup, it's time to actually fire
+ * Now that everything is set up, it's time to actually fire
  * up the engines and make this app do its thang.
  */
 
