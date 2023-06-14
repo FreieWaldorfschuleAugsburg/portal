@@ -1,6 +1,9 @@
 document.addEventListener('click', (e) => {
-    if (e.target && e.target.id === 'addField') {
-        addField();
+    if (e.target && e.target.id === 'addTextField') {
+        addTextField();
+    }
+    if (e.target && e.target.id === 'addFileField') {
+        addFileField();
     }
     if (e.target && e.target.id === 'removeField') {
         removeField(e)
@@ -11,10 +14,14 @@ document.addEventListener('click', (e) => {
 
 })
 
-function addField() {
+function addTextField() {
     const dynamicFieldDiv = document.getElementById('dynamicFields');
-    dynamicFieldDiv.appendChild(createInputField());
+    dynamicFieldDiv.appendChild(createInputField('credentialInputFieldText'));
+}
 
+function addFileField() {
+    const dynamicFieldDiv = document.getElementById('dynamicFields');
+    dynamicFieldDiv.appendChild(createInputField('credentialInputFieldFile'));
 }
 
 function removeField(e) {
@@ -27,9 +34,8 @@ function copyValue(e) {
     navigator.clipboard.writeText(fieldValue);
 }
 
-
-function createInputField() {
-    const template = document.getElementById('credentialInputField');
+function createInputField(id) {
+    const template = document.getElementById(id);
     const cloned = template.cloneNode(true);
     clearInputValue(cloned, 'field_name[]');
     clearInputValue(cloned, 'field_value[]');

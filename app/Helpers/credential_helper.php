@@ -2,6 +2,7 @@
 
 use App\Entities\CredentialField;
 use App\Entities\Credentials;
+use App\Models\CredentialFieldType;
 use App\Models\CredentialModel;
 use App\Models\CredentialFieldModel;
 use CodeIgniter\HTTP\IncomingRequest;
@@ -138,11 +139,28 @@ function createCredentialFields(IncomingRequest $request, string $credentialId):
     $credentialFields = [];
     $field_names = $request->getPost('field_name');
     $field_values = $request->getPost('field_value');
+
     foreach ($field_names as $index => $field_name) {
-        $field_value = $field_values[$index];
+        $field_id = Uuid::uuid4();
+
+        // We trust the people that are allowed to upload files, so we can use client values
+        $file = $request->getFile("field_value.$index");
+        if (!is_null($file)) {
+            $field_value = $file->getClientName();
+            $field_type = CredentialFieldType::file;
+
+            if (!$file->hasMoved()) {
+                $file->move('uploads/', $field_id . "." . $file->getClientExtension(), true);
+            }
+        } else {
+            $field_value = $field_values[$index];
+            $field_type = CredentialFieldType::text;
+        }
+
         $credentialFieldEntity = new CredentialField;
-        $credentialFieldEntity->field_id = Uuid::uuid4();
+        $credentialFieldEntity->field_id = $field_id;
         $credentialFieldEntity->field_name = $field_name;
+        $credentialFieldEntity->field_type = $field_type->value;
         $credentialFieldEntity->field_value = $field_value;
         $credentialFieldEntity->credential_id = $credentialId;
         $credentialFields[] = $credentialFieldEntity;

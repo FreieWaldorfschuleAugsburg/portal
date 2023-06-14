@@ -1,3 +1,8 @@
+<?php
+
+use App\Models\CredentialFieldType;
+
+?>
 <main class="px-5 xl:px-24 2xl:px-60 space-y-3 mt-5 text-white">
 
     <div class="flex gap-5 items-center">
@@ -26,36 +31,64 @@
             <div class="w-full flex gap-2 font-inter-medium">
                 <div class="flex flex-col gap-2 w-full" id="dynamicFields">
                     <?php foreach ($credentials->credential_fields as $credential_field): ?>
-                        <div class="grid grid-cols-2 gap-3" id="credentialInputField">
-                            <div class="flex flex-col gap-1 w-full">
-                                <label for="field_name[]"
-                                       class="font-inter-medium text-gray-400"><?= lang('credential.fields.fieldname') ?></label>
-                                <input type="text" name="field_name[]" id="field_name[]"
-                                       value="<?= $credential_field->field_name ?>"
-                                       class="rounded p-2.5 lg:p-3 bg-slate-900 border-none
+                        <?php if ($credential_field->field_type == CredentialFieldType::text->value): ?>
+                            <div class="grid grid-cols-2 gap-3" id="credentialInputField">
+                                <div class="flex flex-col gap-1 w-full">
+                                    <label for="field_name[]"
+                                           class="font-inter-medium text-gray-400"><?= lang('credential.fields.fieldname') ?></label>
+                                    <input type="text" name="field_name[]" id="field_name[]"
+                                           value="<?= $credential_field->field_name ?>"
+                                           class="rounded p-2.5 lg:p-3 bg-slate-900 border-none
                                    focus:outline-none">
-                            </div>
+                                </div>
 
-                            <div class="flex flex-col gap-1 w-full font-inter-medium">
-                                <label for="field_value[]"
-                                       class=" text-gray-400"><?= lang('credential.fields.value') ?></label>
-                                <div class="flex flex-col lg:flex-row gap-3 w-full">
-                                    <input type="text" name="field_value[]" id="field_value[]"
-                                           value="<?= $credential_field->field_value ?>"
-                                           class="rounded p-2.5 lg:p-3 bg-slate-900 border-none focus:outline-none flex-1">
-                                    <button type="button" id="removeField"
-                                            class="p-3 bg-red-600 rounded removeField"><?= lang('buttons.remove') ?></button>
+                                <div class="flex flex-col gap-1 w-full font-inter-medium">
+                                    <label for="field_value[]"
+                                           class=" text-gray-400"><?= lang('credential.fields.value') ?></label>
+                                    <div class="flex flex-col lg:flex-row gap-3 w-full">
+                                        <input type="text" name="field_value[]" id="field_value[]"
+                                               value="<?= $credential_field->field_value ?>"
+                                               class="rounded p-2.5 lg:p-3 bg-slate-900 border-none focus:outline-none flex-1">
+                                        <button type="button" id="removeField"
+                                                class="p-3 bg-red-600 rounded removeField"><?= lang('buttons.remove') ?></button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        <?php elseif ($credential_field->field_type == CredentialFieldType::file->value) : ?>
+                            <div class="grid grid-cols-2 gap-3" id="credentialInputField">
+                                <div class="flex flex-col gap-1 w-full">
+                                    <label for="field_name[]"
+                                           class="font-inter-medium text-gray-400"><?= lang('credential.fields.fieldname') ?></label>
+                                    <input type="text" name="field_name[]" id="field_name[]"
+                                           value="<?= $credential_field->field_name ?>"
+                                           class="rounded p-2.5 lg:p-3 bg-slate-900 border-none
+                                   focus:outline-none">
+                                </div>
+
+                                <div class="flex flex-col gap-1 w-full font-inter-medium">
+                                    <label for="field_value[]"
+                                           class=" text-gray-400"><?= lang('credential.fields.value') ?></label>
+                                    <div class="flex flex-col lg:flex-row gap-3 w-full">
+                                        <input type="file" name="field_value[]" id="field_value[]"
+                                               class="rounded p-2.5 lg:p-3 bg-slate-900 border-none focus:outline-none flex-1">
+                                        <button type="button" id="removeField"
+                                                class="p-3 bg-red-600 rounded removeField"><?= lang('buttons.remove') ?></button>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endif; ?>
                     <?php endforeach; ?>
                 </div>
 
             </div>
 
-            <button class="bg-blue-600 text-white p-3 rounded font-inter-medium flex-grow" id="addField"
+            <button class="bg-blue-600 text-white p-3 rounded font-inter-medium flex-grow" id="addTextField"
                     type="button">
-                <?= lang('buttons.add') ?>
+                <?= lang('buttons.add.text') ?>
+            </button>
+            <button class="bg-blue-600 text-white p-3 rounded font-inter-medium flex-grow" id="addFileField"
+                    type="button">
+                <?= lang('buttons.add.file') ?>
             </button>
             <div class="flex flex-col gap-1 text-gray-400 font-inter-medium">
                 <label for="role" class=""><?= lang('entry.role') ?></label>
@@ -77,7 +110,8 @@
 
             <div class="flex flex-col gap-1 text-gray-400 font-inter-medium">
                 <label for="documentation" class=""><?= lang('credential.fields.documentation') ?></label>
-                <input type="text" name="documentation" id="documentation" value="<?= $credentials->documentation_url ?>"
+                <input type="text" name="documentation" id="documentation"
+                       value="<?= $credentials->documentation_url ?>"
                        class="rounded p-2.5 lg:p-3 bg-slate-900 border-none focus:outline-none">
             </div>
 
@@ -90,7 +124,6 @@
            class="bg-red-600 text-white text-body font-inter-medium rounded py-3 text-center">
             <?= lang('entry.button.delete') ?>
         </a>
-
 
 
     </div>
