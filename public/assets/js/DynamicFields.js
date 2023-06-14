@@ -37,17 +37,20 @@ function copyValue(e) {
 function createInputField(id) {
     const template = document.getElementById(id);
     const cloned = template.cloneNode(true);
-    clearInputValue(cloned, 'field_name[]');
-    clearInputValue(cloned, 'field_value[]');
+    renameInputs(cloned, 'template_field_name[]', 'field_name[]');
+    renameInputs(cloned, 'template_field_value[]', 'field_value[]');
+    cloned.removeAttribute('id');
+    cloned.style.display = 'grid';
     return cloned
 }
 
-function clearInputValue(element, id) {
+function renameInputs(element, id, newId) {
     if (element.id === id) {
-        element.value = "";
+        element.id = newId;
+        element.name = newId;
     } else if (element.children != null) {
         for (let i = 0; i < element.children.length; i++) {
-            clearInputValue(element.children[i], id)
+            renameInputs(element.children[i], id, newId)
         }
     }
 

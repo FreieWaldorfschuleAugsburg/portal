@@ -93,6 +93,12 @@ function getCredentialFields(string $credentialId)
 
 }
 
+function getCredentialField(string $credentialFieldId)
+{
+    $credentialFieldModel = new CredentialFieldModel();
+    return $credentialFieldModel->where(['field_id' => $credentialFieldId])->first();
+}
+
 
 function createCredentials(\CodeIgniter\HTTP\IncomingRequest $request, string $credentialId): Credentials
 {
@@ -145,16 +151,22 @@ function createCredentialFields(IncomingRequest $request, string $credentialId):
 
         // We trust the people that are allowed to upload files, so we can use client values
         $file = $request->getFile("field_value.$index");
-        if (!is_null($file)) {
+        if (!is_null($file) && $file->isValid()) {
             $field_value = $file->getClientName();
             $field_type = CredentialFieldType::file;
 
             if (!$file->hasMoved()) {
-                $file->move('uploads/', $field_id . "." . $file->getClientExtension(), true);
+                $file->move('uploads/', $field_id, true);
             }
         } else {
-            $field_value = $field_values[$index];
-            $field_type = CredentialFieldType::text;
+            if (isset($field_values[$index])) {
+                $field_value = $field_values[$index];
+                $field_type = CredentialFieldType::text;
+            }
+        }
+
+        if (!isset($field_type)) {
+            continue;
         }
 
         $credentialFieldEntity = new CredentialField;
@@ -189,8 +201,10 @@ function insertCredentialFields(array $credentialFields): void
 function updateCredentialFields(string $credentialId, array $credentialFields): void
 {
     $credentialFieldModel = new CredentialFieldModel();
-    $credentialFieldModel->where('credential_id', $credentialId)->delete();
-    $credentialFieldModel->insertBatch($credentialFields);
+    if (!empty($credentialFields)) {
+        $credentialFieldModel->where('credential_id', $credentialId)->delete();
+        $credentialFieldModel->insertBatch($credentialFields);
+    }
 }
 
 

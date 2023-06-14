@@ -5,11 +5,8 @@ return [
         'view' => 'Zugangsdaten',
         'create' => 'Zugangsdaten erstellen',
         'edit' => 'Zugangsdaten bearbeiten',
-        'documentation' => 'Sie wissen nicht, wie Sie diese Zugangsdaten verwenden?',
+        'documentation' => 'Anleitung zur Verwendung dieser Zugangsdaten:',
         'fields' => 'Felder'
-    ],
-    'button' => [
-        'documentation' => 'Dann klicken Sie hier, um die Anleitung aufzurufen.'
     ],
     'fields' => [
         'title' => 'Titel',
@@ -17,6 +14,4 @@ return [
         'value' => 'Wert',
         'documentation' => 'Dokumentation'
     ],
-
-
 ];

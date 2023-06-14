@@ -88,5 +88,11 @@ class CredentialController extends BaseController
         return redirect('credentials');
     }
 
+    public function download(string $credentialFieldId): \CodeIgniter\HTTP\DownloadResponse
+    {
+        $field = getCredentialField($credentialFieldId);
+        return $this->response->download(FCPATH . "uploads/{$field->field_id}", null)->setFileName($field->field_value);
+    }
+
 
 }

@@ -28,7 +28,7 @@ use App\Models\CredentialFieldType;
                                     <?php elseif ($credential_field->field_type == CredentialFieldType::file->value): ?>
                                         <a type="button"
                                            class="bg-blue-600 p-3 rounded text-white"
-                                           href="<?=base_url("uploads/$credential_field->field_id.png")?>"><?= lang('buttons.download') ?></a>
+                                           href="<?= base_url("credentials/download/$credential_field->field_id") ?>"><?= lang('buttons.download') ?></a>
                                     <?php endif; ?>
                                 </div>
                             </div>
@@ -43,16 +43,27 @@ use App\Models\CredentialFieldType;
     </div>
     </form>
 
+
     <?php if ($credentials->documentation_url): ?>
         <div class="flex gap-5 items-center">
-            <p class="font-inter-semibold text-h2-big  text-white"><?= lang('credential.headings.documentation') ?></p>
+            <p class="font-inter-semibold text-h2-big text-white"><?= lang('credential.headings.documentation') ?></p>
         </div>
 
-        <div class="flex gap-5 items-center">
+        <div class="flex flex-col gap-3">
+            <section class="flex flex-col gap-2">
+                <div class="w-full flex gap-2">
+                    <iframe src="<?= $credentials->documentation_url ?>"
+                            style="position: relative; height: 800px; width: 100%"></iframe>
+                </div>
+            </section>
+        </div>
+
+
+        <!--<div class="flex gap-5 items-center">
             <a href="<?= $credentials->documentation_url ?>" target="_blank"><p
                         class="font-inter-medium bg-blue-600 p-3 rounded text-white"><?= lang('credential.button.documentation') ?></p>
             </a>
-        </div>
+        </div>--->
     <?php endif; ?>
 
 </main>

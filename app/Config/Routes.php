@@ -70,6 +70,7 @@ $routes->post('/credentials/new', 'CredentialController::store', ['filter' => Ad
 $routes->get('/credentials/edit/(:any)', 'CredentialController::edit/$1', ['filter' => AdminFilter::class]);
 $routes->post('/credentials/edit/(:any)', 'CredentialController::update/$1', ['filter' => AdminFilter::class]);
 $routes->get('/credentials/delete/(:any)', 'CredentialController::delete/$1', ['filter' => AdminFilter::class]);
+$routes->get('/credentials/download/(:any)', 'CredentialController::download/$1', ['filter' => LoggedInFilter::class]);
 $routes->get('/credentials/(:any)', 'CredentialController::view/$1', ['filter' => LoggedInFilter::class]);
 
 //Regarding roles

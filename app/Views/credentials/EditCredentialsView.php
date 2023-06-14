@@ -30,9 +30,52 @@ use App\Models\CredentialFieldType;
 
             <div class="w-full flex gap-2 font-inter-medium">
                 <div class="flex flex-col gap-2 w-full" id="dynamicFields">
+                    <div class="grid grid-cols-2 gap-3" id="credentialInputFieldText" style="display: none">
+                        <div class="flex flex-col gap-1 w-full">
+                            <label for="field_name[]"
+                                   class="font-inter-medium text-gray-400"><?= lang('credential.fields.fieldname') ?></label>
+                            <input type="text" name="template_field_name[]" id="template_field_name[]"
+                                   class="rounded p-2.5 lg:p-3 bg-slate-900 border-none
+                                   focus:outline-none">
+                        </div>
+
+                        <div class="flex flex-col gap-1 w-full font-inter-medium">
+                            <label for="field_value[]"
+                                   class=" text-gray-400"><?= lang('credential.fields.value') ?></label>
+                            <div class="flex flex-col lg:flex-row gap-3 w-full">
+                                <input type="text" name="template_field_value[]" id="template_field_value[]"
+                                       class="rounded p-2.5 lg:p-3 bg-slate-900 border-none focus:outline-none flex-1">
+                                <button type="button" id="removeField"
+                                        class="p-3 bg-red-600 rounded removeField"><?= lang('buttons.remove') ?></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-3" id="credentialInputFieldFile" style="display: none">
+                        <div class="flex flex-col gap-1 w-full">
+                            <label for="field_name[]"
+                                   class="font-inter-medium text-gray-400"><?= lang('credential.fields.fieldname') ?></label>
+                            <input type="text" name="template_field_name[]" id="template_field_name[]"
+                                   class="rounded p-2.5 lg:p-3 bg-slate-900 border-none
+                                   focus:outline-none">
+                        </div>
+
+                        <div class="flex flex-col gap-1 w-full font-inter-medium">
+                            <label for="field_value[]"
+                                   class=" text-gray-400"><?= lang('credential.fields.value') ?></label>
+                            <div class="flex flex-col lg:flex-row gap-3 w-full">
+                                <input type="file" name="template_field_value[]" id="template_field_value[]"
+                                       class="rounded p-2.5 lg:p-3 bg-slate-900 border-none focus:outline-none flex-1">
+                                <button type="button" id="removeField"
+                                        class="p-3 bg-red-600 rounded removeField"><?= lang('buttons.remove') ?></button>
+                            </div>
+                        </div>
+                    </div>
+
+
                     <?php foreach ($credentials->credential_fields as $credential_field): ?>
                         <?php if ($credential_field->field_type == CredentialFieldType::text->value): ?>
-                            <div class="grid grid-cols-2 gap-3" id="credentialInputField">
+                            <div class="grid grid-cols-2 gap-3">
                                 <div class="flex flex-col gap-1 w-full">
                                     <label for="field_name[]"
                                            class="font-inter-medium text-gray-400"><?= lang('credential.fields.fieldname') ?></label>
@@ -55,7 +98,7 @@ use App\Models\CredentialFieldType;
                                 </div>
                             </div>
                         <?php elseif ($credential_field->field_type == CredentialFieldType::file->value) : ?>
-                            <div class="grid grid-cols-2 gap-3" id="credentialInputField">
+                            <div class="grid grid-cols-2 gap-3">
                                 <div class="flex flex-col gap-1 w-full">
                                     <label for="field_name[]"
                                            class="font-inter-medium text-gray-400"><?= lang('credential.fields.fieldname') ?></label>
