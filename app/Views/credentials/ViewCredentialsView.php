@@ -57,13 +57,6 @@ use App\Models\CredentialFieldType;
                 </div>
             </section>
         </div>
-
-
-        <!--<div class="flex gap-5 items-center">
-            <a href="<?= $credentials->documentation_url ?>" target="_blank"><p
-                        class="font-inter-medium bg-blue-600 p-3 rounded text-white"><?= lang('credential.button.documentation') ?></p>
-            </a>
-        </div>--->
     <?php endif; ?>
 
 </main>
