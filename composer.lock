@@ -137,16 +137,16 @@
         },
         {
             "name": "directorytree/ldaprecord",
-            "version": "v3.0.5",
+            "version": "v3.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/DirectoryTree/LdapRecord.git",
-                "reference": "b808497b4e9c3e7fcaee6c7e245ad7a4b0689591"
+                "reference": "bf64a0d75fed6ee4babbd4ff6e893b89d21de340"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/DirectoryTree/LdapRecord/zipball/b808497b4e9c3e7fcaee6c7e245ad7a4b0689591",
-                "reference": "b808497b4e9c3e7fcaee6c7e245ad7a4b0689591",
+                "url": "https://api.github.com/repos/DirectoryTree/LdapRecord/zipball/bf64a0d75fed6ee4babbd4ff6e893b89d21de340",
+                "reference": "bf64a0d75fed6ee4babbd4ff6e893b89d21de340",
                 "shasum": ""
             },
             "require": {
@@ -209,7 +209,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-06-14T19:16:26+00:00"
+            "time": "2023-06-20T13:00:20+00:00"
         },
         {
             "name": "illuminate/collections",
