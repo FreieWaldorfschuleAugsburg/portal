@@ -94,7 +94,7 @@
                     </div>
 
                     <label class=" text-gray-400 flex flex-col justify-center items-center" for="image">
-                        <img src="<?= base_url('assets') ?>/img/upload.png" class="w-10" alt="">
+                        <img src="<?= base_url('assets') ?>img/upload.png" class="w-10" alt="">
                         <span class="font-inter-regular text-category"><?= lang('entry.image.label') ?></span>
                         <input id="image" name="image" class="hidden" type="file">
                     </label>

@@ -103,7 +103,7 @@
 
 </main>
 
-<script src="<?= base_url('assets/js') ?>/DynamicFields.js" defer>
+<script src="<?= base_url('assets/js') ?>DynamicFields.js" defer>
 </script>
 
 

@@ -16,33 +16,31 @@
                 </div>
 
             </div>
-            <form method="post"
-                  class="px-5 py-8 bg-gray-900 border border-gray-700 rounded-lg mt-5 space-y-5">
+            <?= form_open('', 'class="px-5 py-8 bg-gray-900 border border-gray-700 rounded-lg mt-5 space-y-5"') ?>
+            <div class="flex flex-col gap-1">
+                <label class="font-inter-medium text-gray-300 text-category lg:text-body"
+                       for="username"><?= lang('login.username') ?></label>
+                <input class="rounded p-1.5 lg:p-3 bg-transparent border-gray-300 border border-gray-600 outline-none focus:outline-none"
+                       type="text"
+                       name="username"
+                       id="username">
+            </div>
+            <div class="flex flex-col gap-1 font-inter-medium">
+                <label class="font-inter-medium text-gray-300 text-category lg:text-body"
+                       for="password"><?= lang('login.password') ?></label>
+                <input class="rounded p-1.5 lg:p-3 bg-transparent border-gray-300 border border-gray-600 outline-none focus:outline-none"
+                       type="password"
+                       name="password"
+                       id="password">
+            </div>
 
-                <div class="flex flex-col gap-1">
-                    <label class="font-inter-medium text-gray-300 text-category lg:text-body"
-                           for="username"><?= lang('login.username') ?></label>
-                    <input class="rounded p-1.5 lg:p-3 bg-transparent border-gray-300 border border-gray-600 outline-none focus:outline-none"
-                           type="text"
-                           name="username"
-                           id="username">
-                </div>
-                <div class="flex flex-col gap-1 font-inter-medium">
-                    <label class="font-inter-medium text-gray-300 text-category lg:text-body"
-                           for="password"><?= lang('login.password') ?></label>
-                    <input class="rounded p-1.5 lg:p-3 bg-transparent border-gray-300 border border-gray-600 outline-none focus:outline-none"
-                           type="password"
-                           name="password"
-                           id="password">
-                </div>
-
-                <div class="flex flex-col">
-                    <button type="submit"
-                            class="bg-blue-600 text-white p-2.5 lg:p-4 rounded font-inter-regular"><?= lang('login.button') ?></button>
-                </div>
+            <div class="flex flex-col">
+                <button type="submit"
+                        class="bg-blue-600 text-white p-2.5 lg:p-4 rounded font-inter-regular"><?= lang('login.button') ?></button>
+            </div>
 
 
-            </form>
+            <?= form_close() ?>
 
         </div>
     </div>
