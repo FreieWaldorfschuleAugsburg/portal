@@ -7,8 +7,8 @@
 
     <title><?= lang('app.name.full') ?></title>
 
-    <link href="<?= base_url('/') ?>assets/css/output.css" rel="stylesheet">
-    <script src="<?= base_url() ?>assets/script.js" defer></script>
+    <link href="<?= base_url('assets/css/output.css') ?>" rel="stylesheet">
+    <script src="<?= base_url('assets/script.js') ?>" defer></script>
 
     <!-- Matomo -->
     <script>

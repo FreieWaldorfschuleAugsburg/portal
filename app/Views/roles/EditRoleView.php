@@ -38,7 +38,7 @@
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-1">
         <button type="submit" class="bg-red-600 rounded py-3 mt-3 text-white">
-            <a href="<?= base_url('roles/delete') . "/" . $role->role_id ?>"
+            <a href="<?= base_url('roles/delete/' . $role->role_id)  ?>"
                class="bg-red-600 text-white rounded text-center">
                 <?= lang('entry.button.delete') ?>
             </a>
