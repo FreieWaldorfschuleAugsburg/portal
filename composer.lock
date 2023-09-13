@@ -470,16 +470,16 @@
         },
         {
             "name": "michalsn/codeigniter4-uuid",
-            "version": "v1.0.1",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/michalsn/codeigniter4-uuid.git",
-                "reference": "c8bbd961401015307bc72f6f6aa93509ffac1d5f"
+                "reference": "be75ec5d7d2c967e046e7c2091f2cbcf126979f0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/michalsn/codeigniter4-uuid/zipball/c8bbd961401015307bc72f6f6aa93509ffac1d5f",
-                "reference": "c8bbd961401015307bc72f6f6aa93509ffac1d5f",
+                "url": "https://api.github.com/repos/michalsn/codeigniter4-uuid/zipball/be75ec5d7d2c967e046e7c2091f2cbcf126979f0",
+                "reference": "be75ec5d7d2c967e046e7c2091f2cbcf126979f0",
                 "shasum": ""
             },
             "require": {
@@ -517,9 +517,9 @@
             ],
             "support": {
                 "issues": "https://github.com/michalsn/codeigniter4-uuid/issues",
-                "source": "https://github.com/michalsn/codeigniter4-uuid/tree/v1.0.1"
+                "source": "https://github.com/michalsn/codeigniter4-uuid/tree/v1.0.2"
             },
-            "time": "2021-05-03T12:47:44+00:00"
+            "time": "2023-08-30T19:46:01+00:00"
         },
         {
             "name": "nesbot/carbon",
