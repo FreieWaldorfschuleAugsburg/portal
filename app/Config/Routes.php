@@ -3,6 +3,8 @@
 namespace Config;
 
 // Create a new instance of our RouteCollection class.
+use App\Filters\AbsencesAdminFilter;
+use App\Filters\AbsencesFilter;
 use App\Filters\AdminFilter;
 use App\Filters\LoggedInFilter;
 
@@ -83,6 +85,9 @@ $routes->get('/roles/delete/(:any)', 'RoleController::delete/$1', ['filter' => A
 $routes->get('/roles/new', 'RoleController::create', ['filter' => AdminFilter::class]);
 $routes->post('/roles/new', 'RoleController::store', ['filter' => AdminFilter::class]);
 
+$routes->get('/absences', 'AbsenceController::index', ['filter' => AbsencesFilter::class]);
+$routes->get('/absences/view/(:any)', 'AbsenceController::view/$1', ['filter' => AbsencesFilter::class]);
+$routes->get('/absences/admin', 'AbsenceController::admin', ['filter' => AbsencesAdminFilter::class]);
 
 /*
  * --------------------------------------------------------------------

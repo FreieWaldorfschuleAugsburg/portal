@@ -15,18 +15,19 @@ CI_ENVIRONMENT = production
 # APPLICATION
 #--------------------------------------------------------------------
 
-app.baseURL = ''
+app.baseURL = 'https://portal.waldorf-augsburg.de'
+role.admin = ''
+role.absences = ''
+role.absencesAdmin = ''
 
 #--------------------------------------------------------------------
 # ACTIVE DIRECTORY
 #--------------------------------------------------------------------
 
-ad.ldap = ''
-ad.domain = ''
+ad.hosts = ''
+ad.dn = ''
 ad.admin.username = ''
 ad.admin.password = ''
-ad.adminGroup = ''
-ad.userGroups = ''
 
 #--------------------------------------------------------------------
 # DATABASE
@@ -38,3 +39,5 @@ database.default.username = ''
 database.default.password = ''
 database.default.DBDriver = MySQLi
 database.default.DBPrefix =
+
+database.views.entriesWithCategoryAndRole = 'portal_entries_with_category_and_role'

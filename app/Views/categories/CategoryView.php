@@ -1,13 +1,10 @@
 <main class="px-5 xl:px-24 2xl:px-60 space-y-3 mt-5 ">
     <div class="flex gap-5 items-center">
-
         <p class="font-inter-semibold text-h2-big lg:text-h1-small text-white"><?= lang('category.headings.view') ?></p>
     </div>
     <?= form_open('', 'id="categoryForm" class="flex flex-col gap-4"') ?>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-5" id="category_container">
-        <?php foreach ($categories
-
-                       as $category): ?>
+        <?php foreach ($categories as $category): ?>
             <div id="categories" class="flex gap-2 font-inter-medium">
                 <input type="text" name="category[<?= $category->category_id ?>]"
                        id="category[<?= $category->category_id ?>]"
@@ -40,7 +37,6 @@
 
 <script>
     document.addEventListener('click', (e) => {
-
             if (e.target && e.target.id === 'deleteCategory') {
                 deleteCategory(e);
             }

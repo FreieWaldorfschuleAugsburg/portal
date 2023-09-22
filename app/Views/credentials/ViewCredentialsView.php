@@ -4,7 +4,6 @@ use App\Models\CredentialFieldType;
 
 ?>
 <main class="px-5 xl:px-24 2xl:px-60 space-y-3 mt-5  text-white">
-
     <div class="flex gap-5 items-center">
         <p class="font-inter-semibold text-h2-big  text-white"><?= $credentials->credential_name ?></p>
     </div>
@@ -35,14 +34,10 @@ use App\Models\CredentialFieldType;
                         <?php endforeach; ?>
                     </div>
                 </div>
-
             </div>
         </section>
-
-
     </div>
     </form>
-
 
     <?php if ($credentials->documentation_url): ?>
         <div class="flex gap-5 items-center">
@@ -58,7 +53,6 @@ use App\Models\CredentialFieldType;
             </section>
         </div>
     <?php endif; ?>
-
 </main>
 
 <script src="<?= base_url('assets/js/DynamicFields.js') ?>" defer>

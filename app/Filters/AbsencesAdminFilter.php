@@ -8,11 +8,11 @@ use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 use function App\Helpers\isLoggedIn;
 
-class LoggedInFilter implements FilterInterface
+class AbsencesAdminFilter implements FilterInterface
 {
     public function before(RequestInterface $request, $arguments = null)
     {
-        if (!session('USERNAME')) {
+        if (!session('ABSENCE_ADMIN')) {
             return redirect('login');
         }
     }
@@ -20,4 +20,5 @@ class LoggedInFilter implements FilterInterface
     public function after(RequestInterface $request, ResponseInterface $response, $arguments = null)
     {
     }
+
 }

@@ -1,9 +1,7 @@
 <main class="px-5 xl:px-24 2xl:px-60 space-y-3 mt-5  text-white">
-
     <div class="flex gap-5 items-center">
         <p class="font-inter-semibold text-h2-big  text-white"><?= lang('role.headings.edit') ?></p>
     </div>
-
 
     <?= form_open(base_url('roles/edit/' . $role->role_id), 'class="font-inter-medium flex flex-col gap-3"') ?>
     <div class="flex flex-col gap-1">
@@ -48,6 +46,4 @@
         </button>
     </div>
     <?= form_close() ?>
-
-
 </main>

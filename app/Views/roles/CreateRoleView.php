@@ -14,10 +14,7 @@
         <p class="text-gray-400"><?= lang('role.form.groups') ?></p>
         <section
                 class="p-5 text-category bg-slate-900 border border-gray-700 rounded grid grid-cols-1 lg:grid-cols-2 gap-1 h-72 overflow-scroll">
-
-            <?php foreach ($groups
-
-                           as $group): ?>
+            <?php foreach ($groups as $group): ?>
                 <div class="flex items-center gap-2">
                     <input type="checkbox" id="<?= $group ?>" name="group[]"
                            class="h-4 w-4 appearance-none rounded bg-slate-900 focus:outline-none focus:bg-gray-900"
@@ -25,9 +22,7 @@
                     <label for="<?= $group ?>"
                            class=" text-ellipsis overflow-hidden whitespace-nowrap"><?= $group ?></label></div>
             <?php endforeach; ?>
-
         </section>
-
     </div>
     <button type="submit" class="bg-blue-600 text-white rounded py-3 mt-3">
         <?= lang('entry.button.save') ?>

@@ -4,11 +4,9 @@ use App\Models\CredentialFieldType;
 
 ?>
 <main class="px-5 xl:px-24 2xl:px-60 space-y-3 mt-5 text-white">
-
     <div class="flex gap-5 items-center">
         <p class="font-inter-semibold text-h2-big text-white"><?= lang('credential.headings.edit') ?></p>
     </div>
-
 
     <?= form_open_multipart('') ?>
 
@@ -26,7 +24,6 @@ use App\Models\CredentialFieldType;
                 <label for="show_on_home"
                        class="text-ellipsis overflow-hidden whitespace-nowrap ">Auf dem Startbildschirm anzeigen</label>
             </div>
-
 
             <div class="w-full flex gap-2 font-inter-medium">
                 <div class="flex flex-col gap-2 w-full" id="dynamicFields">
@@ -71,7 +68,6 @@ use App\Models\CredentialFieldType;
                             </div>
                         </div>
                     </div>
-
 
                     <?php foreach ($credentials->credential_fields as $credential_field): ?>
                         <?php if ($credential_field->field_type == CredentialFieldType::text->value): ?>
@@ -122,7 +118,6 @@ use App\Models\CredentialFieldType;
                         <?php endif; ?>
                     <?php endforeach; ?>
                 </div>
-
             </div>
 
             <button class="bg-blue-600 text-white p-3 rounded font-inter-medium flex-grow" id="addTextField"
@@ -140,9 +135,7 @@ use App\Models\CredentialFieldType;
                     <option class="rounded p-2.5 lg:p-3" value="">
                         Alle
                     </option>
-                    <?php foreach ($roles
-
-                                   as $role): ?>
+                    <?php foreach ($roles as $role): ?>
                         <option class="rounded p-2.5 lg:p-3"
                                 value="<?= $role->role_id ?>" <?= $credentials->role_id === $role->role_id ? 'selected' : '' ?>>
                             <?= $role->role_name ?>
@@ -167,12 +160,8 @@ use App\Models\CredentialFieldType;
            class="bg-red-600 text-white text-body font-inter-medium rounded py-3 text-center">
             <?= lang('entry.button.delete') ?>
         </a>
-
-
     </div>
     </form>
-
-
 </main>
 
 <script src="<?= base_url('assets/js/DynamicFields.js') ?>" defer>

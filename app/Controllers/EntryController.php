@@ -19,7 +19,6 @@ use function App\Helpers\getAllRoles;
 use function App\Helpers\getEntry;
 use function App\Helpers\getEntryWithRoleAndCategory;
 use function App\Helpers\insertEntry;
-use function App\Helpers\protectRoute;
 use function App\Helpers\saveEntry;
 
 class EntryController extends BaseController
