@@ -10,17 +10,19 @@ class Absence extends Entity
     protected $attributes = [
         'id' => null,
         'student_id' => null,
-        'missing_date' => null,
+        'absence_date' => null,
         'reported_by' => null,
         'reported_at' => null,
+        'note' => null
     ];
 
     protected $casts = [
         'id' => 'integer',
         'student_id' => 'integer',
-        'missing_date' => 'date',
+        'absence_date' => 'date',
         'reported_by' => 'string',
         'reported_at' => 'datetime',
+        'note' => 'string'
     ];
 
     /**
@@ -42,9 +44,9 @@ class Absence extends Entity
     /**
      * @return DateTime
      */
-    public function getMissingDate(): DateTime
+    public function getAbsenceDate(): DateTime
     {
-        return $this->attributes['missing_date'];
+        return $this->attributes['absence_date'];
     }
 
     /**
@@ -61,5 +63,13 @@ class Absence extends Entity
     public function getReportedAt(): DateTime
     {
         return $this->attributes['reported_at'];
+    }
+
+    /**
+     * @return string
+     */
+    public function getNote(): string
+    {
+        return $this->attributes['note'];
     }
 }

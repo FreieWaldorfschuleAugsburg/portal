@@ -42,7 +42,6 @@ $routes->set404Override();
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'IndexController::index');
-$routes->get('/test', 'TestController::index');
 
 $routes->get('/login', 'AuthenticationController::login');
 $routes->post('/login', 'AuthenticationController::handleLogin');
@@ -87,7 +86,11 @@ $routes->post('/roles/new', 'RoleController::store', ['filter' => AdminFilter::c
 
 $routes->get('/absences', 'AbsenceController::index', ['filter' => AbsencesFilter::class]);
 $routes->get('/absences/view/(:any)', 'AbsenceController::view/$1', ['filter' => AbsencesFilter::class]);
+$routes->post('/absences/absent', 'AbsenceController::absent', ['filter' => AbsencesFilter::class]);
 $routes->get('/absences/admin', 'AbsenceController::admin', ['filter' => AbsencesAdminFilter::class]);
+
+$routes->post('/absences/admin/upload/absences', 'AbsenceController::uploadAbsences', ['filter' => AbsencesAdminFilter::class]);
+$routes->post('/absences/admin/upload/students', 'AbsenceController::uploadStudents', ['filter' => AbsencesAdminFilter::class]);
 
 /*
  * --------------------------------------------------------------------

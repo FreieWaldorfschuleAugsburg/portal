@@ -28,13 +28,26 @@ function getAbsenceGradeModel(): AbsenceGradeModel
     return new AbsenceGradeModel();
 }
 
+function insertStudent(int $id, string $firstName, string $lastName, int $gradeId): void
+{
+    $student = new AbsenceStudent();
+    $student->setId($id);
+    $student->setFirstName($firstName);
+    $student->setLastName($lastName);
+    $student->setGradeId($gradeId);
+
+    getAbsenceStudentModel()->insert($student);
+}
+
 /**
  * @param int $gradeId
  * @return AbsenceStudent[]
  */
 function getStudents(int $gradeId): array
 {
-    return getAbsenceStudentModel()->where('grade_id', $gradeId)->findAll();
+    $students = getAbsenceStudentModel()->where('grade_id', $gradeId)->findAll();
+    usort($students, fn($a, $b) => strcmp($a->getLastName(), $b->getLastName()));
+    return $students;
 }
 
 function getAbsenceStudentModel(): AbsenceStudentModel

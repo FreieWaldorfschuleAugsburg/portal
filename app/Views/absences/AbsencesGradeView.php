@@ -17,14 +17,14 @@
                     </div>
                 </div>
 
-                <button class="text-category text-white text-center">
-                    <a href="<?= base_url('absences/report/' . $student->getId()) ?>" class="bg-red-600 p-3 rounded">
-                        Abwesend melden
-                    </a>
+                <?= form_open('absences/absent') ?>
+                <button type="submit" class="text-category text-white text-center bg-red-600 mt-3 p-3 rounded">
+                    Abwesend
                 </button>
+                <?= form_close() ?>
             </div>
 
-            <div class="bg-red-600 text-white font-inter-regular px-5 py-3 rounded-lg flex justify-between">
+            <!--<div class="bg-red-600 text-white font-inter-regular px-5 py-3 rounded-lg flex justify-between">
                 <div>
                     <div class="flex flex-col items-start gap-1">
                         <div class="w-52 mt-3 mb-5">
@@ -32,13 +32,7 @@
                         </div>
                     </div>
                 </div>
-
-                <button class="text-category text-white text-center" disabled>
-                    <a href="" class="bg-red-600 p-3 rounded">
-                        Als abwesend gemeldet
-                    </a>
-                </button>
-            </div>
+            </div>-->
         <?php endforeach; ?>
     </div>
 </main>

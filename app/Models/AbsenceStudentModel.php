@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Entities\AbsenceGrade;
 use App\Entities\AbsenceStudent;
 use CodeIgniter\Model;
 
@@ -13,6 +12,6 @@ class AbsenceStudentModel extends Model
     protected $returnType = AbsenceStudent::class;
 
     protected $allowedFields = [
-        'first_name', 'last_name', 'grade_id'
+        'id', 'first_name', 'last_name', 'grade_id'
     ];
 }
