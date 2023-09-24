@@ -18,6 +18,7 @@
                 </div>
 
                 <?= form_open('absences/absent') ?>
+                <?= form_hidden('id', $student->getId()); ?>
                 <button type="submit" class="text-category text-white text-center bg-red-600 mt-3 p-3 rounded">
                     Abwesend
                 </button>
