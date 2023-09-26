@@ -19,9 +19,9 @@ class Absence extends Entity
     protected $casts = [
         'id' => 'integer',
         'student_id' => 'integer',
-        'absence_date' => 'date',
+        'absence_date' => 'string',
         'reported_by' => 'string',
-        'reported_at' => 'datetime',
+        'reported_at' => 'string',
         'note' => 'string'
     ];
 
@@ -41,12 +41,22 @@ class Absence extends Entity
         return $this->attributes['student_id'];
     }
 
+    public function setStudentId(int $studentId): void
+    {
+        $this->attributes['student_id'] = $studentId;
+    }
+
     /**
      * @return DateTime
      */
     public function getAbsenceDate(): DateTime
     {
-        return $this->attributes['absence_date'];
+        return DateTime::createFromFormat('Y-m-d', $this->attributes['absence_date']);
+    }
+
+    public function setAbsenceDate(DateTime $absenceDate): void
+    {
+        $this->attributes['absence_date'] = $absenceDate->format('Y-m-d');
     }
 
     /**
@@ -57,12 +67,22 @@ class Absence extends Entity
         return $this->attributes['reported_by'];
     }
 
+    public function setReportedBy(string $reportedBy): void
+    {
+        $this->attributes['reported_by'] = $reportedBy;
+    }
+
     /**
      * @return DateTime
      */
     public function getReportedAt(): DateTime
     {
-        return $this->attributes['reported_at'];
+        return DateTime::createFromFormat('Y-m-d H:i:s', $this->attributes['reported_at']);
+    }
+
+    public function setReportedAt(DateTime $reportedAt): void
+    {
+        $this->attributes['reported_at'] = $reportedAt->format('Y-m-d H:i:s');
     }
 
     /**
@@ -71,5 +91,10 @@ class Absence extends Entity
     public function getNote(): string
     {
         return $this->attributes['note'];
+    }
+
+    public function setNote(string $note): void
+    {
+        $this->attributes['note'] = $note;
     }
 }

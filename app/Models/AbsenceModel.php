@@ -12,6 +12,6 @@ class AbsenceModel extends Model
     protected $returnType = Absence::class;
 
     protected $allowedFields = [
-        'student_id', 'missing_date', 'reported_by', 'reported_at'
+        'student_id', 'absence_date', 'reported_by', 'reported_at', 'note'
     ];
 }

@@ -15,7 +15,8 @@
     "codeigniter4/framework": "^4.0",
     "ext-ldap": "*",
     "directorytree/ldaprecord": "^3.0",
-    "michalsn/codeigniter4-uuid": "^1.0"
+    "michalsn/codeigniter4-uuid": "^1.0",
+    "aspera/xlsx-reader": "^1.1"
 
   },
   "require-dev": {
