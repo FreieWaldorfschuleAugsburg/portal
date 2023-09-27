@@ -51,6 +51,26 @@
         </table>
     </div>
 
+    <?php if ($error = session('error')): ?>
+        <div class="flex gap-3 bg-red-600 rounded-xl justify-between px-3 py-5 transition hover:scale-95 ease-in-out">
+            <div>
+                <div class="text-white r outline-1 flex flex-col flex-1">
+                    <a class="text-h4-small md:text-h4-big tracking-tight font-inter-semibold leading-6 md:leading-8 lg:leading-8"><?= $error ?></a>
+                </div>
+            </div>
+        </div>
+    <?php endif; ?>
+
+    <?php if ($success = session('success')): ?>
+        <div class="flex gap-3 bg-green-600 rounded-xl justify-between px-3 py-5 transition hover:scale-95 ease-in-out">
+            <div>
+                <div class="text-white r outline-1 flex flex-col flex-1">
+                    <a class="text-h4-small md:text-h4-big tracking-tight font-inter-semibold leading-6 md:leading-8 lg:leading-8"><?= $success ?></a>
+                </div>
+            </div>
+        </div>
+    <?php endif; ?>
+
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg text-white font-inter-medium">
         <?= form_open_multipart(base_url('absences/admin/upload/absences'), ["onsubmit" => "return confirm('Möchten Sie die Abwesenheiten wirklich hochladen? ACHTUNG! Hierdurch werden die aktuellen Abwesenheitsdaten überschrieben.');"]) ?>
         <p class="font-inter-semibold text-h2-small">Abwesenheiten hochladen</p>

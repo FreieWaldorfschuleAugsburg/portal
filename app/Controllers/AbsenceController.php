@@ -57,14 +57,26 @@ class AbsenceController extends BaseController
     public function uploadAbsences(): RedirectResponse
     {
         $filePath = storeFile($this->request);
+        if (!str_ends_with($filePath, '.xlsx')) {
+            return redirect('absences/admin')->with('error', 'Hochgeladene Datei ist keine XLSX.');
+        }
+
         $config = new ReaderConfiguration();
         $config->setForceDateFormat('d.m.Y');
         $reader = new Reader($config);
         $reader->open($filePath);
 
+        $firstRow = $reader->current();
+        if ($firstRow[1] != 'Personen_ID' ||
+            $firstRow[2] != 'Fehlt_Datum' ||
+            $firstRow[6] != 'Bemerkung') {
+            return redirect('absences/admin')->with('error', 'Hochgeladene Daten ungültig.');
+        }
+
         // Delete all absences
         removeAllAbsences();
 
+        $count = 0;
         foreach ($reader as $absence) {
             if ($reader->key() <= 1) continue;
 
@@ -74,11 +86,12 @@ class AbsenceController extends BaseController
 
             // Insert absences from uploaded .csv
             insertAbsence($studentId, $absenceDate, "Import", new DateTime(), $note);
+            $count++;
         }
 
         $reader->close();
 
-        return redirect('absences/admin');
+        return redirect('absences/admin')->with('success', $count . ' Datensätze importiert');
     }
 
     /**
@@ -87,13 +100,27 @@ class AbsenceController extends BaseController
     public function uploadStudents(): RedirectResponse
     {
         $filePath = storeFile($this->request);
+        if (!str_ends_with($filePath, '.xlsx')) {
+            return redirect('absences/admin')->with('error', 'Hochgeladene Datei ist keine XLSX.');
+        }
+
         $reader = new Reader();
         $reader->open($filePath);
 
-        // Delete all students
+        $firstRow = $reader->current();
+        if ($firstRow[0] != 'Personen_ID' ||
+            $firstRow[7] != 'Vorname' ||
+            $firstRow[5] != 'Nachname' ||
+            $firstRow[47] != 'Klassenwert') {
+            return redirect('absences/admin')->with('error', 'Hochgeladene Daten ungültig.');
+        }
+
+        // Delete all absences and students
+        removeAllAbsences();
         removeAllStudents();
 
         // Insert students from uploaded .csv
+        $count = 0;
         foreach ($reader as $student) {
             if ($reader->key() <= 1) continue;
 
@@ -102,10 +129,11 @@ class AbsenceController extends BaseController
             $lastName = $student[5];
             $gradeId = intval($student[47]);
             insertStudent($id, $firstName, $lastName, $gradeId);
+            $count++;
         }
 
         $reader->close();
 
-        return redirect('absences/admin');
+        return redirect('absences/admin')->with('success', $count . ' Datensätze importiert');
     }
 }
