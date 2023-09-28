@@ -19,6 +19,7 @@ app.baseURL = 'https://portal.waldorf-augsburg.de'
 role.admin = ''
 role.absences = ''
 role.absencesAdmin = ''
+role.absencesRead = ''
 
 #--------------------------------------------------------------------
 # ACTIVE DIRECTORY

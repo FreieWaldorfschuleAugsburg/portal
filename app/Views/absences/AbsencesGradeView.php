@@ -36,25 +36,17 @@
                             </div>
                         </div>
 
-                        <?= form_open('absences/absent', ["onsubmit" => "return confirm('Möchten Sie " . $student->getFirstName() . " " . $student->getLastName() . " abwesend melden?');"]) ?>
-                        <?= form_hidden('studentId', $student->getId()); ?>
-                        <button type="submit" class="text-category text-white text-center bg-red-600 mt-3 p-3 rounded">
-                            Abwesend
-                        </button>
-                        <?= form_close() ?>
+                        <?php if (!session('ABSENCE_READ')): ?>
+                            <?= form_open('absences/absent', ["onsubmit" => "return confirm('Möchten Sie " . $student->getFirstName() . " " . $student->getLastName() . " abwesend melden?');"]) ?>
+                            <?= form_hidden('studentId', $student->getId()); ?>
+                            <button type="submit"
+                                    class="text-category text-white text-center bg-red-600 mt-3 p-3 rounded">
+                                Abwesend
+                            </button>
+                            <?= form_close() ?>
+                        <?php endif; ?>
                     </div>
                 <?php endif; ?>
-
-
-                <!--<div class="bg-red-600 text-white font-inter-regular px-5 py-3 rounded-lg flex justify-between">
-                <div>
-                    <div class="flex flex-col items-start gap-1">
-                        <div class="w-52 mt-3 mb-5">
-                            <p class="text-h2-small text-ellipsis overflow-hidden whitespace-nowrap"><?= $student->getLastName() . ", " . $student->getFirstName() ?></p>
-                        </div>
-                    </div>
-                </div>
-            </div>-->
             <?php endforeach; ?>
         </div>
     <?php else: ?>

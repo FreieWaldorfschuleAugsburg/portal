@@ -82,6 +82,10 @@
         <?= form_close() ?>
     </div>
 
+    <?php if (!is_null($absence = getFirstImportedAbsence())): ?>
+        <p class="text-white">Letzter Upload: <?= $absence->getReportedAt()->format('d.m.Y H:i') ?></p>
+    <?php endif; ?>
+
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg text-white font-inter-medium">
         <?= form_open_multipart(base_url('absences/admin/upload/students'), ["onsubmit" => "return confirm('Möchten Sie die Schülerdaten wirklich hochladen? ACHTUNG! Hiermit werden die aktuellen Abwesenheitsdaten gelöscht.');"]) ?>
         <p class="font-inter-semibold text-h2-small">Schülerdaten hochladen</p>

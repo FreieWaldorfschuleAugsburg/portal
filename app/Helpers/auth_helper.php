@@ -70,6 +70,7 @@ function login(string $username, string $password): void
         session()->set('ADMIN', isAdmin($userModel->groups));
         session()->set('ABSENCE', hasAbsenceRole($userModel->groups));
         session()->set('ABSENCE_ADMIN', hasAbsenceAdminRole($userModel->groups));
+        session()->set('ABSENCE_READ', hasAbsenceReadRole($userModel->groups));
         session()->setTempdata('ROLES', getUserRoles(), 600);
     } catch (AuthException $exception) {
         throw new AuthException('invalidCredentials');
@@ -105,6 +106,11 @@ function hasAbsenceRole(array $groups): bool
 function hasAbsenceAdminRole(array $groups): bool
 {
     return in_array(getenv('role.absencesAdmin'), $groups, true);
+}
+
+function hasAbsenceReadRole(array $groups): bool
+{
+    return in_array(getenv('role.absencesRead'), $groups, true);
 }
 
 function isAdmin(array $groups): bool

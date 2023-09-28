@@ -81,6 +81,14 @@ function getAbsencesByDate(DateTime $dateTime): array
 }
 
 /**
+ * @return ?Absence
+ */
+function getFirstImportedAbsence(): ?object
+{
+    return getAbsenceModel()->where('reported_by', 'Import')->select('reported_at')->first();
+}
+
+/**
  * @param Absence[] $absences
  * @param int $studentId
  * @return ?Absence
