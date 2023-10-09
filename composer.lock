@@ -191,16 +191,16 @@
         },
         {
             "name": "directorytree/ldaprecord",
-            "version": "v3.1.3",
+            "version": "v3.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/DirectoryTree/LdapRecord.git",
-                "reference": "cb671ac72940838fa4d1253f8615226ebe3ba7cf"
+                "reference": "d0ff61aea45dd862134400038b33dcda52b67ba5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/DirectoryTree/LdapRecord/zipball/cb671ac72940838fa4d1253f8615226ebe3ba7cf",
-                "reference": "cb671ac72940838fa4d1253f8615226ebe3ba7cf",
+                "url": "https://api.github.com/repos/DirectoryTree/LdapRecord/zipball/d0ff61aea45dd862134400038b33dcda52b67ba5",
+                "reference": "d0ff61aea45dd862134400038b33dcda52b67ba5",
                 "shasum": ""
             },
             "require": {
@@ -263,11 +263,11 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-09-22T14:29:45+00:00"
+            "time": "2023-10-06T18:13:41+00:00"
         },
         {
             "name": "illuminate/collections",
-            "version": "v10.25.0",
+            "version": "v10.27.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/collections.git",
@@ -322,7 +322,7 @@
         },
         {
             "name": "illuminate/conditionable",
-            "version": "v10.25.0",
+            "version": "v10.27.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/conditionable.git",
@@ -368,7 +368,7 @@
         },
         {
             "name": "illuminate/contracts",
-            "version": "v10.25.0",
+            "version": "v10.27.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/contracts.git",
@@ -416,7 +416,7 @@
         },
         {
             "name": "illuminate/macroable",
-            "version": "v10.25.0",
+            "version": "v10.27.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/macroable.git",
