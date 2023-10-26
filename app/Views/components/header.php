@@ -1,3 +1,8 @@
+<?php
+
+use function App\Helpers\getCurrentUser;
+
+?>
 <!DOCTYPE html>
 <html lang="<?= service('request')->getLocale(); ?>">
 
@@ -20,6 +25,11 @@
             var u = "//matomo.waldorf-augsburg.de/";
             _paq.push(['setTrackerUrl', u + 'matomo.php']);
             _paq.push(['setSiteId', '3']);
+
+            <?php if($user = getCurrentUser()): ?>
+                _paq.push(['setUserId', '<?= $user->username ?>'])
+            <?php endif; ?>
+
             var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
             g.async = true;
             g.src = u + 'matomo.js';
