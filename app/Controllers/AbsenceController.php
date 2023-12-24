@@ -7,11 +7,8 @@ use Aspera\Spreadsheet\XLSX\Reader;
 use Aspera\Spreadsheet\XLSX\ReaderConfiguration;
 use CodeIgniter\HTTP\RedirectResponse;
 use DateTime;
-use function App\Helpers\getCurrentUser;
 use function App\Helpers\getImportKeys;
-use function App\Helpers\readCsvToArray;
 use function App\Helpers\storeFile;
-use function Symfony\Component\Translation\t;
 
 class AbsenceController extends BaseController
 {
@@ -38,7 +35,7 @@ class AbsenceController extends BaseController
     {
         $studentId = $this->request->getPost('studentId');
         $now = new DateTime();
-        insertAbsence($studentId, $now, session('DISPLAYNAME'), $now, '');
+        insertAbsence($studentId, $now, session('DISPLAYNAME'), $now, ';; Von ' . session('DISPLAYNAME') . ' um ' . $now->format('H:i') . ' fehlend gemeldet. !! Diese Absenz ist vom Schulbüro noch nicht bearbeitet worden !!');
 
         return redirect()->to(previous_url());
     }

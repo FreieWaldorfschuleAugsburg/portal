@@ -30,7 +30,7 @@ function getAbsenceGradeModel(): AbsenceGradeModel
     return new AbsenceGradeModel();
 }
 
-function removeAllStudents()
+function removeAllStudents(): void
 {
     Database::connect()->table('portal_absences_students')->truncate();
 }
@@ -77,7 +77,7 @@ function getAbsenceStudentModel(): AbsenceStudentModel
  */
 function getAbsencesByDate(DateTime $dateTime): array
 {
-    return getAbsenceModel()->where('absence_date', $dateTime->format('Y-m-d'))->findAll();
+    return getAbsenceModel()->where('absence_date', $dateTime->format('Y-m-d'))->orderBy('reported_at', 'DESC')->findAll();
 }
 
 /**
@@ -103,12 +103,12 @@ function getAbsence(array $absences, int $studentId): ?Absence
     return null;
 }
 
-function removeAllAbsences()
+function removeAllAbsences(): void
 {
     Database::connect()->table('portal_absences')->truncate();
 }
 
-function insertAbsence(int $studentId, DateTime $date, string $reportedBy, DateTime $reportedAt, string $note)
+function insertAbsence(int $studentId, DateTime $date, string $reportedBy, DateTime $reportedAt, string $note): void
 {
     $absence = new Absence();
     $absence->setStudentId($studentId);

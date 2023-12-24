@@ -11,6 +11,10 @@
     <?php
     $absences = getAbsencesByDate(new DateTime());
     if (count($absences) > 0): ?>
+        <div class="text-center">
+            <p class="text-h2-big text-white">Bitte wählen Sie eine Klasse!</p>
+        </div>
+
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-5">
             <?php foreach (getGrades() as $grade): ?>
                 <div class="bg-gray-900 text-white font-inter-regular px-5 py-3 rounded-lg flex justify-between"
