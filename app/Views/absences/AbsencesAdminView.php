@@ -6,7 +6,7 @@
 
 <main class="px-5 xl:px-24 2xl:px-60 space-y-3 mt-5 min-h-screen">
     <div class="flex gap-5 items-center">
-        <p class="font-inter-semibold text-h2-small text-white">Abwesenheiten</p>
+        <p class="font-inter-semibold text-h2-small text-white">Abwesenheiten / Administration</p>
         <?php if (session('ABSENCE_ADMIN')): ?>
             <a href="<?= base_url('absences') ?>" class="font-inter-medium text-white bg-blue-600 rounded">
                 <button class="p-3">Zurück</button>
@@ -19,8 +19,23 @@
     $yesterday = $now->modify('-1 day');
 
     $absences = getAbsencesByDate(new DateTime());
-    $absences = array_merge($absences, getAbsencesByDate($yesterday))
+    $yesterdayAbsences = getAbsencesByDate($yesterday);
+    $absences = array_merge($absences, $yesterdayAbsences);
     ?>
+
+    <?php if (count($yesterdayAbsences) > 0): ?>
+        <div id="yesterdayAlert"
+             class="flex gap-3 bg-red-600 rounded-xl justify-between px-3 py-5 transition hover:scale-95 ease-in-out">
+            <div>
+                <div class="text-white r outline-1 flex flex-col flex-1">
+                    <a class="text-h4-small md:text-h4-big tracking-tight font-inter-semibold leading-6 md:leading-8 lg:leading-8"><b>Achtung!</b>
+                        Es gibt noch unbearbeitete Absenzen vom Vortag! Wenn jetzt hochgeladen wird, werden
+                        diese überschrieben und gehen verloren.<br><small>(Die untenstehenden Absenzen bitte zuerst in
+                            Procurat! aufnehmen.)</small></a>
+                </div>
+            </div>
+        </div>
+    <?php endif; ?>
 
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table class="w-full text-sm text-center text-gray-500 dark:text-gray-400 mb-5">
@@ -103,3 +118,18 @@
         <?= form_close() ?>
     </div>
 </main>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const alert = document.getElementById('yesterdayAlert');
+        if (alert != null) {
+            setInterval(() => blink(alert), 500)
+        }
+    });
+
+    function blink(alert) {
+        const status = alert.classList.contains('bg-red-600')
+        alert.classList.toggle('bg-red-600', !status)
+        alert.classList.toggle('bg-orange-600', status)
+    }
+</script>

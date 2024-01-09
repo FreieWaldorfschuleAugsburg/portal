@@ -6,7 +6,7 @@
 
 <main class="px-5 xl:px-24 2xl:px-60 space-y-3 mt-5 min-h-screen">
     <div class="flex gap-5 items-center">
-        <p class="font-inter-semibold text-h1-small text-white">Tabellenansicht</p>
+        <p class="font-inter-semibold text-h2-small text-white">Abwesenheiten / Tabellenansicht</p>
         <a href="<?= base_url('absences') ?>" class="font-inter-medium text-white bg-blue-600 rounded">
             <button class="p-3">Zurück</button>
         </a>
@@ -56,30 +56,30 @@
                 </tbody>
             </table>
         </div>
+
+        <div class="relative overflow-x-auto shadow-md sm:rounded-lg text-white font-inter-medium">
+            <?= form_open(base_url('absences/table/print')) ?>
+            <p class="font-inter-semibold text-h2-small">Drucken</p>
+
+            <div class="boxes">
+                <?php foreach (getGrades() as $grade): ?>
+                    <label for="grade<?= $grade->getId() ?>"><?= $grade->getName() ?></label>
+                    <input id="grade<?= $grade->getId() ?>" name="grade[]" value="<?= $grade->getId() ?>" type="checkbox" required><br>
+                <?php endforeach; ?>
+            </div>
+
+            <br>
+            <button type="submit" class="bg-blue-600 text-white text-body rounded py-3 p-3">
+                Drucken
+            </button>
+            <?= form_close() ?>
+        </div>
     <?php else: ?>
         <div class="text-center">
             <p class="text-h2-big text-white">Für heute wurden noch keine Abwesenheiten eingestellt. <br>Bitte versuchen
                 Sie es später erneut!</p>
         </div>
     <?php endif; ?>
-
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg text-white font-inter-medium">
-        <?= form_open(base_url('absences/table/print')) ?>
-        <p class="font-inter-semibold text-h2-small">Drucken</p>
-
-        <div class="boxes">
-            <?php foreach (getGrades() as $grade): ?>
-                <label for="grade<?= $grade->getId() ?>"><?= $grade->getName() ?></label>
-                <input id="grade<?= $grade->getId() ?>" name="grade[]" value="<?= $grade->getId() ?>" type="checkbox" required><br>
-            <?php endforeach; ?>
-        </div>
-
-        <br>
-        <button type="submit" class="bg-blue-600 text-white text-body rounded py-3 p-3">
-            Drucken
-        </button>
-        <?= form_close() ?>
-    </div>
 </main>
 
 <script>
