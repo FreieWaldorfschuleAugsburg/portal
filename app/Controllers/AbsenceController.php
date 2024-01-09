@@ -7,6 +7,7 @@ use Aspera\Spreadsheet\XLSX\Reader;
 use Aspera\Spreadsheet\XLSX\ReaderConfiguration;
 use CodeIgniter\HTTP\RedirectResponse;
 use DateTime;
+use Exception;
 use function App\Helpers\getImportKeys;
 use function App\Helpers\storeFile;
 
@@ -29,7 +30,6 @@ class AbsenceController extends BaseController
     }
 
     /**
-     * @throws AuthException
      */
     public function absent(): RedirectResponse
     {
@@ -49,7 +49,7 @@ class AbsenceController extends BaseController
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     public function uploadAbsences(): RedirectResponse
     {
@@ -92,7 +92,7 @@ class AbsenceController extends BaseController
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     public function uploadStudents(): RedirectResponse
     {

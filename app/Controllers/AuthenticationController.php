@@ -33,9 +33,8 @@ class AuthenticationController extends BaseController
     }
 
     /**
-     * @throws AuthException
      */
-    public function handleLogin()
+    public function handleLogin(): RedirectResponse
     {
         $username = trim($this->request->getPost('username'));
         $password = trim($this->request->getPost('password'));

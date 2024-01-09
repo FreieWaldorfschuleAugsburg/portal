@@ -3,9 +3,12 @@
 namespace App\Controllers;
 
 use App\Entities\Role;
+use App\Models\AuthException;
 use App\Models\GroupModel;
 use App\Models\RoleModel;
+use CodeIgniter\HTTP\RedirectResponse;
 use Ramsey\Uuid\Uuid;
+use ReflectionException;
 use function App\Helpers\createGroupEntity;
 use function App\Helpers\deleteRole;
 use function App\Helpers\getAllActiveDirectoryGroups;
@@ -13,15 +16,14 @@ use function App\Helpers\getRole;
 use function App\Helpers\saveRole;
 
 class RoleController extends BaseController
-
 {
-
-    public function index()
+    /**
+     * @throws AuthException
+     */
+    public function index(): string
     {
         $db = db_connect();
-
         $roles = $db->table('portal_roles')->get()->getResult();
-
         $polishedRoles = array();
 
         foreach ($roles as $role) {
@@ -34,25 +36,27 @@ class RoleController extends BaseController
             $polishedRoles[] = $roleEntity;
         }
 
-
         return $this->render('roles/RoleView', [
             'roles' => $polishedRoles
         ]);
     }
 
-    public function create()
+    /**
+     * @throws AuthException
+     */
+    public function create(): string
     {
-        helper(['group', 'auth']);
         $groups = getAllActiveDirectoryGroups();
 
         return $this->render('roles/CreateRoleView', [
             'groups' => $groups]);
     }
 
-
-    public function edit($roleId)
+    /**
+     * @throws AuthException
+     */
+    public function edit($roleId): string
     {
-        helper(['role', 'group', 'auth']);
         $role = getRole($roleId);
         $groups = getAllActiveDirectoryGroups();
         return $this->render('roles/EditRoleView', [
@@ -61,13 +65,11 @@ class RoleController extends BaseController
         ]);
     }
 
-
     /**
-     * @throws \ReflectionException
+     * @throws ReflectionException
      */
-    public function update($roleId)
+    public function update($roleId): RedirectResponse
     {
-        helper(['role', 'group', 'auth']);
         $role = getRole($roleId);
         $role->role_name = $this->request->getPost('name');
         $role->groups = $this->request->getPost('group');
@@ -75,13 +77,11 @@ class RoleController extends BaseController
         return redirect('roles');
     }
 
-
     /**
-     * @throws \ReflectionException
+     * @throws ReflectionException
      */
-    public function store()
+    public function store(): RedirectResponse
     {
-        helper('group');
         $roleName = $this->request->getPost('name');
         $role = new Role();
         $roleModel = new RoleModel();
@@ -95,17 +95,11 @@ class RoleController extends BaseController
         }
 
         return redirect('roles');
-
-
     }
 
-
-    public function delete($roleId)
+    public function delete($roleId): RedirectResponse
     {
         deleteRole($roleId);
-
         return redirect("roles");
     }
-
-
 }

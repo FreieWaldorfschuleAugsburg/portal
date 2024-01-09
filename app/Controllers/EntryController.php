@@ -2,21 +2,15 @@
 
 namespace App\Controllers;
 
-
-use App\Entities\Entry;
 use App\Models\AuthException;
-use App\Models\CategoryModel;
-use App\Models\EntryModel;
-use CodeIgniter\Database\Exceptions\DataException;
-use CodeIgniter\Files\Exceptions\FileException;
 use CodeIgniter\HTTP\Exceptions\HTTPException;
-use CodeIgniter\HTTP\IncomingRequest;
+use CodeIgniter\HTTP\RedirectResponse;
 use Ramsey\Uuid\Uuid;
+use ReflectionException;
 use function App\Helpers\createEntryFromForm;
 use function App\Helpers\createEntryImage;
 use function App\Helpers\deleteEntry;
 use function App\Helpers\getAllRoles;
-use function App\Helpers\getEntry;
 use function App\Helpers\getEntryWithRoleAndCategory;
 use function App\Helpers\insertEntry;
 use function App\Helpers\saveEntry;
@@ -26,15 +20,12 @@ class EntryController extends BaseController
     /**
      * @throws AuthException
      */
-    public function index()
+    public function index(): string
     {
-        helper('auth');
         $db = db_connect();
-
         $entries = $db->table(getenv('database.views.entriesWithCategoryAndRole'))->get()->getResult();
         return $this->render('entries/EntryView', ['entries' => $entries]);
     }
-
 
     public function create()
     {
@@ -43,11 +34,10 @@ class EntryController extends BaseController
             'roles' => getAllRoles()]);
     }
 
-
     /**
-     * @throws \ReflectionException
+     * @throws ReflectionException
      */
-    public function store()
+    public function store(): RedirectResponse
     {
         $request = $this->request;
         $entry = createEntryFromForm($request, Uuid::uuid4()->toString());
@@ -62,13 +52,13 @@ class EntryController extends BaseController
 
         } catch (HTTPException $exception){
         }
+
         insertEntry($entry);
         return redirect('entries');
-
     }
 
     /**
-     * @throws \ReflectionException
+     * @throws ReflectionException
      * @throws AuthException
      */
     public function edit($entryId)
@@ -83,9 +73,9 @@ class EntryController extends BaseController
     }
 
     /**
-     * @throws \ReflectionException
+     * @throws ReflectionException
      */
-    public function update($entryId)
+    public function update($entryId): RedirectResponse
     {
         $request = $this->request;
         $entry = createEntryFromForm($request, $entryId);
@@ -104,11 +94,9 @@ class EntryController extends BaseController
         return redirect('entries');
     }
 
-    public function delete($entryId)
+    public function delete($entryId): RedirectResponse
     {
        deleteEntry($entryId);
         return redirect('entries');
     }
-
-
 }
