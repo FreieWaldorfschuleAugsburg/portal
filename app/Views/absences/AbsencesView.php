@@ -6,6 +6,9 @@
                 <button class="p-3">Administration</button>
             </a>
         <?php endif; ?>
+        <a href="<?= base_url('absences/table') ?>" class="font-inter-medium text-white bg-blue-600 rounded">
+            <button class="p-3">Tabellenansicht</button>
+        </a>
     </div>
 
     <?php

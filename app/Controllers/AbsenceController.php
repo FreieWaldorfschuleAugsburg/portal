@@ -24,6 +24,22 @@ class AbsenceController extends BaseController
     /**
      * @throws AuthException
      */
+    public function table(): string
+    {
+        return $this->render('absences/AbsencesTableView');
+    }
+
+    /**
+     * @throws AuthException
+     */
+    public function tablePrint(): string
+    {
+        return $this->render('absences/AbsencesTablePrintView', ['grades' => $this->request->getPost('grade')], false);
+    }
+
+    /**
+     * @throws AuthException
+     */
     public function admin(): string
     {
         return $this->render('absences/AbsencesAdminView');

@@ -87,6 +87,8 @@ $routes->post('/roles/new', 'RoleController::store', ['filter' => AdminFilter::c
 $routes->get('/absences', 'AbsenceController::index', ['filter' => AbsencesFilter::class]);
 $routes->get('/absences/view/(:any)', 'AbsenceController::view/$1', ['filter' => AbsencesFilter::class]);
 $routes->post('/absences/absent', 'AbsenceController::absent', ['filter' => AbsencesFilter::class]);
+$routes->get('/absences/table', 'AbsenceController::table', ['filter' => AbsencesFilter::class]);
+$routes->post('/absences/table/print', 'AbsenceController::tablePrint', ['filter' => AbsencesFilter::class]);
 $routes->get('/absences/admin', 'AbsenceController::admin', ['filter' => AbsencesAdminFilter::class]);
 
 $routes->post('/absences/admin/upload/absences', 'AbsenceController::uploadAbsences', ['filter' => AbsencesAdminFilter::class]);

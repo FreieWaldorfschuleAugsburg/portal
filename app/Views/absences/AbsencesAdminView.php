@@ -1,3 +1,9 @@
+<style>
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+</style>
+
 <main class="px-5 xl:px-24 2xl:px-60 space-y-3 mt-5 min-h-screen">
     <div class="flex gap-5 items-center">
         <p class="font-inter-semibold text-h2-small text-white">Abwesenheiten</p>

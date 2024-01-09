@@ -14,6 +14,7 @@ use function App\Helpers\getCurrentUser;
 
     <link href="<?= base_url('assets/css/output.css') ?>" rel="stylesheet">
     <script src="<?= base_url('assets/script.js') ?>" defer></script>
+    <script src="<?= base_url('assets/js/jquery.min.js') ?>"></script>
 
     <!-- Matomo -->
     <script>

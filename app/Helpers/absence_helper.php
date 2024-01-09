@@ -57,6 +57,11 @@ function getStudents(int $gradeId): array
     return $students;
 }
 
+function countStudents(): int
+{
+    return getAbsenceStudentModel()->countAllResults();
+}
+
 /**
  * @param int $id
  * @return AbsenceStudent
