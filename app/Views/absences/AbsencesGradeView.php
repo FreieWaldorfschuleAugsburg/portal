@@ -19,13 +19,15 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-5">
             <?php foreach (getStudents($gradeId) as $student): ?>
                 <?php if ($absence = getAbsence($absences, $student->getId())): ?>
-                    <?php if (str_starts_with($absence->getNote(), ';;')): ?>
+                    <?php
+                    $noteLowercase = mb_strtolower($absence->getNote());
+                    if (str_starts_with($noteLowercase, ';;') || str_contains($noteLowercase, 'zu spät') || str_contains($noteLowercase, 'verspätet sich') || str_contains($noteLowercase, 'termin') || str_contains($noteLowercase, 'gegangen')): ?>
                         <div class="bg-orange-600 text-white font-inter-regular px-5 py-3 rounded-lg flex justify-between">
                             <div class="flex flex-col items-start gap-1">
                                 <div class="w-52 mt-3 mb-5">
                                     <p class="text-h2-small text-ellipsis overflow-hidden whitespace-nowrap mb-2"><?= $student->getLastName() . ", " . $student->getFirstName() ?></p>
                                     <p class="bg-blue-600/50 text-white p-1.5 px-3 text-xs rounded font-inter-regular bg-blue-400">
-                                        <?= substr($absence->getNote(), 3) ?>
+                                        <?= (str_starts_with($noteLowercase, ';;') ? substr($absence->getNote(), 3) : $absence->getNote()) ?>
                                     </p>
                                 </div>
                             </div>
