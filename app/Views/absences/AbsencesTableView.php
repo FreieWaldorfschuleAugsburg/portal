@@ -14,6 +14,8 @@
 
     <?php
     $absences = getAbsencesByDate(new DateTime());
+    usort($absences, fn($a, $b) => strcmp(getStudent($a->getStudentId())->getFirstName(), getStudent($b->getStudentId())->getFirstName()));
+
     $studentCount = countStudents();
     if (count($absences) > 0): ?>
         <div class="text-center">
@@ -43,7 +45,7 @@
 
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                         <td class="px-6 py-4">
-                            <?= $student->getLastName() . ', ' . $student->getFirstName() ?>
+                            <?= $student->getFirstName() . ' ' . $student->getLastName() ?>
                         </td>
                         <td class="px-6 py-4">
                             <?= getGradeById($student->getGradeId())->getName() ?>
@@ -64,7 +66,8 @@
             <div class="boxes">
                 <?php foreach (getGrades() as $grade): ?>
                     <label for="grade<?= $grade->getId() ?>"><?= $grade->getName() ?></label>
-                    <input id="grade<?= $grade->getId() ?>" name="grade[]" value="<?= $grade->getId() ?>" type="checkbox" required><br>
+                    <input id="grade<?= $grade->getId() ?>" name="grade[]" value="<?= $grade->getId() ?>"
+                           type="checkbox" required><br>
                 <?php endforeach; ?>
             </div>
 
@@ -83,10 +86,10 @@
 </main>
 
 <script>
-    $(function(){
+    $(function () {
         const requiredCheckboxes = $(':checkbox[required]');
-        requiredCheckboxes.change(function(){
-            if(requiredCheckboxes.is(':checked')) {
+        requiredCheckboxes.change(function () {
+            if (requiredCheckboxes.is(':checked')) {
                 requiredCheckboxes.removeAttr('required');
             } else {
                 requiredCheckboxes.attr('required', 'required');
