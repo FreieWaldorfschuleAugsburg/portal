@@ -97,4 +97,24 @@ class Absence extends Entity
     {
         $this->attributes['note'] = $note;
     }
+
+    public function isSystem(): bool
+    {
+        return str_contains($this->getNote(), ';;');
+    }
+
+    public function isHalfDay(): bool
+    {
+        $lowercaseKeywords = mb_strtolower(getenv('absence.halfDayKeywords'));
+        $lowercaseNote = mb_strtolower($this->getNote());
+        $keywords = explode(',', $lowercaseKeywords);
+
+        foreach ($keywords as $keyword) {
+            if (str_contains($lowercaseNote, $keyword)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

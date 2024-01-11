@@ -21,6 +21,8 @@ role.absences = ''
 role.absencesAdmin = ''
 role.absencesRead = ''
 
+absence.halfDayKeywords = ''
+
 #--------------------------------------------------------------------
 # ACTIVE DIRECTORY
 #--------------------------------------------------------------------
