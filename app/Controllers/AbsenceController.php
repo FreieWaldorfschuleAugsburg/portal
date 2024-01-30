@@ -96,6 +96,8 @@ class AbsenceController extends BaseController
             $studentId = intval($absence[1]);
             $student = getStudent($studentId);
             if (is_null($student)) {
+                // Scrum everything if one entry is broken
+                removeAllAbsences();
                 return redirect('absences/admin')->with('error', 'Schüler mit der Nummer #' . $studentId . ' nicht bekannt! Bitte den aktuellen Schülerdatensatz hochladen.');
             }
 
