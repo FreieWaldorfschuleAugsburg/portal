@@ -94,6 +94,11 @@ class AbsenceController extends BaseController
             if ($reader->key() <= 1) continue;
 
             $studentId = intval($absence[1]);
+            $student = getStudent($studentId);
+            if (is_null($student)) {
+                return redirect('absences/admin')->with('error', 'Schüler mit der Nummer #' . $studentId . ' nicht bekannt! Bitte den aktuellen Schülerdatensatz hochladen.');
+            }
+
             $absenceDate = DateTime::createFromFormat('d.m.Y', $absence[2]);
             $note = $absence[6];
 

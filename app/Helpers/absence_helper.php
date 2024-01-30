@@ -64,9 +64,9 @@ function countStudents(): int
 
 /**
  * @param int $id
- * @return AbsenceStudent
+ * @return ?AbsenceStudent
  */
-function getStudent(int $id): object
+function getStudent(int $id): ?object
 {
     return getAbsenceStudentModel()->find($id);
 }
