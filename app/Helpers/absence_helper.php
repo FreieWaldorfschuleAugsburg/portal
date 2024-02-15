@@ -2,8 +2,11 @@
 
 use App\Entities\Absence;
 use App\Entities\AbsenceGrade;
+use App\Entities\AbsenceGroup;
 use App\Entities\AbsenceStudent;
 use App\Models\AbsenceGradeModel;
+use App\Models\AbsenceGroupModel;
+use App\Models\AbsenceMemberModel;
 use App\Models\AbsenceModel;
 use App\Models\AbsenceStudentModel;
 use Config\Database;
@@ -28,6 +31,24 @@ function getGrades(): array
 function getAbsenceGradeModel(): AbsenceGradeModel
 {
     return new AbsenceGradeModel();
+}
+
+/**
+ * @return AbsenceGroup[]
+ */
+function getAbsenceGroups(): array
+{
+    return getAbsenceGroupModel()->findAll();
+}
+
+function getAbsenceGroupModel(): AbsenceGroupModel
+{
+    return new AbsenceGroupModel();
+}
+
+function getAbsenceMemberModel(): AbsenceMemberModel
+{
+    return new AbsenceMemberModel();
 }
 
 function removeAllStudents(): void

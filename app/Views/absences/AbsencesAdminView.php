@@ -11,6 +11,9 @@
             <a href="<?= base_url('absences') ?>" class="font-inter-medium text-white bg-blue-600 rounded">
                 <button class="p-3">Zurück</button>
             </a>
+            <a href="<?= base_url('absences/admin/groups') ?>" class="font-inter-medium text-white bg-red-600 rounded">
+                <button class="p-3">Gruppenkonfiguration</button>
+            </a>
         <?php endif; ?>
     </div>
 

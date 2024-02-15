@@ -156,4 +156,60 @@ class AbsenceController extends BaseController
 
         return redirect('absences/admin')->with('success', $count . ' Datensätze importiert');
     }
+
+    /**
+     * @throws Exception
+     */
+    public function groups(): string
+    {
+        return $this->render('absences/group/AbsencesGroupsView');
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function createGroup(): string
+    {
+
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function storeGroup(): string
+    {
+
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function editGroup(string $groupId): string
+    {
+
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function updateGroup(string $groupId): string
+    {
+
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function deleteGroup(string $groupId): string
+    {
+
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function viewGroup(string $groupId): string
+    {
+
+    }
 }
