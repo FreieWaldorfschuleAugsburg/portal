@@ -65,9 +65,10 @@
 
             <div class="boxes">
                 <?php foreach (getGrades() as $grade): ?>
-                    <label for="grade<?= $grade->getId() ?>"><?= $grade->getName() ?></label>
                     <input id="grade<?= $grade->getId() ?>" name="grade[]" value="<?= $grade->getId() ?>"
-                           type="checkbox" required><br>
+                           type="checkbox" required>
+                    <label for="grade<?= $grade->getId() ?>"><?= $grade->getName() ?></label>
+                    <br>
                 <?php endforeach; ?>
             </div>
 

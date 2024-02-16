@@ -19,9 +19,9 @@ class AbsenceMember extends Entity
     ];
 
     /**
-     * @return int
+     * @return ?int
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->attributes['id'];
     }
@@ -34,11 +34,21 @@ class AbsenceMember extends Entity
         return $this->attributes['student_id'];
     }
 
+    public function setStudentId(int $studentId): void
+    {
+        $this->attributes['student_id'] = $studentId;
+    }
+
     /**
      * @return string
      */
     public function getGroupId(): string
     {
         return $this->attributes['group_id'];
+    }
+
+    public function setGroupId(string $groupId): void
+    {
+        $this->attributes['group_id'] = $groupId;
     }
 }

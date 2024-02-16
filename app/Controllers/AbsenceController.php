@@ -8,7 +8,9 @@ use Aspera\Spreadsheet\XLSX\ReaderConfiguration;
 use CodeIgniter\HTTP\RedirectResponse;
 use DateTime;
 use Exception;
+use Ramsey\Uuid\Uuid;
 use function App\Helpers\getImportKeys;
+use function App\Helpers\isLoggedIn;
 use function App\Helpers\storeFile;
 
 class AbsenceController extends BaseController
@@ -50,8 +52,14 @@ class AbsenceController extends BaseController
     public function absent(): RedirectResponse
     {
         $studentId = $this->request->getPost('studentId');
+        $reportedBy = $this->request->getPost('reportedBy');
         $now = new DateTime();
-        insertAbsence($studentId, $now, session('DISPLAYNAME'), $now, ';; Von ' . session('DISPLAYNAME') . ' um ' . $now->format('H:i') . ' fehlend gemeldet. !! Diese Absenz ist vom Schulbüro noch nicht bearbeitet worden !!');
+
+        if (!$reportedBy) {
+            $reportedBy = session('DISPLAYNAME');
+        }
+
+        insertAbsence($studentId, $now, $reportedBy, $now, ';; Von ' . $reportedBy . ' um ' . $now->format('H:i') . ' fehlend gemeldet. !! Diese Absenz ist vom Schulbüro noch nicht bearbeitet worden !!');
 
         return redirect()->to(previous_url());
     }
@@ -170,46 +178,76 @@ class AbsenceController extends BaseController
      */
     public function createGroup(): string
     {
-
+        return $this->render('absences/group/AbsencesGroupCreateView');
     }
 
     /**
      * @throws Exception
      */
-    public function storeGroup(): string
+    public function storeGroup(): RedirectResponse
     {
+        $id = Uuid::uuid4()->toString();
+        $name = $this->request->getPost('name');
+        $students = $this->request->getPost('student');
 
+        insertAbsenceGroup($id, $name, $students);
+        return redirect('absences/admin/groups');
     }
 
     /**
      * @throws Exception
      */
-    public function editGroup(string $groupId): string
+    public function editGroup(string $groupId): RedirectResponse|string
     {
+        $group = getAbsenceGroupById($groupId);
+        if (is_null($group)) {
+            return redirect('absences/admin/groups')->with('error', 'Ungültige Abwesenheitsgruppe');
+        }
 
+        return $this->render('absences/group/AbsencesGroupEditView', ['group' => $group]);
     }
 
     /**
      * @throws Exception
      */
-    public function updateGroup(string $groupId): string
+    public function updateGroup(string $groupId): RedirectResponse
     {
+        $group = getAbsenceGroupById($groupId);
+        if (is_null($group)) {
+            return redirect('absences/admin/groups')->with('error', 'Ungültige Abwesenheitsgruppe');
+        }
 
+        $name = $this->request->getPost('name');
+        $students = $this->request->getPost('student');
+
+        updateAbsenceGroup($group->getId(), $name, $students);
+        return redirect('absences/admin/groups');
     }
 
     /**
      * @throws Exception
      */
-    public function deleteGroup(string $groupId): string
+    public function deleteGroup(string $groupId): RedirectResponse
     {
+        $group = getAbsenceGroupById($groupId);
+        if (is_null($group)) {
+            return redirect('absences/admin/groups')->with('error', 'Ungültige Abwesenheitsgruppe');
+        }
 
+        deleteAbsenceGroup($group->getId());
+        return redirect('absences/admin/groups');
     }
 
     /**
      * @throws Exception
      */
-    public function viewGroup(string $groupId): string
+    public function viewGroup(string $groupId): RedirectResponse|string
     {
+        $group = getAbsenceGroupById($groupId);
+        if (is_null($group)) {
+            return redirect('/')->with('error', 'Ungültige Abwesenheitsgruppe');
+        }
 
+        return $this->render('absences/group/AbsencesGroupView', ['group' => $group]);
     }
 }

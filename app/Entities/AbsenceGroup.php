@@ -24,11 +24,21 @@ class AbsenceGroup extends Entity
         return $this->attributes['id'];
     }
 
+    public function setId(string $id): void
+    {
+        $this->attributes['id'] = $id;
+    }
+
     /**
      * @return string
      */
     public function getName(): string
     {
         return $this->attributes['name'];
+    }
+
+    public function setName(string $name): void
+    {
+        $this->attributes['name'] = $name;
     }
 }

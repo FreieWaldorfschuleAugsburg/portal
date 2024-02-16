@@ -3,6 +3,7 @@
 use App\Entities\Absence;
 use App\Entities\AbsenceGrade;
 use App\Entities\AbsenceGroup;
+use App\Entities\AbsenceMember;
 use App\Entities\AbsenceStudent;
 use App\Models\AbsenceGradeModel;
 use App\Models\AbsenceGroupModel;
@@ -34,6 +35,62 @@ function getAbsenceGradeModel(): AbsenceGradeModel
 }
 
 /**
+ * @param string $id
+ * @return ?AbsenceGroup
+ */
+function getAbsenceGroupById(string $id): ?object
+{
+    return getAbsenceGroupModel()->find($id);
+}
+
+function insertAbsenceGroup(string $id, string $name, array $students): void
+{
+    $group = new AbsenceGroup();
+    $group->setId($id);
+    $group->setName($name);
+
+    getAbsenceGroupModel()->save($group);
+
+    foreach ($students as $student) {
+        insertAbsenceGroupMember($id, $student);
+    }
+}
+
+function updateAbsenceGroup(string $id, string $name, array $students): void
+{
+    $group = getAbsenceGroupById($id);
+    if ($group->getName() != $name) {
+        $group->setName($name);
+        getAbsenceGroupModel()->save($group);
+    }
+
+    $currentMembers = getAbsenceGroupMembers($id);
+    foreach ($students as $student) {
+        $isMember = false;
+        foreach ($currentMembers as $member) {
+            if ($member->getStudentId() == $student) {
+                $isMember = true;
+            }
+        }
+
+        if (!$isMember) {
+            insertAbsenceGroupMember($id, $student);
+        }
+    }
+
+    foreach ($currentMembers as $member) {
+        if (!in_array($member->getStudentId(), $students)) {
+            deleteAbsenceGroupMember($id, $member->getStudentId());
+        }
+    }
+}
+
+function deleteAbsenceGroup(string $id)
+{
+    getAbsenceGroupModel()->delete($id);
+}
+
+/**
  * @return AbsenceGroup[]
  */
 function getAbsenceGroups(): array
@@ -44,6 +101,47 @@ function getAbsenceGroups(): array
 function getAbsenceGroupModel(): AbsenceGroupModel
 {
     return new AbsenceGroupModel();
+}
+
+/**
+ * @param string $id
+ * @return AbsenceMember[]
+ */
+function getAbsenceGroupMembers(string $id): array
+{
+    return getAbsenceMemberModel()->where(['group_id' => $id])->findAll();
+}
+
+/**
+ * @param string $id
+ * @return AbsenceStudent[]
+ */
+function getAbsenceGroupStudents(string $id): array
+{
+    $models = getAbsenceGroupMembers($id);
+    $students = [];
+    foreach ($models as $model) {
+        $students[] = getStudent($model->getStudentId());
+    }
+    return $students;
+}
+
+function isAbsenceGroupMember(string $groupId, int $studentId): bool
+{
+    return getAbsenceMemberModel()->where(['group_id' => $groupId, 'student_id' => $studentId])->countAllResults() > 0;
+}
+
+function insertAbsenceGroupMember(string $groupId, int $studentId): void
+{
+    $member = new AbsenceMember();
+    $member->setGroupId($groupId);
+    $member->setStudentId($studentId);
+    getAbsenceMemberModel()->insert($member);
+}
+
+function deleteAbsenceGroupMember(string $groupId, int $studentId): void
+{
+    getAbsenceMemberModel()->where(['group_id' => $groupId, 'student_id' => $studentId])->delete();
 }
 
 function getAbsenceMemberModel(): AbsenceMemberModel
@@ -76,6 +174,14 @@ function getStudents(int $gradeId): array
     $students = getAbsenceStudentModel()->where('grade_id', $gradeId)->findAll();
     usort($students, fn($a, $b) => strcmp($a->getLastName(), $b->getLastName()));
     return $students;
+}
+
+/**
+ * @return AbsenceStudent[]
+ */
+function getAllStudents(): array
+{
+    return getAbsenceStudentModel()->orderBy('last_name', 'ASC')->findAll();
 }
 
 function countStudents(): int

@@ -25,6 +25,9 @@
                     <a href="<?= base_url('absences/admin/groups/edit/' . $group->getId()) ?>" class="bg-blue-600 p-3 rounded">
                         <?= lang('buttons.edit') ?>
                     </a>
+                    <a href="<?= base_url('absences/groups/' . $group->getId()) ?>" class="bg-blue-600 p-3 rounded">
+                        <?= lang('buttons.view') ?>
+                    </a>
                 </button>
             </div>
         <?php endforeach; ?>
