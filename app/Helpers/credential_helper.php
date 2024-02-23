@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Helpers;
+
 use App\Entities\CredentialField;
 use App\Entities\Credentials;
 use App\Models\CredentialFieldType;

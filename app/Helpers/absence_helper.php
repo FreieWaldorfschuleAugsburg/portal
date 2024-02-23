@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Helpers;
+
 use App\Entities\Absence;
 use App\Entities\AbsenceGrade;
 use App\Entities\AbsenceGroup;

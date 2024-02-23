@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Helpers;
+
 use App\Models\CategoryModel;
 use App\Entities\Category;
 use \Ramsey\Uuid\Uuid;
