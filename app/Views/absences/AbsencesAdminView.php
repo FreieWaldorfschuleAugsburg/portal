@@ -7,7 +7,11 @@
 <main class="px-5 xl:px-24 2xl:px-60 space-y-3 mt-5 min-h-screen">
     <div class="flex gap-5 items-center">
         <p class="font-inter-semibold text-h2-small text-white">Abwesenheiten / Administration</p>
-        <?php if (session('ABSENCE_ADMIN')): ?>
+        <?php use function App\Helpers\getAbsencesByDate;
+        use function App\Helpers\getFirstImportedAbsence;
+        use function App\Helpers\getStudent;
+
+        if (session('ABSENCE_ADMIN')): ?>
             <a href="<?= base_url('absences') ?>" class="font-inter-medium text-white bg-blue-600 rounded">
                 <button class="p-3">Zurück</button>
             </a>

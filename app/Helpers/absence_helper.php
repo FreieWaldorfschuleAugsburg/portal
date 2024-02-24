@@ -13,6 +13,8 @@ use App\Models\AbsenceMemberModel;
 use App\Models\AbsenceModel;
 use App\Models\AbsenceStudentModel;
 use Config\Database;
+use DateTime;
+use DateTimeImmutable;
 
 /**
  * @param int $id
@@ -203,6 +205,20 @@ function getStudent(int $id): ?object
 function getAbsenceStudentModel(): AbsenceStudentModel
 {
     return new AbsenceStudentModel();
+}
+
+/**
+ * @param string $delta
+ * @return Absence[]
+ */
+function getAbsences(string $delta): array
+{
+    $now = new DateTimeImmutable();
+    $end = $now->modify($delta);
+
+    return getAbsenceModel()->where([
+        'reported_at >=' => $end->format('Y-m-d H:i:s'),
+        'reported_at <=' => $now->format('Y-m-d H:i:s')])->findAll();
 }
 
 /**

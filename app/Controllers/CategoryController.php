@@ -5,6 +5,9 @@ namespace App\Controllers;
 use App\Models\AuthException;
 use CodeIgniter\HTTP\RedirectResponse;
 use ReflectionException;
+use function App\Helpers\createAndStoreCategory;
+use function App\Helpers\getCategories;
+use function App\Helpers\updateOrDeleteCategories;
 
 class CategoryController extends BaseController
 {

@@ -3,12 +3,10 @@
 namespace App\Controllers;
 
 use App\Models\AuthException;
-use CodeIgniter\HTTP\RedirectResponse;
 use ReflectionException;
+use function App\Helpers\getAllCredentialsForRoles;
 use function App\Helpers\getEntriesByCategory;
 use function App\Helpers\getUserRoles;
-use function App\Helpers\getCurrentUser;
-use function App\Helpers\handleAuthException;
 use function App\Helpers\isLoggedIn;
 
 class IndexController extends BaseController

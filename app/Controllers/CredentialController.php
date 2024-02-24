@@ -7,15 +7,22 @@ use CodeIgniter\Database\Exceptions\DataException;
 use CodeIgniter\HTTP\DownloadResponse;
 use CodeIgniter\HTTP\RedirectResponse;
 use ReflectionException;
+use function App\Helpers\createCredentialFields;
+use function App\Helpers\createCredentials;
+use function App\Helpers\deleteCredentials;
+use function App\Helpers\getAllCredentialsForRoles;
 use function App\Helpers\getAllRoles;
+use function App\Helpers\getCredentialField;
+use function App\Helpers\getCredentials;
 use function App\Helpers\getUserRoles;
 use Ramsey\Uuid\Uuid;
+use function App\Helpers\insertCredentials;
+use function App\Helpers\updateCredentials;
 
 class CredentialController extends BaseController
 {
     /**
      * @throws AuthException
-     * @throws ReflectionException
      */
     public function index(): string
     {

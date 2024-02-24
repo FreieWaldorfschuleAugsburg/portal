@@ -97,6 +97,8 @@ $routes->get('/absences/groups/(:any)', 'AbsenceController::viewGroup/$1');
 $routes->post('/absences/admin/upload/absences', 'AbsenceController::uploadAbsences', ['filter' => AbsencesAdminFilter::class]);
 $routes->post('/absences/admin/upload/students', 'AbsenceController::uploadStudents', ['filter' => AbsencesAdminFilter::class]);
 
+$routes->cli('/emails', 'EmailController::index');
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing

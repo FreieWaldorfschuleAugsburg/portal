@@ -9,9 +9,15 @@ use CodeIgniter\HTTP\RedirectResponse;
 use DateTime;
 use Exception;
 use Ramsey\Uuid\Uuid;
-use function App\Helpers\getImportKeys;
-use function App\Helpers\isLoggedIn;
+use function App\Helpers\deleteAbsenceGroup;
+use function App\Helpers\getAbsenceGroupById;
+use function App\Helpers\insertAbsence;
+use function App\Helpers\insertAbsenceGroup;
+use function App\Helpers\insertStudent;
+use function App\Helpers\removeAllAbsences;
+use function App\Helpers\removeAllStudents;
 use function App\Helpers\storeFile;
+use function App\Helpers\updateAbsenceGroup;
 
 class AbsenceController extends BaseController
 {

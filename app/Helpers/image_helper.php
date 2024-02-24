@@ -3,12 +3,12 @@
 
 namespace App\Helpers;
 
-use CodeIgniter\HTTP\IncomingRequest;
 use Config\Services;
 use Imagick;
+use ImagickException;
 
 /**
- * @throws \ImagickException
+ * @throws ImagickException
  */
 function createGradient(string $color1, string $color2): Imagick
 {
@@ -38,7 +38,7 @@ function addImage(Imagick $gradient, Imagick $image)
 
 
 /**
- * @throws \ImagickException
+ * @throws ImagickException
  */
 function cropImageToCenter(Imagick $imagick, $width, $height)
 {

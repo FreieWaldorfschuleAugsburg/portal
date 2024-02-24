@@ -2,7 +2,9 @@
     <div class="flex gap-5 items-center">
         <p class="font-inter-semibold text-h2-small text-white">Abwesenheiten / Administration /
             Gruppenkonfiguration</p>
-        <?php if (session('ABSENCE_ADMIN')): ?>
+        <?php use function App\Helpers\getAbsenceGroups;
+
+        if (session('ABSENCE_ADMIN')): ?>
             <a href="<?= base_url('absences/admin') ?>" class="font-inter-medium text-white bg-blue-600 rounded">
                 <button class="p-3">Zurück</button>
             </a>

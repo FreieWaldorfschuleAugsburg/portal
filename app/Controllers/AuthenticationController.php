@@ -4,8 +4,6 @@ namespace App\Controllers;
 
 use App\Models\AuthException;
 use CodeIgniter\HTTP\RedirectResponse;
-use LdapRecord\Query\ObjectNotFoundException;
-use function App\Helpers\getCurrentUser;
 use function App\Helpers\handleAuthException;
 use function App\Helpers\isLoggedIn;
 use function App\Helpers\login;

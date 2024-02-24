@@ -6,7 +6,11 @@
 
 <?php
 
+use function App\Helpers\countStudents;
+use function App\Helpers\getAbsencesByDate;
 use function App\Helpers\getCurrentUser;
+use function App\Helpers\getGradeById;
+use function App\Helpers\getStudent;
 
 $absences = getAbsencesByDate(new DateTime());
 $studentCount = countStudents();

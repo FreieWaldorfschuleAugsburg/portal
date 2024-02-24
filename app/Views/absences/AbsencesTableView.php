@@ -1,3 +1,12 @@
+<?php
+
+use function App\Helpers\countStudents;
+use function App\Helpers\getAbsencesByDate;
+use function App\Helpers\getGradeById;
+use function App\Helpers\getGrades;
+use function App\Helpers\getStudent;
+
+?>
 <style>
     tr:nth-child(even) {
         background-color: #f2f2f2;

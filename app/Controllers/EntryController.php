@@ -11,6 +11,7 @@ use function App\Helpers\createEntryFromForm;
 use function App\Helpers\createEntryImage;
 use function App\Helpers\deleteEntry;
 use function App\Helpers\getAllRoles;
+use function App\Helpers\getCategories;
 use function App\Helpers\getEntryWithRoleAndCategory;
 use function App\Helpers\insertEntry;
 use function App\Helpers\saveEntry;
@@ -58,12 +59,10 @@ class EntryController extends BaseController
     }
 
     /**
-     * @throws ReflectionException
      * @throws AuthException
      */
     public function edit($entryId)
     {
-        $request = $this->request;
         $entry = getEntryWithRoleAndCategory($entryId);
         return $this->render('entries/EditEntryView', [
             'entry' => $entry,
@@ -96,7 +95,7 @@ class EntryController extends BaseController
 
     public function delete($entryId): RedirectResponse
     {
-       deleteEntry($entryId);
+        deleteEntry($entryId);
         return redirect('entries');
     }
 }

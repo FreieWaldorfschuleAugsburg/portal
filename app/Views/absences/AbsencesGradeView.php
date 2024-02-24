@@ -1,3 +1,11 @@
+<?php
+
+use function App\Helpers\getAbsence;
+use function App\Helpers\getAbsencesByDate;
+use function App\Helpers\getGradeById;
+use function App\Helpers\getStudents;
+
+?>
 <main class="px-5 xl:px-24 2xl:px-60 space-y-3 mt-5 min-h-screen">
     <div class="flex gap-5 items-center">
         <p class="font-inter-semibold text-h1-small text-white"><?= ($grade = getGradeById($gradeId))->getName() ?></p>

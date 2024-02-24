@@ -1,3 +1,9 @@
+<?php
+
+use function App\Helpers\getAllStudents;
+use function App\Helpers\isAbsenceGroupMember;
+
+?>
 <main class="px-5 xl:px-24 2xl:px-60 space-y-3 mt-5 min-h-screen">
     <div class="flex gap-5 items-center">
         <p class="font-inter-semibold text-h2-small text-white">Abwesenheitsgruppe bearbeiten</p>
