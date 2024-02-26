@@ -218,7 +218,8 @@ function getAbsences(string $delta): array
 
     return getAbsenceModel()->where([
         'reported_at >=' => $end->format('Y-m-d H:i:s'),
-        'reported_at <=' => $now->format('Y-m-d H:i:s')])->findAll();
+        'reported_at <=' => $now->format('Y-m-d H:i:s'),
+        'reported_by !=' => 'Import'])->findAll();
 }
 
 /**

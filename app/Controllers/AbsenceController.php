@@ -11,6 +11,7 @@ use Exception;
 use Ramsey\Uuid\Uuid;
 use function App\Helpers\deleteAbsenceGroup;
 use function App\Helpers\getAbsenceGroupById;
+use function App\Helpers\getStudent;
 use function App\Helpers\insertAbsence;
 use function App\Helpers\insertAbsenceGroup;
 use function App\Helpers\insertStudent;
