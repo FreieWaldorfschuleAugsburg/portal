@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "81e6578b3a19461b9a5fd5d2a4e3295f",
+    "content-hash": "d641cb15b8f350df3f7a2a59d34a8b3d",
     "packages": [
         {
             "name": "aspera/xlsx-reader",
@@ -117,16 +117,16 @@
         },
         {
             "name": "carbonphp/carbon-doctrine-types",
-            "version": "3.1.0",
+            "version": "3.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/CarbonPHP/carbon-doctrine-types.git",
-                "reference": "a31d3358a2a5d6ae947df1691d1f321418a5f3d5"
+                "reference": "18ba5ddfec8976260ead6e866180bd5d2f71aa1d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/CarbonPHP/carbon-doctrine-types/zipball/a31d3358a2a5d6ae947df1691d1f321418a5f3d5",
-                "reference": "a31d3358a2a5d6ae947df1691d1f321418a5f3d5",
+                "url": "https://api.github.com/repos/CarbonPHP/carbon-doctrine-types/zipball/18ba5ddfec8976260ead6e866180bd5d2f71aa1d",
+                "reference": "18ba5ddfec8976260ead6e866180bd5d2f71aa1d",
                 "shasum": ""
             },
             "require": {
@@ -166,7 +166,7 @@
             ],
             "support": {
                 "issues": "https://github.com/CarbonPHP/carbon-doctrine-types/issues",
-                "source": "https://github.com/CarbonPHP/carbon-doctrine-types/tree/3.1.0"
+                "source": "https://github.com/CarbonPHP/carbon-doctrine-types/tree/3.2.0"
             },
             "funding": [
                 {
@@ -182,7 +182,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-12-10T15:33:53+00:00"
+            "time": "2024-02-09T16:56:22+00:00"
         },
         {
             "name": "codeigniter4/framework",
@@ -261,24 +261,24 @@
         },
         {
             "name": "directorytree/ldaprecord",
-            "version": "v3.4.0",
+            "version": "v3.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/DirectoryTree/LdapRecord.git",
-                "reference": "5ff91b636748631796835fa1b6a8cd8c9c497611"
+                "reference": "06837ae8db8591cdc7f5c9e7c390e65ab7aa5dcb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/DirectoryTree/LdapRecord/zipball/5ff91b636748631796835fa1b6a8cd8c9c497611",
-                "reference": "5ff91b636748631796835fa1b6a8cd8c9c497611",
+                "url": "https://api.github.com/repos/DirectoryTree/LdapRecord/zipball/06837ae8db8591cdc7f5c9e7c390e65ab7aa5dcb",
+                "reference": "06837ae8db8591cdc7f5c9e7c390e65ab7aa5dcb",
                 "shasum": ""
             },
             "require": {
                 "ext-iconv": "*",
                 "ext-json": "*",
                 "ext-ldap": "*",
-                "illuminate/collections": "^8.0|^9.0|^10.0",
-                "illuminate/contracts": "^8.0|^9.0|^10.0",
+                "illuminate/collections": "^8.0|^9.0|^10.0|^11.0",
+                "illuminate/contracts": "^8.0|^9.0|^10.0|^11.0",
                 "nesbot/carbon": "*",
                 "php": ">=8.1",
                 "psr/log": "*",
@@ -333,20 +333,20 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-02-04T20:37:57+00:00"
+            "time": "2024-03-18T16:12:54+00:00"
         },
         {
             "name": "illuminate/collections",
-            "version": "v10.43.0",
+            "version": "v10.48.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/collections.git",
-                "reference": "221c1ee944cb20ed807a8a5e8668552d6ca736ff"
+                "reference": "36651526fa6bb5445ffc6d51899d80291f8e0486"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/collections/zipball/221c1ee944cb20ed807a8a5e8668552d6ca736ff",
-                "reference": "221c1ee944cb20ed807a8a5e8668552d6ca736ff",
+                "url": "https://api.github.com/repos/illuminate/collections/zipball/36651526fa6bb5445ffc6d51899d80291f8e0486",
+                "reference": "36651526fa6bb5445ffc6d51899d80291f8e0486",
                 "shasum": ""
             },
             "require": {
@@ -388,11 +388,11 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2024-01-22T13:55:20+00:00"
+            "time": "2024-03-10T15:34:39+00:00"
         },
         {
             "name": "illuminate/conditionable",
-            "version": "v10.43.0",
+            "version": "v10.48.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/conditionable.git",
@@ -438,7 +438,7 @@
         },
         {
             "name": "illuminate/contracts",
-            "version": "v10.43.0",
+            "version": "v10.48.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/contracts.git",
@@ -486,7 +486,7 @@
         },
         {
             "name": "illuminate/macroable",
-            "version": "v10.43.0",
+            "version": "v10.48.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/macroable.git",
@@ -647,16 +647,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "3.0.1",
+            "version": "3.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "975ce92d55067cacb7d2ddbf43acfb1d220083ed"
+                "reference": "34ccf6f6b49c915421c7886c88c0cb77f3ebbfd2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/975ce92d55067cacb7d2ddbf43acfb1d220083ed",
-                "reference": "975ce92d55067cacb7d2ddbf43acfb1d220083ed",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/34ccf6f6b49c915421c7886c88c0cb77f3ebbfd2",
+                "reference": "34ccf6f6b49c915421c7886c88c0cb77f3ebbfd2",
                 "shasum": ""
             },
             "require": {
@@ -749,7 +749,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-02-05T18:22:18+00:00"
+            "time": "2024-03-13T12:42:37+00:00"
         },
         {
             "name": "phpmailer/phpmailer",
@@ -1217,16 +1217,16 @@
         },
         {
             "name": "symfony/clock",
-            "version": "v6.4.3",
+            "version": "v6.4.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/clock.git",
-                "reference": "f48770105c544001da00b8d745873a628e0de198"
+                "reference": "ecba44be4def12cd71e0460b956ab7e51a2c980e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/clock/zipball/f48770105c544001da00b8d745873a628e0de198",
-                "reference": "f48770105c544001da00b8d745873a628e0de198",
+                "url": "https://api.github.com/repos/symfony/clock/zipball/ecba44be4def12cd71e0460b956ab7e51a2c980e",
+                "reference": "ecba44be4def12cd71e0460b956ab7e51a2c980e",
                 "shasum": ""
             },
             "require": {
@@ -1271,7 +1271,7 @@
                 "time"
             ],
             "support": {
-                "source": "https://github.com/symfony/clock/tree/v6.4.3"
+                "source": "https://github.com/symfony/clock/tree/v6.4.5"
             },
             "funding": [
                 {
@@ -1287,7 +1287,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-01-23T14:51:35+00:00"
+            "time": "2024-03-01T14:02:27+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",
@@ -1595,16 +1595,16 @@
         },
         {
             "name": "symfony/translation",
-            "version": "v6.4.3",
+            "version": "v6.4.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/translation.git",
-                "reference": "637c51191b6b184184bbf98937702bcf554f7d04"
+                "reference": "bce6a5a78e94566641b2594d17e48b0da3184a8e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/translation/zipball/637c51191b6b184184bbf98937702bcf554f7d04",
-                "reference": "637c51191b6b184184bbf98937702bcf554f7d04",
+                "url": "https://api.github.com/repos/symfony/translation/zipball/bce6a5a78e94566641b2594d17e48b0da3184a8e",
+                "reference": "bce6a5a78e94566641b2594d17e48b0da3184a8e",
                 "shasum": ""
             },
             "require": {
@@ -1670,7 +1670,7 @@
             "description": "Provides tools to internationalize your application",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/translation/tree/v6.4.3"
+                "source": "https://github.com/symfony/translation/tree/v6.4.4"
             },
             "funding": [
                 {
@@ -1686,7 +1686,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-01-29T13:11:52+00:00"
+            "time": "2024-02-20T13:16:58+00:00"
         },
         {
             "name": "symfony/translation-contracts",
@@ -3505,8 +3505,9 @@
     "prefer-lowest": false,
     "platform": {
         "php": "^8.1",
-        "ext-ldap": "*"
+        "ext-ldap": "*",
+        "ext-imagick": "*"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.6.0"
 }
