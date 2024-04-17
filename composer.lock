@@ -260,16 +260,16 @@
         },
         {
             "name": "directorytree/ldaprecord",
-            "version": "v3.6.0",
+            "version": "v3.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/DirectoryTree/LdapRecord.git",
-                "reference": "a9eb49ebc572b4be01c9a32df7784682d4f22440"
+                "reference": "17e1daca04bfee46116eabd1587ed754d0c00877"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/DirectoryTree/LdapRecord/zipball/a9eb49ebc572b4be01c9a32df7784682d4f22440",
-                "reference": "a9eb49ebc572b4be01c9a32df7784682d4f22440",
+                "url": "https://api.github.com/repos/DirectoryTree/LdapRecord/zipball/17e1daca04bfee46116eabd1587ed754d0c00877",
+                "reference": "17e1daca04bfee46116eabd1587ed754d0c00877",
                 "shasum": ""
             },
             "require": {
@@ -332,11 +332,11 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-03-27T22:10:46+00:00"
+            "time": "2024-04-12T15:50:05+00:00"
         },
         {
             "name": "illuminate/collections",
-            "version": "v10.48.4",
+            "version": "v10.48.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/collections.git",
@@ -391,7 +391,7 @@
         },
         {
             "name": "illuminate/conditionable",
-            "version": "v10.48.4",
+            "version": "v10.48.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/conditionable.git",
@@ -437,7 +437,7 @@
         },
         {
             "name": "illuminate/contracts",
-            "version": "v10.48.4",
+            "version": "v10.48.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/contracts.git",
@@ -485,7 +485,7 @@
         },
         {
             "name": "illuminate/macroable",
-            "version": "v10.48.4",
+            "version": "v10.48.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/macroable.git",
@@ -646,16 +646,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "3.2.3",
+            "version": "3.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "4d599a6e2351d6b6bf21737accdfe1a4ce3fdbb1"
+                "reference": "82c28278c1c8f7b82dcdab25692237f052ffc8d8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/4d599a6e2351d6b6bf21737accdfe1a4ce3fdbb1",
-                "reference": "4d599a6e2351d6b6bf21737accdfe1a4ce3fdbb1",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/82c28278c1c8f7b82dcdab25692237f052ffc8d8",
+                "reference": "82c28278c1c8f7b82dcdab25692237f052ffc8d8",
                 "shasum": ""
             },
             "require": {
@@ -748,7 +748,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-03-30T18:22:00+00:00"
+            "time": "2024-04-05T09:58:10+00:00"
         },
         {
             "name": "phpmailer/phpmailer",
@@ -1689,16 +1689,16 @@
         },
         {
             "name": "symfony/translation-contracts",
-            "version": "v3.4.1",
+            "version": "v3.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/translation-contracts.git",
-                "reference": "06450585bf65e978026bda220cdebca3f867fde7"
+                "reference": "43810bdb2ddb5400e5c5e778e27b210a0ca83b6b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/translation-contracts/zipball/06450585bf65e978026bda220cdebca3f867fde7",
-                "reference": "06450585bf65e978026bda220cdebca3f867fde7",
+                "url": "https://api.github.com/repos/symfony/translation-contracts/zipball/43810bdb2ddb5400e5c5e778e27b210a0ca83b6b",
+                "reference": "43810bdb2ddb5400e5c5e778e27b210a0ca83b6b",
                 "shasum": ""
             },
             "require": {
@@ -1747,7 +1747,7 @@
                 "standards"
             ],
             "support": {
-                "source": "https://github.com/symfony/translation-contracts/tree/v3.4.1"
+                "source": "https://github.com/symfony/translation-contracts/tree/v3.4.2"
             },
             "funding": [
                 {
@@ -1763,7 +1763,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-12-26T14:02:43+00:00"
+            "time": "2024-01-23T14:51:35+00:00"
         }
     ],
     "packages-dev": [
