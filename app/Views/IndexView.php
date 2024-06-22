@@ -8,6 +8,21 @@
     </div>
 <?php endif; ?>
 
+<?php if ($notice = getenv('notice')): ?>
+    <div class="flex gap-3 bg-red-600 justify-between px-3 py-3">
+        <div>
+            <div class="text-white r outline-1 flex flex-col flex-1">
+                <marquee id="notice">
+                    <p class="text-h4-small md:text-h4-big tracking-tight font-inter-semibold leading-6 md:leading-8 lg:leading-8">
+                        <b>Achtung!</b>
+                        <?= $notice ?>
+                    </p>
+                </marquee>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>
+
 <?php if (!empty($credentials)): ?>
     <header class="px-5 xl:px-24 2xl:px-60">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mt-5">
@@ -103,3 +118,26 @@
         <?php endforeach; ?>
     </section>
 </div>
+
+<script>
+    updateWidth();
+
+    window.addEventListener('resize', function () {
+        updateWidth();
+    }, true);
+
+    function updateWidth() {
+        let marquee = document.getElementById('notice');
+        marquee.width = getWidth();
+    }
+
+    function getWidth() {
+        return Math.max(
+            document.body.scrollWidth,
+            document.documentElement.scrollWidth,
+            document.body.offsetWidth,
+            document.documentElement.offsetWidth,
+            document.documentElement.clientWidth
+        );
+    }
+</script>
