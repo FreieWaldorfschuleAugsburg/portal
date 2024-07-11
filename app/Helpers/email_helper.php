@@ -8,7 +8,7 @@ function sendAbsenceNotifications(): void
 {
     $mailer = createMailer();
 
-    $lastAbsences = getAbsences('-30 minutes');
+    $lastAbsences = getAbsences('-11 minutes');
     $lastAbsencesCount = count($lastAbsences);
     if ($lastAbsencesCount == 0) {
         return;
