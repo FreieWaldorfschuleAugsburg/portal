@@ -18,6 +18,11 @@ class AuthenticationController extends BaseController
     {
         helper('auth');
 
+        if (isset($_SERVER['REMOTE_USER'])) {
+            login($_SERVER['REMOTE_USER'], null);
+            return redirect('/');
+        }
+
         try {
             if (isLoggedIn()) {
                 return redirect('/');

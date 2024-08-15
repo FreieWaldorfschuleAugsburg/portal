@@ -39,7 +39,7 @@ function getAdminConnection(): Connection
 /**
  * @throws AuthException
  */
-function authenticateUser(string $username, string $password): array|Model
+function authenticateUser(string $username, ?string $password): array|Model
 {
     $connection = getAdminConnection();
     try {
@@ -48,7 +48,7 @@ function authenticateUser(string $username, string $password): array|Model
         throw new AuthException();
     }
 
-    if (!$connection->auth()->attempt($user->getDn(), $password)) {
+    if (!is_null($password) && !$connection->auth()->attempt($user->getDn(), $password)) {
         throw new AuthException();
     }
     return $user;
@@ -57,7 +57,7 @@ function authenticateUser(string $username, string $password): array|Model
 /**
  * @throws AuthException
  */
-function login(string $username, string $password): void
+function login(string $username, ?string $password): void
 {
     try {
         $user = authenticateUser($username, $password);
