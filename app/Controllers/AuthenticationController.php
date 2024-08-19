@@ -19,8 +19,14 @@ class AuthenticationController extends BaseController
         helper('auth');
 
         if (isset($_SERVER['REMOTE_USER'])) {
-            login($_SERVER['REMOTE_USER'], null);
-            return redirect('/');
+            $username = $_SERVER['REMOTE_USER'];
+            $blockedUsers = explode(',', getenv('ad.loginBlockedUsers'));
+
+            // If username is not blocked
+            if (!in_array($username, $blockedUsers)) {
+                login($username, null);
+                return redirect('/');
+            }
         }
 
         try {
