@@ -52,9 +52,6 @@ use function App\Helpers\isLoggedIn;
                 <a href="<?= base_url('absences') ?>">Abwesenheiten</a>
             </li>
         <?php endif; ?>
-        <li class="rounded p-1.5">
-            <a href="<?= base_url('credentials') ?>">Zugangsdaten</a>
-        </li>
         <li class="lg:hidden rounded p-2.5 bg-blue-600 text-center text-white">
             <a href="<?= base_url('logout') ?>">Ausloggen</a>
         </li>

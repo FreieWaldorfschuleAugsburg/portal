@@ -61,17 +61,6 @@ $routes->get('/entries/delete/(:any)', 'EntryController::delete/$1', ['filter' =
 $routes->get('/categories', 'CategoryController::index', ['filter' => AdminFilter::class]);
 $routes->post('/categories', 'CategoryController::update', ['filter' => AdminFilter::class]);
 
-// Credentials
-$routes->get('/credentials', 'CredentialController::index', ['filter' => LoggedInFilter::class]);
-$routes->get('/credentials/new', 'CredentialController::create', ['filter' => AdminFilter::class]);
-$routes->post('/credentials/new', 'CredentialController::store', ['filter' => AdminFilter::class]);
-
-$routes->get('/credentials/edit/(:any)', 'CredentialController::edit/$1', ['filter' => AdminFilter::class]);
-$routes->post('/credentials/edit/(:any)', 'CredentialController::update/$1', ['filter' => AdminFilter::class]);
-$routes->get('/credentials/delete/(:any)', 'CredentialController::delete/$1', ['filter' => AdminFilter::class]);
-$routes->get('/credentials/download/(:any)', 'CredentialController::download/$1', ['filter' => LoggedInFilter::class]);
-$routes->get('/credentials/(:any)', 'CredentialController::view/$1', ['filter' => LoggedInFilter::class]);
-
 // Roles
 $routes->get('/roles', 'RoleController::index', ['filter' => AdminFilter::class]);
 $routes->get('/roles/edit/(:any)', 'RoleController::edit/$1', ['filter' => AdminFilter::class]);
