@@ -41,9 +41,17 @@ class AbsenceController extends BaseController
     /**
      * @throws AuthException
      */
-    public function tablePrint(): string
+    public function tablePrintAbsence(): string
     {
-        return $this->render('absences/AbsencesTablePrintView', ['grades' => $this->request->getPost('grade')], false);
+        return $this->render('absences/AbsencesTablePrintAbsenceView', ['grades' => $this->request->getPost('grade')], false);
+    }
+
+    /**
+     * @throws AuthException
+     */
+    public function tablePrintPresence(): string
+    {
+        return $this->render('absences/AbsencesTablePrintPresenceView', ['grades' => $this->request->getPost('grade')], false);
     }
 
     /**

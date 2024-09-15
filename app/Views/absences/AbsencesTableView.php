@@ -69,14 +69,34 @@ use function App\Helpers\getStudent;
         </div>
 
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg text-white font-inter-medium">
-            <?= form_open(base_url('absences/table/print')) ?>
-            <p class="font-inter-semibold text-h2-small">Drucken</p>
+            <?= form_open(base_url('absences/table/print_absence')) ?>
+            <p class="font-inter-semibold text-h2-small">Abwesenheiten drucken</p>
 
             <div class="boxes">
                 <?php foreach (getGrades() as $grade): ?>
                     <input id="grade<?= $grade->getId() ?>" name="grade[]" value="<?= $grade->getId() ?>"
                            type="checkbox" required>
                     <label for="grade<?= $grade->getId() ?>"><?= $grade->getName() ?></label>
+                    <br>
+                <?php endforeach; ?>
+            </div>
+
+            <br>
+            <button type="submit" class="bg-blue-600 text-white text-body rounded py-3 p-3">
+                Drucken
+            </button>
+            <?= form_close() ?>
+        </div>
+
+        <div class="relative overflow-x-auto shadow-md sm:rounded-lg text-white font-inter-medium">
+            <?= form_open(base_url('absences/table/print_presence')) ?>
+            <p class="font-inter-semibold text-h2-small">Anwesende Schüler drucken</p>
+
+            <div class="boxes">
+                <?php foreach (getGrades() as $grade): ?>
+                    <input id="gradePre<?= $grade->getId() ?>" name="grade[]" value="<?= $grade->getId() ?>"
+                           type="checkbox" required>
+                    <label for="gradePre<?= $grade->getId() ?>"><?= $grade->getName() ?></label>
                     <br>
                 <?php endforeach; ?>
             </div>
