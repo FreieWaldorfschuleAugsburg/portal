@@ -8,9 +8,11 @@ use Aspera\Spreadsheet\XLSX\ReaderConfiguration;
 use CodeIgniter\HTTP\RedirectResponse;
 use DateTime;
 use Exception;
+use Mpdf\Mpdf;
 use Ramsey\Uuid\Uuid;
 use function App\Helpers\deleteAbsenceGroup;
 use function App\Helpers\getAbsenceGroupById;
+use function App\Helpers\getGradeById;
 use function App\Helpers\getStudent;
 use function App\Helpers\insertAbsence;
 use function App\Helpers\insertAbsenceGroup;
@@ -41,17 +43,59 @@ class AbsenceController extends BaseController
     /**
      * @throws AuthException
      */
-    public function tablePrintAbsence(): string
+    public function printGroupAbsence(string $groupId): RedirectResponse|string
     {
-        return $this->render('absences/AbsencesTablePrintAbsenceView', ['grades' => $this->request->getPost('grade')], false);
+        $group = getAbsenceGroupById($groupId);
+        if (!$group) {
+            return redirect('absences')->with('error', 'Ungültige Gruppe.');
+        }
+
+        $mpdf = $this->createMPDF();
+        $mpdf->WriteHTML(view('absences/print/AbsencesPrintGroupView', ['group' => $group]));
+        $mpdf->Output();
+        exit;
+    }
+
+    public function printGroupPresence(string $groupId): RedirectResponse|string
+    {
+        $group = getAbsenceGroupById($groupId);
+        if (!$group) {
+            return redirect('absences')->with('error', 'Ungültige Gruppe.');
+        }
+
+        $mpdf = $this->createMPDF();
+        $mpdf->WriteHTML(view('absences/print/PresencePrintGroupView', ['group' => $group]));
+        $mpdf->Output();
+        exit;
     }
 
     /**
      * @throws AuthException
      */
-    public function tablePrintPresence(): string
+    public function printGradeAbsence(int $gradeId): RedirectResponse|string
     {
-        return $this->render('absences/AbsencesTablePrintPresenceView', ['grades' => $this->request->getPost('grade')], false);
+        $grade = getGradeById($gradeId);
+        if (!$grade) {
+            return redirect('absences')->with('error', 'Ungültige Klasse.');
+        }
+
+        $mpdf = $this->createMPDF();
+        $mpdf->WriteHTML(view('absences/print/AbsencesPrintGradeView', ['grade' => $grade]));
+        $mpdf->Output();
+        exit;
+    }
+
+    public function printGradePresence(int $gradeId): RedirectResponse|string
+    {
+        $grade = getGradeById($gradeId);
+        if (!$grade) {
+            return redirect('absences')->with('error', 'Ungültige Klasse.');
+        }
+
+        $mpdf = $this->createMPDF();
+        $mpdf->WriteHTML(view('absences/print/PresencePrintGradeView', ['grade' => $grade]));
+        $mpdf->Output();
+        exit;
     }
 
     /**
@@ -74,7 +118,7 @@ class AbsenceController extends BaseController
             $reportedBy = session('DISPLAYNAME');
         }
 
-        insertAbsence($studentId, $now, $reportedBy, $now, ';; Von ' . $reportedBy . ' um ' . $now->format('H:i') . ' fehlend gemeldet. !! Diese Absenz ist vom Schulbüro noch nicht bearbeitet worden !!');
+        insertAbsence($studentId, $now, $reportedBy, $now, ';; Von ' . $reportedBy . ' um ' . $now->format('H:i') . ' fehlend gemeldet. !! Diese Absenz ist vom Sekretariat noch nicht bearbeitet worden !!');
 
         return redirect()->to(previous_url());
     }
@@ -264,5 +308,21 @@ class AbsenceController extends BaseController
         }
 
         return $this->render('absences/group/AbsencesGroupView', ['group' => $group]);
+    }
+
+    private function createMPDF(): Mpdf
+    {
+        $mpdf = new Mpdf([
+            'mode' => 'utf-8',
+            'format' => 'A4',
+            'margin_left' => 19,
+            'margin_right' => 19,
+            'margin_top' => 14,
+            'margin_bottom' => 45,
+            'margin_header' => 19,
+            'margin_footer' => 19,
+            'orientation' => 'P']);
+        $mpdf->setHTMLFooter(view('absences/print/PrintFooter'));
+        return $mpdf;
     }
 }

@@ -74,6 +74,11 @@ $routes->get('/absences', 'AbsenceController::index', ['filter' => AbsencesFilte
 $routes->get('/absences/view/(:any)', 'AbsenceController::view/$1', ['filter' => AbsencesFilter::class]);
 $routes->post('/absences/absent', 'AbsenceController::absent');
 $routes->get('/absences/table', 'AbsenceController::table', ['filter' => AbsencesFilter::class]);
+$routes->get('/absences/print/absence/group/(:any)', 'AbsenceController::printGroupAbsence/$1', ['filter' => AbsencesFilter::class]);
+$routes->get('/absences/print/absence/grade/(:any)', 'AbsenceController::printGradeAbsence/$1', ['filter' => AbsencesFilter::class]);
+$routes->get('/absences/print/presence/group/(:any)', 'AbsenceController::printGroupPresence/$1', ['filter' => AbsencesFilter::class]);
+$routes->get('/absences/print/presence/grade/(:any)', 'AbsenceController::printGradePresence/$1', ['filter' => AbsencesFilter::class]);
+
 $routes->post('/absences/table/print_absence', 'AbsenceController::tablePrintAbsence', ['filter' => AbsencesFilter::class]);
 $routes->post('/absences/table/print_presence', 'AbsenceController::tablePrintPresence', ['filter' => AbsencesFilter::class]);
 $routes->get('/absences/admin', 'AbsenceController::admin', ['filter' => AbsencesAdminFilter::class]);

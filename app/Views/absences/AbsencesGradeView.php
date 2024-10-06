@@ -31,7 +31,7 @@ use function App\Helpers\getStudents;
                         <div class="bg-orange-600 text-white font-inter-regular px-5 py-3 rounded-lg flex justify-between">
                             <div class="flex flex-col items-start gap-1">
                                 <div class="w-52 mt-3 mb-5">
-                                    <p class="text-h2-small text-ellipsis overflow-hidden whitespace-nowrap mb-2"><?= $student->getLastName() . ", " . $student->getFirstName() ?></p>
+                                    <p class="text-3xs text-ellipsis overflow-hidden whitespace-nowrap mb-2"><?= $student->getLastName() . ", " . $student->getFirstName() ?></p>
                                     <p class="bg-blue-600/50 text-white p-1.5 px-3 text-xs rounded font-inter-regular bg-blue-400">
                                         <?= $absence->isSystem() ? substr($absence->getNote(), 3) : $absence->getNote() ?>
                                     </p>
@@ -40,7 +40,7 @@ use function App\Helpers\getStudents;
 
                             <?php if (!session('ABSENCE_READ')): ?>
                                 <?= form_open('absences/absent', ["onsubmit" => "return confirm('Möchten Sie " . $student->getFirstName() . " " . $student->getLastName() . " abwesend melden?');"]) ?>
-                                <?= form_hidden('studentId', $student->getId()); ?>
+                                <?= form_hidden('studentId', strval($student->getId())); ?>
                                 <button type="submit"
                                         class="text-category text-white text-center bg-red-600 mt-3 p-3 rounded">
                                     Abwesend
@@ -53,7 +53,7 @@ use function App\Helpers\getStudents;
                             <div>
                                 <div class="flex flex-col items-start gap-1">
                                     <div class="w-52 mt-3 mb-5">
-                                        <p class="text-h2-small text-ellipsis overflow-hidden whitespace-nowrap mb-2"><?= $student->getLastName() . ", " . $student->getFirstName() ?></p>
+                                        <p class="text-3xs text-ellipsis overflow-hidden whitespace-nowrap mb-2"><?= $student->getLastName() . ", " . $student->getFirstName() ?></p>
                                         <?php if (!empty($absence->getNote())): ?>
                                             <p class="bg-blue-600/50 text-white p-1.5 px-3 text-xs rounded font-inter-regular bg-blue-400">
                                                 <?= $absence->getNote() ?>
@@ -69,14 +69,14 @@ use function App\Helpers\getStudents;
                         <div>
                             <div class="flex flex-col items-start gap-1">
                                 <div class="w-52 mt-3 mb-5">
-                                    <p class="text-h2-small text-ellipsis overflow-hidden whitespace-nowrap"><?= $student->getLastName() . ", " . $student->getFirstName() ?></p>
+                                    <p class="text-3xs text-ellipsis overflow-hidden whitespace-nowrap"><?= $student->getLastName() . ", " . $student->getFirstName() ?></p>
                                 </div>
                             </div>
                         </div>
 
                         <?php if (!session('ABSENCE_READ')): ?>
                             <?= form_open('absences/absent', ["onsubmit" => "return confirm('Möchten Sie " . $student->getFirstName() . " " . $student->getLastName() . " abwesend melden?');"]) ?>
-                            <?= form_hidden('studentId', $student->getId()); ?>
+                            <?= form_hidden('studentId', strval($student->getId())); ?>
                             <button type="submit"
                                     class="text-category text-white text-center bg-red-600 mt-3 p-3 rounded">
                                 Abwesend

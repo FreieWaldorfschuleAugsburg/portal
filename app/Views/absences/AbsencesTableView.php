@@ -67,46 +67,6 @@ use function App\Helpers\getStudent;
                 </tbody>
             </table>
         </div>
-
-        <div class="relative overflow-x-auto shadow-md sm:rounded-lg text-white font-inter-medium">
-            <?= form_open(base_url('absences/table/print_absence')) ?>
-            <p class="font-inter-semibold text-h2-small">Abwesenheiten drucken</p>
-
-            <div class="boxes">
-                <?php foreach (getGrades() as $grade): ?>
-                    <input id="grade<?= $grade->getId() ?>" name="grade[]" value="<?= $grade->getId() ?>"
-                           type="checkbox" required>
-                    <label for="grade<?= $grade->getId() ?>"><?= $grade->getName() ?></label>
-                    <br>
-                <?php endforeach; ?>
-            </div>
-
-            <br>
-            <button type="submit" class="bg-blue-600 text-white text-body rounded py-3 p-3">
-                Drucken
-            </button>
-            <?= form_close() ?>
-        </div>
-
-        <div class="relative overflow-x-auto shadow-md sm:rounded-lg text-white font-inter-medium">
-            <?= form_open(base_url('absences/table/print_presence')) ?>
-            <p class="font-inter-semibold text-h2-small">Anwesende Schüler drucken</p>
-
-            <div class="boxes">
-                <?php foreach (getGrades() as $grade): ?>
-                    <input id="gradePre<?= $grade->getId() ?>" name="grade[]" value="<?= $grade->getId() ?>"
-                           type="checkbox" required>
-                    <label for="gradePre<?= $grade->getId() ?>"><?= $grade->getName() ?></label>
-                    <br>
-                <?php endforeach; ?>
-            </div>
-
-            <br>
-            <button type="submit" class="bg-blue-600 text-white text-body rounded py-3 p-3">
-                Drucken
-            </button>
-            <?= form_close() ?>
-        </div>
     <?php else: ?>
         <div class="text-center">
             <p class="text-h2-big text-white">Für heute wurden noch keine Abwesenheiten eingestellt. <br>Bitte versuchen
@@ -114,16 +74,3 @@ use function App\Helpers\getStudent;
         </div>
     <?php endif; ?>
 </main>
-
-<script>
-    $(function () {
-        const requiredCheckboxes = $(':checkbox[required]');
-        requiredCheckboxes.change(function () {
-            if (requiredCheckboxes.is(':checked')) {
-                requiredCheckboxes.removeAttr('required');
-            } else {
-                requiredCheckboxes.attr('required', 'required');
-            }
-        });
-    });
-</script>

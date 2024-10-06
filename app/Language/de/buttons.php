@@ -12,7 +12,7 @@ return [
     'copy' => 'Kopieren',
     'download' => 'Herunterladen',
     'edit' => 'Bearbeiten',
-    'save' => 'Speichern'
-
+    'save' => 'Speichern',
+    'print' => 'Drucken'
 
 ];

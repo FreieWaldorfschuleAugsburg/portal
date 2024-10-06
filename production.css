@@ -905,6 +905,10 @@ select {
   justify-content: space-between;
 }
 
+.justify-end {
+  justify-content: end;
+}
+
 .gap-1 {
   gap: 0.25rem;
 }
