@@ -89,7 +89,8 @@ $routes->get('/absences/admin/groups/edit/(:any)', 'AbsenceController::editGroup
 $routes->post('/absences/admin/groups/edit/(:any)', 'AbsenceController::updateGroup/$1', ['filter' => AbsencesAdminFilter::class]);
 $routes->get('/absences/admin/groups/delete/(:any)', 'AbsenceController::deleteGroup/$1', ['filter' => AbsencesAdminFilter::class]);
 $routes->get('/absences/groups/(:any)', 'AbsenceController::viewGroup/$1');
-$routes->post('/absences/admin/upload/absences', 'AbsenceController::uploadAbsences', ['filter' => AbsencesAdminFilter::class]);
+$routes->post('/absences/admin/upload/absences_p4', 'AbsenceController::uploadP4Absences', ['filter' => AbsencesAdminFilter::class]);
+$routes->post('/absences/admin/upload/absences_p5', 'AbsenceController::uploadP5Absences', ['filter' => AbsencesAdminFilter::class]);
 $routes->post('/absences/admin/upload/students', 'AbsenceController::uploadStudents', ['filter' => AbsencesAdminFilter::class]);
 
 $routes->cli('/emails', 'EmailController::index');

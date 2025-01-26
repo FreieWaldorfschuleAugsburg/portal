@@ -100,8 +100,19 @@
     <?php endif; ?>
 
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg text-white font-inter-medium">
-        <?= form_open_multipart(base_url('absences/admin/upload/absences'), ["onsubmit" => "return confirm('Möchten Sie die Abwesenheiten wirklich hochladen? ACHTUNG! Hierdurch werden die aktuellen Abwesenheitsdaten überschrieben.');"]) ?>
-        <p class="font-inter-semibold text-h2-small">Abwesenheiten hochladen</p>
+        <?= form_open_multipart(base_url('absences/admin/upload/absences_p4'), ["onsubmit" => "return confirm('Möchten Sie die Abwesenheiten wirklich hochladen? ACHTUNG! Hierdurch werden die aktuellen Abwesenheitsdaten überschrieben.');"]) ?>
+        <p class="font-inter-semibold text-h2-small"><b>Procurat!4</b> Abwesenheiten hochladen</p>
+        <input type="file" name="userUploadFile" class="rounded p-3 bg-slate-900 border-none focus:outline-none flex-1"
+               required>
+        <button type="submit" class="bg-blue-600 text-white text-body rounded py-3 p-3">
+            Upload
+        </button>
+        <?= form_close() ?>
+    </div>
+
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg text-white font-inter-medium">
+        <?= form_open_multipart(base_url('absences/admin/upload/absences_p5'), ["onsubmit" => "return confirm('Möchten Sie die Abwesenheiten wirklich hochladen? ACHTUNG! Hierdurch werden die aktuellen Abwesenheitsdaten überschrieben.');"]) ?>
+        <p class="font-inter-semibold text-h2-small"><b>Procurat!5</b> Abwesenheiten hochladen</p>
         <input type="file" name="userUploadFile" class="rounded p-3 bg-slate-900 border-none focus:outline-none flex-1"
                required>
         <button type="submit" class="bg-blue-600 text-white text-body rounded py-3 p-3">

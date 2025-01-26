@@ -134,7 +134,7 @@ class AbsenceController extends BaseController
     /**
      * @throws Exception
      */
-    public function uploadAbsences(): RedirectResponse
+    public function uploadP4Absences(): RedirectResponse
     {
         $filePath = storeFile($this->request);
         if (!str_ends_with($filePath, '.xlsx')) {
@@ -170,6 +170,56 @@ class AbsenceController extends BaseController
 
             $absenceDate = DateTime::createFromFormat('d.m.Y', $absence[2]);
             $note = $absence[6];
+
+            // Insert absences from uploaded .csv
+            insertAbsence($studentId, $absenceDate, "Import", new DateTime(), $note);
+            $count++;
+        }
+
+        $reader->close();
+
+        return redirect('absences/admin')->with('success', $count . ' Datensätze importiert');
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function uploadP5Absences(): RedirectResponse
+    {
+        $filePath = storeFile($this->request);
+        if (!str_ends_with($filePath, '.xlsx')) {
+            return redirect('absences/admin')->with('error', 'Hochgeladene Datei ist keine XLSX.');
+        }
+
+        $config = new ReaderConfiguration();
+        $config->setForceDateFormat('d.m.Y');
+        $reader = new Reader($config);
+        $reader->open($filePath);
+
+        $firstRow = $reader->current();
+        if ($firstRow[0] != 'Abwesenheitsdatum' ||
+            $firstRow[1] != 'Person_ID' ||
+            $firstRow[7] != 'Bemerkung') {
+            return redirect('absences/admin')->with('error', 'Hochgeladene Daten ungültig.');
+        }
+
+        // Delete all absences
+        removeAllAbsences();
+
+        $count = 0;
+        foreach ($reader as $absence) {
+            if ($reader->key() <= 1) continue;
+
+            $studentId = intval($absence[1]);
+            $student = getStudent($studentId);
+            if (is_null($student)) {
+                // Scrum everything if one entry is broken
+                removeAllAbsences();
+                return redirect('absences/admin')->with('error', 'Schüler mit der Nummer #' . $studentId . ' nicht bekannt! Bitte den aktuellen Schülerdatensatz hochladen.');
+            }
+
+            $absenceDate = DateTime::createFromFormat('d.m.Y', $absence[0]);
+            $note = $absence[7];
 
             // Insert absences from uploaded .csv
             insertAbsence($studentId, $absenceDate, "Import", new DateTime(), $note);
