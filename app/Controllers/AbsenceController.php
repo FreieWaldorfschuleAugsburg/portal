@@ -98,11 +98,9 @@ class AbsenceController extends BaseController
     public function absent(): RedirectResponse
     {
         $studentId = $this->request->getPost('studentId');
-        $now = new DateTime();
         $reportedBy = session('DISPLAYNAME');
 
-        createAbsence($studentId, 'Von ' . $reportedBy . ' um ' . $now->format('H:i') . ' fehlend gemeldet. !! Diese Absenz ist vom Sekretariat noch nicht bearbeitet worden !!');
-        createAbsenceFollowUp($studentId);
+        createAbsenceFollowUp($studentId, $reportedBy);
 
         return redirect()->to(previous_url());
     }

@@ -4,6 +4,7 @@
 namespace App\Helpers;
 
 use App\Models\Procurat\ProcuratAbsence;
+use App\Models\Procurat\ProcuratFollowup;
 use App\Models\Procurat\ProcuratGroup;
 use App\Models\Procurat\ProcuratPerson;
 use GuzzleHttp\Client;
@@ -33,29 +34,36 @@ function decodeResponse(ResponseInterface $response): mixed
     return json_decode($response->getBody());
 }
 
-function createAbsence(int $personId, string $note): void
+function getAbsenceFollowUp(int $personId): ?ProcuratFollowup
 {
     $client = createAPIClient();
-    $client->post('absences', [
-        'json' => [
-            'personId' => $personId,
-            'startDate' => date('Y-m-d') . 'T00:00:00Z',
-            'excused' => false,
-            'parentsInformed' => false,
-            'note' => $note
-        ]
-    ]);
+    $response = decodeResponse($client->get('followups/persons/' . $personId));
+    foreach ($response as $followup) {
+        if ($followup->subject == 'Schüler/in fehlt'
+            && !$followup->completed
+            && str_starts_with($followup->dueDate, date('Y-m-d'))) {
+            return new ProcuratFollowup(
+                $followup->id,
+                $followup->dueDate,
+                $followup->assignedPersonId,
+                $followup->subject,
+                $followup->message,
+                $followup->referencedPersonId,
+                $followup->completed);
+        }
+    }
+    return null;
 }
 
-function createAbsenceFollowUp(int $personId): void
+function createAbsenceFollowUp(int $personId, string $reportedBy): void
 {
     $client = createAPIClient();
     $client->post('followups', [
         'json' => [
-            'dueDate' => date('Y-m-d'). 'T00:00:00Z',
+            'dueDate' => date('Y-m-d') . 'T00:00:00Z',
             'assignedPersonId' => intval(getenv('absence.followUpUserId')),
-            'subject' => 'Absenzen',
-            'message' => 'Es liegt eine ungeprüfte Absenz vor!',
+            'subject' => 'Schüler/in fehlt',
+            'message' => 'Von ' . $reportedBy . ' um ' . date('H:i') . ' fehlend gemeldet',
             'referencedPersonId' => $personId
         ]
     ]);
