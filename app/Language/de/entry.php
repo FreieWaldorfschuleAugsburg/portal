@@ -24,6 +24,4 @@ return [
     'image' => [
         'label' => 'Bild auswählen'
     ]
-
-
 ];

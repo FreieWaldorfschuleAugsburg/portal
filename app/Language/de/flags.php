@@ -4,6 +4,4 @@ return [
    'credentials' => [
        'new' => 'Zugangsdaten '
    ]
-
-
 ];

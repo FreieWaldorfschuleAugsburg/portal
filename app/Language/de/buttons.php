@@ -14,5 +14,4 @@ return [
     'edit' => 'Bearbeiten',
     'save' => 'Speichern',
     'print' => 'Drucken'
-
 ];

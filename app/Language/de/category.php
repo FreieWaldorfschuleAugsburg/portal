@@ -4,6 +4,4 @@ return [
     'headings' => [
         'view' => 'Kategorien',
     ],
-
-
 ];

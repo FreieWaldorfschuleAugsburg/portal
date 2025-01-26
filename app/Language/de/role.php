@@ -5,13 +5,11 @@ return [
     'url' => 'URL',
     'role' => 'Rolle',
     'category' => 'Kategorie',
-
     'button' => [
         'edit' => 'Bearbeiten',
         'save' => 'Speichern',
         'delete' => 'Löschen'
     ],
-
     'headings' => [
         'view' => 'Rollen',
         'create' => 'Rolle erstellen',
@@ -20,7 +18,4 @@ return [
     'form' => [
         'groups' => 'Gruppen'
     ]
-
-
-
 ];

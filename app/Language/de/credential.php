@@ -13,5 +13,5 @@ return [
         'fieldname' => 'Feldname',
         'value' => 'Wert',
         'documentation' => 'Dokumentation'
-    ],
+    ]
 ];
