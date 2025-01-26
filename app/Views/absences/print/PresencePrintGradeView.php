@@ -37,7 +37,7 @@ usort($students, function (AbsenceStudent $a, AbsenceStudent $b) {
 </style>
 
 <h2><b><u>Anwesenheitsliste vom <?= (new DateTime())->format('d.m.Y H:i') ?> Uhr</u></b></h2>
-<b>Klasse:</b> <?= $grade->getName() ?><br>
+<b>Klasse:</b> <?= $group->getName() ?><br>
 <b>Erstellt von:</b> <?= getCurrentUser()->displayName ?>
 
 <hr>
@@ -54,7 +54,7 @@ usort($students, function (AbsenceStudent $a, AbsenceStudent $b) {
         </th>
     </tr>
     <?php foreach ($students as $student): ?>
-        <?php if ($student->getGradeId() != $grade->getId()): continue; endif; ?>
+        <?php if ($student->getGradeId() != $group->getId()): continue; endif; ?>
         <?php $absence = getAbsence($absences, $student->getId()) ?>
         <?php if ($absence && !$absence->isHalfDay() && !$absence->isSystem()): continue; endif; ?>
         <tr>

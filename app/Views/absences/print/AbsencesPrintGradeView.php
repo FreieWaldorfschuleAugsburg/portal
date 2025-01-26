@@ -26,7 +26,7 @@ $absences = getAbsencesByDate(new DateTime());
 </style>
 
 <h2><b><u>Abwesenheitsliste vom <?= (new DateTime())->format('d.m.Y H:i') ?> Uhr</u></b></h2>
-<b>Klasse:</b> <?= $grade->getName() ?><br>
+<b>Klasse:</b> <?= $group->getName() ?><br>
 <b>Erstellt von:</b> <?= getCurrentUser()->displayName ?>
 
 <hr>
@@ -43,7 +43,7 @@ $absences = getAbsencesByDate(new DateTime());
     <?php foreach ($absences as $absence): ?>
         <?php if ($absence->getReportedBy() != 'Import'): continue; endif; ?>
         <?php $student = getStudent($absence->getStudentId()); ?>
-        <?php if ($student->getGradeId() != $grade->getId()): continue; endif; ?>
+        <?php if ($student->getGradeId() != $group->getId()): continue; endif; ?>
 
         <tr>
             <td>

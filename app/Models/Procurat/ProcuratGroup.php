@@ -13,12 +13,18 @@ class ProcuratGroup
         $this->name = $name;
     }
 
-    function getId(): string
+    /**
+     * @return int
+     */
+    public function getId(): int
     {
         return $this->id;
     }
 
-    function getName(): string
+    /**
+     * @return string
+     */
+    public function getName(): string
     {
         return $this->name;
     }
