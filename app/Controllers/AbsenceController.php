@@ -4,10 +4,9 @@ namespace App\Controllers;
 
 use App\Models\AuthException;
 use CodeIgniter\HTTP\RedirectResponse;
-use DateTime;
 use Mpdf\Mpdf;
-use function App\Helpers\createAbsence;
 use function App\Helpers\createAbsenceFollowUp;
+use function App\Helpers\getProcuratGroup;
 
 class AbsenceController extends BaseController
 {
@@ -27,60 +26,28 @@ class AbsenceController extends BaseController
         return $this->render('absences/AbsencesTableView');
     }
 
-    /**
-     * @throws AuthException
-     */
-    public function printGroupAbsence(string $groupId): RedirectResponse|string
+    public function printAbsence(string $groupId): RedirectResponse|string
     {
-        $group = getAbsenceGroupById($groupId);
+        $group = getProcuratGroup($groupId);
         if (!$group) {
             return redirect('absences')->with('error', 'Ungültige Gruppe.');
         }
 
         $mpdf = $this->createMPDF();
-        $mpdf->WriteHTML(view('absences/print/AbsencesPrintGroupView', ['group' => $group]));
+        $mpdf->WriteHTML(view('absences/print/AbsencesPrintView', ['group' => $group]));
         $mpdf->Output();
         exit;
     }
 
-    public function printGroupPresence(string $groupId): RedirectResponse|string
+    public function printPresence(string $groupId): RedirectResponse|string
     {
-        $group = getAbsenceGroupById($groupId);
+        $group = getProcuratGroup($groupId);
         if (!$group) {
             return redirect('absences')->with('error', 'Ungültige Gruppe.');
         }
 
         $mpdf = $this->createMPDF();
-        $mpdf->WriteHTML(view('absences/print/PresencePrintGroupView', ['group' => $group]));
-        $mpdf->Output();
-        exit;
-    }
-
-    /**
-     * @throws AuthException
-     */
-    public function printGradeAbsence(int $gradeId): RedirectResponse|string
-    {
-        $grade = getGradeById($gradeId);
-        if (!$grade) {
-            return redirect('absences')->with('error', 'Ungültige Klasse.');
-        }
-
-        $mpdf = $this->createMPDF();
-        $mpdf->WriteHTML(view('absences/print/AbsencesPrintGradeView', ['grade' => $grade]));
-        $mpdf->Output();
-        exit;
-    }
-
-    public function printGradePresence(int $gradeId): RedirectResponse|string
-    {
-        $grade = getGradeById($gradeId);
-        if (!$grade) {
-            return redirect('absences')->with('error', 'Ungültige Klasse.');
-        }
-
-        $mpdf = $this->createMPDF();
-        $mpdf->WriteHTML(view('absences/print/PresencePrintGradeView', ['grade' => $grade]));
+        $mpdf->WriteHTML(view('absences/print/PresencePrintView', ['group' => $group]));
         $mpdf->Output();
         exit;
     }

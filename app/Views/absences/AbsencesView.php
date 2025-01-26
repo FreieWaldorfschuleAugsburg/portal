@@ -6,11 +6,6 @@ use function App\Helpers\getAbsenceGroups;
 <main class="px-5 xl:px-24 2xl:px-60 space-y-3 mt-5 min-h-screen">
     <div class="flex gap-5 items-center">
         <p class="font-inter-semibold text-h2-small text-white">Abwesenheiten</p>
-        <?php if (session('ABSENCE_ADMIN')): ?>
-            <a href="<?= base_url('absences/admin') ?>" class="font-inter-medium text-white bg-blue-600 rounded">
-                <button class="p-3">Administration</button>
-            </a>
-        <?php endif; ?>
         <a href="<?= base_url('absences/table') ?>" class="font-inter-medium text-white bg-blue-600 rounded">
             <button class="p-3">Tabellenansicht</button>
         </a>
@@ -38,13 +33,13 @@ use function App\Helpers\getAbsenceGroups;
                     </a>
                 </button>
                 <button class="text-category text-white text-center">
-                    <a href="<?= base_url('absences/print/absence/grade/' . $grade->getId()) ?>"
+                    <a href="<?= base_url('absences/print/absence/' . $grade->getId()) ?>"
                        class="bg-blue-600 p-3 rounded">
                         Abw. drucken
                     </a>
                 </button>
                 <button class="text-category text-white text-center">
-                    <a href="<?= base_url('absences/print/presence/grade/' . $grade->getId()) ?>"
+                    <a href="<?= base_url('absences/print/presence/' . $grade->getId()) ?>"
                        class="bg-blue-600 p-3 rounded">
                         Anw. drucken
                     </a>

@@ -2,13 +2,12 @@
 
 use function App\Helpers\filterAbsences;
 use function App\Helpers\getAbsenceFollowUp;
-use function App\Helpers\getProcuratAbsences;
+use function App\Helpers\getProcuratAbsencesByGroup;
 use function App\Helpers\getProcuratGroup;
 use function App\Helpers\getProcuratGroupMembers;
-use function App\Helpers\hasAbsenceFollowUp;
 use function App\Helpers\isHalfDayAbsence;
 
-$absences = getProcuratAbsences();
+$absences = getProcuratAbsencesByGroup($groupId);
 
 ?>
 <main class="px-5 xl:px-24 2xl:px-60 space-y-3 mt-5 min-h-screen">

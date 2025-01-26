@@ -1,19 +1,18 @@
 <?php
 
-use App\Entities\AbsenceStudent;
-use function App\Helpers\getAbsence;
-use function App\Helpers\getAbsencesByDate;
-use function App\Helpers\getAllStudents;
+use App\Models\Procurat\ProcuratPerson;
+use function App\Helpers\filterAbsences;
 use function App\Helpers\getCurrentUser;
-use function App\Helpers\getGradeById;
-use function App\Helpers\isAbsenceGroupMember;
+use function App\Helpers\getProcuratAbsencesByGroup;
+use function App\Helpers\getProcuratGroupMembers;
+use function App\Helpers\isHalfDayAbsence;
 
-$absences = getAbsencesByDate(new DateTime());
+$absences = getProcuratAbsencesByGroup($group->getId());
 
-$students = getAllStudents();
-usort($students, function (AbsenceStudent $a, AbsenceStudent $b) {
+$students = getProcuratGroupMembers($group->getId());
+usort($students, function (ProcuratPerson $a, ProcuratPerson $b) {
     return
-        ($a->getGradeId() <=> $b->getGradeId()) * 1000 +
+        ($a->getId() <=> $b->getId()) * 1000 +
         ($a->getLastName() <=> $b->getLastName()) +
         ($a->getFirstName() <=> $b->getFirstName());
 })
@@ -37,7 +36,7 @@ usort($students, function (AbsenceStudent $a, AbsenceStudent $b) {
 </style>
 
 <h2><b><u>Anwesenheitsliste vom <?= (new DateTime())->format('d.m.Y H:i') ?> Uhr</u></b></h2>
-<b>Gruppe:</b> <?= $group->getName() ?><br>
+<b>Gruppe/Klasse:</b> <?= $group->getName() ?><br>
 <b>Erstellt von:</b> <?= getCurrentUser()->displayName ?>
 
 <hr>
@@ -49,17 +48,16 @@ usort($students, function (AbsenceStudent $a, AbsenceStudent $b) {
         <th style="width: 40%">
             Schüler/in
         </th>
-        <th>
+        <!--<th>
             Klasse
-        </th>
+        </th>-->
         <th>
             Unterschrift Schüler/in
         </th>
     </tr>
     <?php foreach ($students as $student): ?>
-        <?php if (!isAbsenceGroupMember($group->getId(), $student->getId())): continue; endif; ?>
-        <?php $absence = getAbsence($absences, $student->getId()) ?>
-        <?php if ($absence && !$absence->isHalfDay() && !$absence->isSystem()): continue; endif; ?>
+        <?php $absence = filterAbsences($absences, $student->getId()) ?>
+        <?php if ($absence && (!isHalfDayAbsence($absence) || $absence->isExcused())): continue; endif; ?>
         <tr>
             <td>
                 <b><?= $student->getLastName() . ', ' . $student->getFirstName() ?></b>
@@ -67,9 +65,9 @@ usort($students, function (AbsenceStudent $a, AbsenceStudent $b) {
                     <br><span style="font-size: 10px">Bemerkung: <?= $absence->getNote() ?></span>
                 <?php endif; ?>
             </td>
-            <td>
-                <?= getGradeById($student->getGradeId())->getName() ?>
-            </td>
+            <!--<td>
+
+            </td>-->
             <td>
 
             </td>

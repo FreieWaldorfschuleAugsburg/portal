@@ -74,23 +74,11 @@ $routes->get('/absences', 'AbsenceController::index', ['filter' => AbsencesFilte
 $routes->get('/absences/view/(:any)', 'AbsenceController::view/$1', ['filter' => AbsencesFilter::class]);
 $routes->post('/absences/absent', 'AbsenceController::absent');
 $routes->get('/absences/table', 'AbsenceController::table', ['filter' => AbsencesFilter::class]);
-$routes->get('/absences/print/absence/group/(:any)', 'AbsenceController::printGroupAbsence/$1', ['filter' => AbsencesFilter::class]);
-$routes->get('/absences/print/absence/grade/(:any)', 'AbsenceController::printGradeAbsence/$1', ['filter' => AbsencesFilter::class]);
-$routes->get('/absences/print/presence/group/(:any)', 'AbsenceController::printGroupPresence/$1', ['filter' => AbsencesFilter::class]);
-$routes->get('/absences/print/presence/grade/(:any)', 'AbsenceController::printGradePresence/$1', ['filter' => AbsencesFilter::class]);
+$routes->get('/absences/print/absence/(:any)', 'AbsenceController::printAbsence/$1', ['filter' => AbsencesFilter::class]);
+$routes->get('/absences/print/presence/(:any)', 'AbsenceController::printPresence/$1', ['filter' => AbsencesFilter::class]);
 
 $routes->post('/absences/table/print_absence', 'AbsenceController::tablePrintAbsence', ['filter' => AbsencesFilter::class]);
 $routes->post('/absences/table/print_presence', 'AbsenceController::tablePrintPresence', ['filter' => AbsencesFilter::class]);
-$routes->get('/absences/admin', 'AbsenceController::admin', ['filter' => AbsencesAdminFilter::class]);
-$routes->get('/absences/admin/groups', 'AbsenceController::groups', ['filter' => AbsencesAdminFilter::class]);
-$routes->get('/absences/admin/groups/new', 'AbsenceController::createGroup', ['filter' => AbsencesAdminFilter::class]);
-$routes->post('/absences/admin/groups/new', 'AbsenceController::storeGroup', ['filter' => AbsencesAdminFilter::class]);
-$routes->get('/absences/admin/groups/edit/(:any)', 'AbsenceController::editGroup/$1', ['filter' => AbsencesAdminFilter::class]);
-$routes->post('/absences/admin/groups/edit/(:any)', 'AbsenceController::updateGroup/$1', ['filter' => AbsencesAdminFilter::class]);
-$routes->get('/absences/admin/groups/delete/(:any)', 'AbsenceController::deleteGroup/$1', ['filter' => AbsencesAdminFilter::class]);
-$routes->get('/absences/groups/(:any)', 'AbsenceController::viewGroup/$1');
-$routes->post('/absences/admin/upload/absences', 'AbsenceController::uploadAbsences', ['filter' => AbsencesAdminFilter::class]);
-$routes->post('/absences/admin/upload/students', 'AbsenceController::uploadStudents', ['filter' => AbsencesAdminFilter::class]);
 
 $routes->cli('/emails', 'EmailController::index');
 
