@@ -19,7 +19,9 @@
     "aspera/xlsx-reader": "^1.1",
     "phpmailer/phpmailer": "^6.9",
     "ext-imagick": "*",
-    "mpdf/mpdf": "^8.2"
+    "mpdf/mpdf": "^8.2",
+    "guzzlehttp/guzzle": "^7.9",
+    "composer/ca-bundle": "^1.5"
   },
   "require-dev": {
     "fakerphp/faker": "^1.9",

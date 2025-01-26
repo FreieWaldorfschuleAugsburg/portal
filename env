@@ -21,7 +21,22 @@ role.absences = ''
 role.absencesAdmin = ''
 role.absencesRead = ''
 
+#notice = ''
+
+#--------------------------------------------------------------------
+# ABSENCE
+#--------------------------------------------------------------------
+
 absence.halfDayKeywords = ''
+absence.groupIds = ''
+absence.followUpUserId = ''
+
+#--------------------------------------------------------------------
+# PROCURAT
+#--------------------------------------------------------------------
+
+procurat.endpoint = ''
+procurat.apiKey = ''
 
 #--------------------------------------------------------------------
 # ACTIVE DIRECTORY
@@ -31,6 +46,8 @@ ad.hosts = ''
 ad.dn = ''
 ad.admin.username = ''
 ad.admin.password = ''
+
+ad.loginBlockedUsers = ''
 
 #--------------------------------------------------------------------
 # DATABASE
