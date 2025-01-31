@@ -22,14 +22,14 @@ use Psr\Http\Message\ResponseInterface;
 function createAPIClient(): Client
 {
     $stack = HandlerStack::create();
-    $stack->push(new CacheMiddleware(
+    /*$stack->push(new CacheMiddleware(
         new GreedyCacheStrategy(
             new FlysystemStorage(
                 new LocalFilesystemAdapter(getenv('procurat.cachePath'))
             ),
             30
         )
-    ), 'cache');
+    ), 'cache');*/
 
     return new Client([
         'handler' => $stack,
