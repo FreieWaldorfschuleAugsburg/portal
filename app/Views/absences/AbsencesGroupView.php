@@ -28,66 +28,66 @@ usort($students, fn($a, $b) => strcmp($a->getLastName(), $b->getLastName()));
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-5">
         <?php foreach ($students as $student): ?>
-            <?php if ($absence = filterAbsences($absences, $student->getId())): ?>
-                <?php if (!$absence->isExcused() || isHalfDayAbsence($absence)): ?>
-                    <div class="bg-orange-600 text-white font-inter-regular px-5 py-3 rounded-lg flex justify-between">
-                        <div class="flex flex-col items-start gap-1">
-                            <div class="w-52 mt-3 mb-5">
-                                <p class="text-3xs text-ellipsis overflow-hidden whitespace-nowrap mb-2"><?= $student->getLastName() . ", " . $student->getFirstName() ?></p>
-                                <p class="bg-blue-600/50 text-white p-1.5 px-3 text-xs rounded font-inter-regular bg-blue-400">
-                                    <?= $absence->getNote() ?>
-                                </p>
-                            </div>
+            <?php if ($followup = getAbsenceFollowUp($student->getId())): ?>
+                <div class="bg-orange-600 text-white font-inter-regular px-5 py-3 rounded-lg flex justify-between">
+                    <div class="flex flex-col items-start gap-1">
+                        <div class="w-52 mt-3 mb-5">
+                            <p class="text-3xs text-ellipsis overflow-hidden whitespace-nowrap mb-2"><?= $student->getLastName() . ", " . $student->getFirstName() ?></p>
+                            <p class="bg-blue-600/50 text-white p-1.5 px-3 text-xs rounded font-inter-regular bg-blue-400">
+                                <?= $followup->getMessage() . ' !! Diese Absenz ist vom Sekretariat noch nicht bearbeitet worden !!' ?>
+                            </p>
                         </div>
-
-                        <?php if (!session('ABSENCE_READ')): ?>
-                            <?= form_open('absences/absent', ["onsubmit" => "return confirm('Möchten Sie " . $student->getFirstName() . " " . $student->getLastName() . " abwesend melden?');"]) ?>
-                            <?= form_hidden('studentId', strval($student->getId())); ?>
-                            <button type="submit"
-                                    class="text-category text-white text-center bg-red-600 mt-3 p-3 rounded">
-                                Abwesend
-                            </button>
-                            <?= form_close() ?>
-                        <?php endif; ?>
                     </div>
-                <?php else: ?>
-                    <div class="bg-red-600 text-white font-inter-regular px-5 py-3 rounded-lg flex justify-between">
-                        <div>
+
+                    <?php if (!session('ABSENCE_READ')): ?>
+                        <?= form_open('absences/absent', ["onsubmit" => "return confirm('Möchten Sie " . $student->getFirstName() . " " . $student->getLastName() . " abwesend melden?');"]) ?>
+                        <?= form_hidden('studentId', strval($student->getId())); ?>
+                        <button type="submit"
+                                class="text-category text-white text-center bg-red-600 mt-3 p-3 rounded">
+                            Abwesend
+                        </button>
+                        <?= form_close() ?>
+                    <?php endif; ?>
+                </div>
+            <?php else: ?>
+                <?php if ($absence = filterAbsences($absences, $student->getId())): ?>
+                    <?php if (!$absence->isExcused() || isHalfDayAbsence($absence)): ?>
+                        <div class="bg-orange-600 text-white font-inter-regular px-5 py-3 rounded-lg flex justify-between">
                             <div class="flex flex-col items-start gap-1">
                                 <div class="w-52 mt-3 mb-5">
                                     <p class="text-3xs text-ellipsis overflow-hidden whitespace-nowrap mb-2"><?= $student->getLastName() . ", " . $student->getFirstName() ?></p>
-                                    <?php if (!empty($absence->getNote())): ?>
-                                        <p class="bg-blue-600/50 text-white p-1.5 px-3 text-xs rounded font-inter-regular bg-blue-400">
-                                            <?= $absence->getNote() ?>
-                                        </p>
-                                    <?php endif; ?>
+                                    <p class="bg-blue-600/50 text-white p-1.5 px-3 text-xs rounded font-inter-regular bg-blue-400">
+                                        <?= $absence->getNote() ?>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <?php if (!session('ABSENCE_READ')): ?>
+                                <?= form_open('absences/absent', ["onsubmit" => "return confirm('Möchten Sie " . $student->getFirstName() . " " . $student->getLastName() . " abwesend melden?');"]) ?>
+                                <?= form_hidden('studentId', strval($student->getId())); ?>
+                                <button type="submit"
+                                        class="text-category text-white text-center bg-red-600 mt-3 p-3 rounded">
+                                    Abwesend
+                                </button>
+                                <?= form_close() ?>
+                            <?php endif; ?>
+                        </div>
+                    <?php else: ?>
+                        <div class="bg-red-600 text-white font-inter-regular px-5 py-3 rounded-lg flex justify-between">
+                            <div>
+                                <div class="flex flex-col items-start gap-1">
+                                    <div class="w-52 mt-3 mb-5">
+                                        <p class="text-3xs text-ellipsis overflow-hidden whitespace-nowrap mb-2"><?= $student->getLastName() . ", " . $student->getFirstName() ?></p>
+                                        <?php if (!empty($absence->getNote())): ?>
+                                            <p class="bg-blue-600/50 text-white p-1.5 px-3 text-xs rounded font-inter-regular bg-blue-400">
+                                                <?= $absence->getNote() ?>
+                                            </p>
+                                        <?php endif; ?>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                <?php endif; ?>
-            <?php else: ?>
-                <?php if ($followup = getAbsenceFollowUp($student->getId())): ?>
-                    <div class="bg-orange-600 text-white font-inter-regular px-5 py-3 rounded-lg flex justify-between">
-                        <div class="flex flex-col items-start gap-1">
-                            <div class="w-52 mt-3 mb-5">
-                                <p class="text-3xs text-ellipsis overflow-hidden whitespace-nowrap mb-2"><?= $student->getLastName() . ", " . $student->getFirstName() ?></p>
-                                <p class="bg-blue-600/50 text-white p-1.5 px-3 text-xs rounded font-inter-regular bg-blue-400">
-                                    <?= $followup->getMessage() . ' !! Diese Absenz ist vom Sekretariat noch nicht bearbeitet worden !!' ?>
-                                </p>
-                            </div>
-                        </div>
-
-                        <?php if (!session('ABSENCE_READ')): ?>
-                            <?= form_open('absences/absent', ["onsubmit" => "return confirm('Möchten Sie " . $student->getFirstName() . " " . $student->getLastName() . " abwesend melden?');"]) ?>
-                            <?= form_hidden('studentId', strval($student->getId())); ?>
-                            <button type="submit"
-                                    class="text-category text-white text-center bg-red-600 mt-3 p-3 rounded">
-                                Abwesend
-                            </button>
-                            <?= form_close() ?>
-                        <?php endif; ?>
-                    </div>
+                    <?php endif; ?>
                 <?php else: ?>
                     <div class="bg-green-600 text-white font-inter-regular px-5 py-3 rounded-lg flex justify-between">
                         <div>
