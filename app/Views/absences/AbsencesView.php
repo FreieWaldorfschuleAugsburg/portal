@@ -1,5 +1,6 @@
 <?php
 
+use function App\Helpers\getGroupNameOverride;
 use function App\Helpers\getAbsenceGroups;
 
 ?>
@@ -16,30 +17,30 @@ use function App\Helpers\getAbsenceGroups;
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-5">
-        <?php foreach (getAbsenceGroups() as $grade): ?>
+        <?php foreach (getAbsenceGroups() as $group): ?>
             <div class="bg-gray-900 text-white font-inter-regular px-5 py-3 rounded-lg flex justify-between"
                  style="color: black; background-color: #FFD032;">
                 <div>
                     <div class="flex flex-col items-start gap-1">
                         <div class="w-52 mt-3 mb-5">
-                            <p class="text-h2-small text-ellipsis overflow-hidden whitespace-nowrap"><?= $grade->getName() ?></p>
+                            <p class="text-h2-small text-ellipsis overflow-hidden whitespace-nowrap"><?= $group->getName() ?></p>
                         </div>
                     </div>
                 </div>
 
                 <button class="text-category text-white text-center">
-                    <a href="<?= base_url('absences/view/' . $grade->getId()) ?>" class="bg-blue-600 p-3 rounded">
+                    <a href="<?= base_url('absences/view/' . $group->getId()) ?>" class="bg-blue-600 p-3 rounded">
                         <?= lang('buttons.view') ?>
                     </a>
                 </button>
                 <button class="text-category text-white text-center">
-                    <a href="<?= base_url('absences/print/absence/' . $grade->getId()) ?>"
+                    <a href="<?= base_url('absences/print/absence/' . $group->getId()) ?>"
                        class="bg-blue-600 p-3 rounded">
                         Abw. drucken
                     </a>
                 </button>
                 <button class="text-category text-white text-center">
-                    <a href="<?= base_url('absences/print/presence/' . $grade->getId()) ?>"
+                    <a href="<?= base_url('absences/print/presence/' . $group->getId()) ?>"
                        class="bg-blue-600 p-3 rounded">
                         Anw. drucken
                     </a>

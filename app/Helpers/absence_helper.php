@@ -4,11 +4,9 @@ namespace App\Helpers;
 
 use App\Models\Procurat\ProcuratAbsence;
 use App\Models\Procurat\ProcuratGroup;
-use GuzzleHttp\Exception\GuzzleException;
 
 /**
  * @return ProcuratGroup[]
- * @throws GuzzleException
  */
 function getAbsenceGroups(): array
 {

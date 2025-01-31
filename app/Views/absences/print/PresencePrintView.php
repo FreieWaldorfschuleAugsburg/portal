@@ -5,6 +5,8 @@ use function App\Helpers\filterAbsences;
 use function App\Helpers\getCurrentUser;
 use function App\Helpers\getProcuratAbsencesByGroup;
 use function App\Helpers\getProcuratGroupMembers;
+use function App\Helpers\getProcuratPersonGrade;
+use function App\Helpers\getProcuratPersonGradeId;
 use function App\Helpers\isHalfDayAbsence;
 
 $absences = getProcuratAbsencesByGroup($group->getId());
@@ -12,10 +14,10 @@ $absences = getProcuratAbsencesByGroup($group->getId());
 $students = getProcuratGroupMembers($group->getId());
 usort($students, function (ProcuratPerson $a, ProcuratPerson $b) {
     return
-        ($a->getId() <=> $b->getId()) * 1000 +
-        ($a->getLastName() <=> $b->getLastName()) +
-        ($a->getFirstName() <=> $b->getFirstName());
-})
+        (getProcuratPersonGradeId($a->getId()) <=> getProcuratPersonGradeId($b->getId())) * 1000 +
+        ($a->getLastName() <=> $b->getLastName()) /*+
+        ($a->getFirstName() <=> $b->getFirstName())*/ ;
+});
 ?>
 <style>
     table {
@@ -48,16 +50,16 @@ usort($students, function (ProcuratPerson $a, ProcuratPerson $b) {
         <th style="width: 40%">
             Schüler/in
         </th>
-        <!--<th>
+        <th>
             Klasse
-        </th>-->
+        </th>
         <th>
             Unterschrift Schüler/in
         </th>
     </tr>
     <?php foreach ($students as $student): ?>
         <?php $absence = filterAbsences($absences, $student->getId()) ?>
-        <?php if ($absence && (!isHalfDayAbsence($absence) || $absence->isExcused())): continue; endif; ?>
+        <?php if ($absence && $absence->isExcused() && !isHalfDayAbsence($absence)): continue; endif; ?>
         <tr>
             <td>
                 <b><?= $student->getLastName() . ', ' . $student->getFirstName() ?></b>
@@ -65,9 +67,9 @@ usort($students, function (ProcuratPerson $a, ProcuratPerson $b) {
                     <br><span style="font-size: 10px">Bemerkung: <?= $absence->getNote() ?></span>
                 <?php endif; ?>
             </td>
-            <!--<td>
-
-            </td>-->
+            <td>
+                <?= getProcuratPersonGrade($student->getId()); ?>
+            </td>
             <td>
 
             </td>

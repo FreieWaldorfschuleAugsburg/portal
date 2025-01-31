@@ -9,6 +9,11 @@ use App\Models\Procurat\ProcuratGroup;
 use App\Models\Procurat\ProcuratPerson;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttp\HandlerStack;
+use Kevinrob\GuzzleCache\CacheMiddleware;
+use Kevinrob\GuzzleCache\Storage\FlysystemStorage;
+use Kevinrob\GuzzleCache\Strategy\GreedyCacheStrategy;
+use League\Flysystem\Local\LocalFilesystemAdapter;
 use Psr\Http\Message\ResponseInterface;
 
 /**
@@ -16,7 +21,18 @@ use Psr\Http\Message\ResponseInterface;
  */
 function createAPIClient(): Client
 {
+    $stack = HandlerStack::create();
+    $stack->push(new CacheMiddleware(
+        new GreedyCacheStrategy(
+            new FlysystemStorage(
+                new LocalFilesystemAdapter(getenv('procurat.cachePath'))
+            ),
+            30
+        )
+    ), 'cache');
+
     return new Client([
+        'handler' => $stack,
         'base_uri' => getenv('procurat.endpoint'),
         'headers' => [
             'X-API-KEY' => getenv('procurat.apiKey'),
@@ -35,16 +51,49 @@ function decodeResponse(ResponseInterface $response): mixed
 }
 
 /**
+ * @param object $rawAbsence
+ * @return ProcuratAbsence
+ */
+function constructProcuratAbsence(object $rawAbsence): ProcuratAbsence
+{
+    // TODO check if properties are in object
+    return new ProcuratAbsence($rawAbsence->id, $rawAbsence->personId, $rawAbsence->excused, $rawAbsence->note);
+}
+
+/**
  * @param array $response
  * @return ProcuratAbsence[]
  */
-function decodeAbsences(array $response): array
+function constructProcuratAbsences(array $response): array
 {
     $absences = [];
     foreach ($response as $absence) {
-        $absences[] = new ProcuratAbsence($absence->id, $absence->personId, $absence->excused, $absence->note);
+        $absences[] = constructProcuratAbsence($absence);
     }
     return $absences;
+}
+
+/**
+ * @param object $rawGroup
+ * @return ProcuratGroup
+ */
+function constructProcuratGroup(object $rawGroup): ProcuratGroup
+{
+    // TODO check if properties are in object
+    return new ProcuratGroup($rawGroup->id, $rawGroup->name, $rawGroup->type, $rawGroup->grades, $rawGroup->schoolYear);
+}
+
+/**
+ * @param array $response
+ * @return ProcuratGroup[]
+ */
+function constructProcuratGroups(array $response): array
+{
+    $groups = [];
+    foreach ($response as $group) {
+        $groups[] = constructProcuratGroup($group);
+    }
+    return $groups;
 }
 
 function getAbsenceFollowUp(int $personId): ?ProcuratFollowup
@@ -99,7 +148,7 @@ function getProcuratAbsences(): array
 
     try {
         $response = decodeResponse($client->get('absences?type=today'));
-        return decodeAbsences($response);
+        return constructProcuratAbsences($response);
     } catch (GuzzleException $e) {
         return [];
     }
@@ -114,7 +163,7 @@ function getProcuratAbsencesByGroup(int $groupId): array
 
     try {
         $response = decodeResponse($client->get('absences/group/' . $groupId . '?type=today'));
-        return decodeAbsences($response);
+        return constructProcuratAbsences($response);
     } catch (GuzzleException) {
         return [];
     }
@@ -130,7 +179,7 @@ function getProcuratGroup(int $id): ?ProcuratGroup
 
     try {
         $response = decodeResponse($client->get('groups/' . $id));
-        return new ProcuratGroup($response->id, $response->name);
+        return constructProcuratGroup($response);
     } catch (GuzzleException) {
         return null;
     }
@@ -138,17 +187,17 @@ function getProcuratGroup(int $id): ?ProcuratGroup
 
 /**
  * @param int $id
- * @return ?ProcuratPerson
+ * @return ProcuratGroup[]
  */
-function getProcuratPerson(int $id): ?ProcuratPerson
+function getProcuratGroupsByPersonId(int $id): array
 {
     $client = createAPIClient();
 
     try {
-        $response = decodeResponse($client->get('persons/' . $id));
-        return new ProcuratPerson($response->id, $response->firstName, $response->lastName);
+        $response = decodeResponse($client->get('groups?memberId=' . $id));
+        return constructProcuratGroups($response);
     } catch (GuzzleException) {
-        return null;
+        return [];
     }
 }
 
@@ -171,3 +220,65 @@ function getProcuratGroupMembers(int $id): array
 
     return $persons;
 }
+
+function getGroupNameOverride(int $groupId): ?string
+{
+    return getenv('procurat.groupNameOverride.' . $groupId);
+}
+
+/**
+ * @param int $id
+ * @return ?ProcuratPerson
+ */
+function getProcuratPerson(int $id): ?ProcuratPerson
+{
+    $client = createAPIClient();
+
+    try {
+        $response = decodeResponse($client->get('persons/' . $id));
+        return new ProcuratPerson($response->id, $response->firstName, $response->lastName);
+    } catch (GuzzleException) {
+        return null;
+    }
+}
+
+/**
+ * @param int $id
+ * @return ?string
+ */
+function getProcuratPersonGrade(int $id): ?string
+{
+    $groups = getProcuratGroupsByPersonId($id);
+    foreach ($groups as $group) {
+        if ($group->getType() != 'class') continue;
+        if ($group->getSchoolYear() != getenv('procurat.currentSchoolYear')) continue;
+
+        $grades = $group->getGrades();
+        if (count($grades) > 1) continue;
+        return $group->getName();
+    }
+
+    return null;
+}
+
+/**
+ * @param int $id
+ * @return ?string
+ */
+function getProcuratPersonGradeId(int $id): ?string
+{
+    $groups = getProcuratGroupsByPersonId($id);
+    foreach ($groups as $group) {
+        if ($group->getType() != 'class') continue;
+        if ($group->getSchoolYear() != getenv('procurat.currentSchoolYear')) continue;
+
+        $grades = $group->getGrades();
+        if (count($grades) > 1) continue;
+        return $grades[0];
+    }
+
+    return null;
+}
+
+
+

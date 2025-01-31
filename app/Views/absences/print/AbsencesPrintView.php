@@ -1,10 +1,22 @@
 <?php
 
+use App\Models\Procurat\ProcuratAbsence;
 use function App\Helpers\getCurrentUser;
 use function App\Helpers\getProcuratAbsencesByGroup;
 use function App\Helpers\getProcuratPerson;
+use function App\Helpers\getProcuratPersonGrade;
+use function App\Helpers\getProcuratPersonGradeId;
 
 $absences = getProcuratAbsencesByGroup($group->getId());
+usort($absences, function (ProcuratAbsence $absenceA, ProcuratAbsence $absenceB) {
+    $a = getProcuratPerson($absenceA->getPersonId());
+    $b = getProcuratPerson($absenceB->getPersonId());
+
+    return
+        (getProcuratPersonGradeId($a->getId()) <=> getProcuratPersonGradeId($b->getId())) * 1000 +
+        ($a->getLastName() <=> $b->getLastName()) /*+
+        ($a->getFirstName() <=> $b->getFirstName())*/ ;
+});
 ?>
 <style>
     table {
@@ -35,9 +47,9 @@ $absences = getProcuratAbsencesByGroup($group->getId());
         <th style="width: 40%">
             Schüler/in
         </th>
-        <!--<th>
+        <th>
             Klasse
-        </th>-->
+        </th>
         <th>
             Bemerkung
         </th>
@@ -49,9 +61,9 @@ $absences = getProcuratAbsencesByGroup($group->getId());
             <td>
                 <?= $student->getLastName() . ', ' . $student->getFirstName() ?>
             </td>
-            <!--<td>
-
-            </td>-->
+            <td>
+                <?= getProcuratPersonGrade($absence->getPersonId()); ?>
+            </td>
             <td>
                 <?= $absence->getNote() ?>
             </td>

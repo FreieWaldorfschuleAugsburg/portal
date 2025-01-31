@@ -8,7 +8,8 @@ use function App\Helpers\getProcuratGroupMembers;
 use function App\Helpers\isHalfDayAbsence;
 
 $absences = getProcuratAbsencesByGroup($groupId);
-
+$students = getProcuratGroupMembers($groupId);
+usort($students, fn($a, $b) => strcmp($a->getLastName(), $b->getLastName()));
 ?>
 <main class="px-5 xl:px-24 2xl:px-60 space-y-3 mt-5 min-h-screen">
     <div class="flex gap-5 items-center">
@@ -26,7 +27,7 @@ $absences = getProcuratAbsencesByGroup($groupId);
     </p>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-5">
-        <?php foreach (getProcuratGroupMembers($groupId) as $student): ?>
+        <?php foreach ($students as $student): ?>
             <?php if ($absence = filterAbsences($absences, $student->getId())): ?>
                 <?php if (!$absence->isExcused() || isHalfDayAbsence($absence)): ?>
                     <div class="bg-orange-600 text-white font-inter-regular px-5 py-3 rounded-lg flex justify-between">

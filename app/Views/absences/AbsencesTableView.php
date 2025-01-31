@@ -2,7 +2,8 @@
 
 
 use function App\Helpers\getProcuratAbsences;
-use function App\Helpers\getProcuratPerson; ?>
+use function App\Helpers\getProcuratPerson;
+use function App\Helpers\getProcuratPersonGrade; ?>
 <style>
     tr:nth-child(even) {
         background-color: #f2f2f2;
@@ -37,9 +38,9 @@ use function App\Helpers\getProcuratPerson; ?>
                 <th scope="col" class="px-6 py-3">
                     Schüler/in
                 </th>
-                <!--<th scope="col" class="px-6 py-3">
+                <th scope="col" class="px-6 py-3">
                     Klasse
-                </th>-->
+                </th>
                 <th scope="col" class="px-6 py-3">
                     Bemerkung
                 </th>
@@ -52,6 +53,9 @@ use function App\Helpers\getProcuratPerson; ?>
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                     <td class="px-6 py-4">
                         <?= $student->getFirstName() . ' ' . $student->getLastName() ?>
+                    </td>
+                    <td>
+                        <?= getProcuratPersonGrade($absence->getPersonId()); ?>
                     </td>
                     <td class="px-6 py-4">
                         <?= $absence->getNote() ?>
