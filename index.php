@@ -17,6 +17,22 @@ $entries = json_decode(file_get_contents('./entries.json'));
     <script src="assets/js/jquery.min.js"></script>
 </head>
 
+<!-- Matomo -->
+<script>
+    var _paq = window._paq = window._paq || [];
+    /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+        var u="//matomo.waldorf-augsburg.de/";
+        _paq.push(['setTrackerUrl', u+'matomo.php']);
+        _paq.push(['setSiteId', '3']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+</script>
+<!-- End Matomo Code -->
+
 <body>
 
 <div class="flex px-5 xl:px-24 2xl:px-60 py-5 justify-center">
