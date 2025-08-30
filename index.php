@@ -86,7 +86,7 @@ $entries = json_decode(file_get_contents('./entries.json'));
     document.addEventListener("DOMContentLoaded", function () {
         setInterval(changeText, 2500)
 
-        const texts = ["Freie Waldorfschule Augsburg", "Waldorfhaus für Kinder Hammerschmiede", "Waldorfhaus für Kinder an den Lechauen"]
+        const texts = ["Freie Waldorfschule Augsburg", "Waldorfhaus für Kinder in der Hammerschmiede", "Waldorfhaus für Kinder an den Lechauen"]
         let textIndex = 0;
 
         function changeText() {
