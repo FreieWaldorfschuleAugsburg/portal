@@ -28,8 +28,8 @@
     "color2": "#fff700"
   },
   {
-    "name": "Microsoft365",
-    "url": "https://office.com",
+    "name": "Outlook",
+    "url": "https://outlook.office.com",
     "image": "assets/img/ms365.png",
     "color1": "#4cbdee",
     "color2": "#b989d3"
@@ -82,5 +82,26 @@
     "image": "assets/img/wifi.png",
     "color1": "#285ff4",
     "color2": "#52d6fc"
+  },
+  {
+    "name": "Timecard",
+    "url": "https://timecard.waldorf-augsburg.de",
+    "image": "assets/img/timecard.png",
+    "color1": "#F5A127",
+    "color2": "#FFDB3C"
+  },
+  {
+    "name": "BayKiBiG",
+    "url": "https://baykibig.bayern.de/auth/login",
+    "image": "assets/img/baykibig.png",
+    "color1": "#018CE7",
+    "color2": "#14A3E0"
+  },
+  {
+    "name": "Nupian",
+    "url": "https://www.nupiankita.de/kita2/kita/home/index.php",
+    "image": "assets/img/nupian.png",   
+	"color1": "#E62D5A",
+    "color2": "#8f5361"
   }
 ]
