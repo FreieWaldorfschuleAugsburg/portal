@@ -7,10 +7,16 @@
                      class="mx-auto d-block">
                 <h1 class="mb-5"><?= lang('app.name.headline') ?></h1>
                 <hr>
-                <h4><?= lang('app.error.400.title') ?></h4>
-                <p><?= lang('app.error.400.text') ?><br/>
-                    <a href="<?= base_url('/') ?>"><?= lang('app.error.homepageHyperlink') ?></a>
+                <h4><?= lang('app.error.oauth.title') ?></h4>
+                <p><?= lang('app.error.oauth.text') ?><br/>
+                    <?= lang('app.error.oauth.' . esc($exception->getMessage())) ?>
                 </p>
+                <div class="btn btn-group">
+                    <a class="btn btn-primary"
+                       href="https://portal.waldorf-augsburg.de/"><?= lang('app.error.portalHyperlink') ?></a>
+                    <a class="btn btn-danger"
+                       href="<?= base_url('logout') ?>"><?= lang('app.error.logoutHyperlink') ?></a>
+                </div>
                 <hr>
             </div>
         </div>

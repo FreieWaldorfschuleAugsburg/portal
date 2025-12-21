@@ -2,12 +2,10 @@
 
 namespace App\Controllers;
 
-use App\Models\AuthException;
 use CodeIgniter\Controller;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 use Psr\Log\LoggerInterface;
-use function App\Helpers\user;
 
 /**
  * BaseController provides a convenient place for loading components
@@ -30,43 +28,19 @@ abstract class BaseController extends Controller
     // protected $session;
 
     /**
+     * An array of helpers to be loaded automatically upon
+     * class instantiation. These helpers will be available
+     * to all other controllers that extend BaseController.
+     *
+     * @var list<string>
+     */
+    protected $helpers = ['oauth', 'form'];
+
+    /**
      * @return void
      */
     public function initController(RequestInterface $request, ResponseInterface $response, LoggerInterface $logger)
     {
-        // Load here all helpers you want to be available in your controllers that extend BaseController.
-        // Caution: Do not put the this below the parent::initController() call below.
-        // $this->helpers = ['form', 'url'];
-
-        // Caution: Do not edit this line.
         parent::initController($request, $response, $logger);
-
-        // Preload any models, libraries, etc, here.
-        // $this->session = service('session');
-    }
-
-    /**
-     * @throws AuthException
-     */
-    public function render($name, $data = null, $renderNavbar = true, $renderFooter = true): string
-    {
-        $renderedContent = view('components/header');
-
-        if ($renderNavbar) {
-            helper('auth');
-            $renderedContent .= view('components/navbar', ['user' => user()]);
-        }
-
-        if (!is_null($data)) {
-            $renderedContent .= view($name, $data);
-        } else {
-            $renderedContent .= view($name);
-        }
-
-        if ($renderFooter) {
-            $renderedContent .= view('components/footer');
-        }
-
-        return $renderedContent;
     }
 }

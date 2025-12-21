@@ -1,17 +1,13 @@
 {
-    "name": "codeigniter4/appstarter",
-    "description": "CodeIgniter4 starter app",
+    "name": "waldorfaugsburg/account",
+    "description": "Account management page",
     "license": "MIT",
     "type": "project",
-    "homepage": "https://codeigniter.com",
-    "support": {
-        "forum": "https://forum.codeigniter.com/",
-        "source": "https://github.com/codeigniter4/CodeIgniter4",
-        "slack": "https://codeigniterchat.slack.com"
-    },
+    "homepage": "https://github.com/FreieWaldorfschuleAugsburg/account",
     "require": {
         "php": "^8.1",
-        "codeigniter4/framework": "^4.0"
+        "codeigniter4/framework": "^4.0",
+        "jumbojett/openid-connect-php": "^1.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9",
