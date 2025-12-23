@@ -10,7 +10,6 @@ use Throwable;
 
 class OAuthExceptionHandler extends BaseExceptionHandler implements ExceptionHandlerInterface
 {
-    // You can override the view path.
     protected ?string $viewPath = APPPATH . 'Views/errors/html/';
 
     public function handle(Throwable $exception, RequestInterface $request, ResponseInterface $response, int $statusCode, int $exitCode): void

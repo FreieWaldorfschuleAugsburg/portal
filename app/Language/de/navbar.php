@@ -1,5 +1,6 @@
 <?php
 
 return [
-    'logout' => 'Abmelden'
+    'logout' => 'Abmelden',
+    'login' => 'Anmelden',
 ];
