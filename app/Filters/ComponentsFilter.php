@@ -19,7 +19,10 @@ class ComponentsFilter implements FilterInterface
         $beforeContent = view('components/header');
         if (is_null($arguments) || !in_array('noNavbar', $arguments)) {
             helper('oauth');
-            $beforeContent .= view('components/navbar', ['user' => user()]);
+
+            $appName = $_GET['app_name'] ?? null;
+            $appUrl = $_GET['app_url'] ?? null;
+            $beforeContent .= view('components/navbar', ['user' => user(), 'appName' => esc($appName), 'appUrl' => esc($appUrl)]);
         }
 
         $afterContent = "";

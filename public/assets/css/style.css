@@ -1,21 +1,75 @@
-@media (prefers-color-scheme: light) {
-    .visible {
-        color: black;
-    }
+@font-face {
+    font-family: 'MetaPlus';
+    font-style: normal;
+    src: url("../webfonts/MetaPlus.woff2");
+}
 
-    .blurred {
-        color: transparent;
-        text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+@font-face {
+    font-family: 'RoAkazie';
+    font-style: normal;
+    src: url("../webfonts/RoAkazie.woff2");
+}
+
+body {
+    font-family: MetaPlus, serif !important;
+    background-color: rgb(15 23 42) !important;
+}
+
+/*.card {
+    background-color: #141e37 !important;
+}*/
+
+.navbar {
+    background-color: rgb(24, 33, 55) !important;
+}
+
+.navbar-brand {
+    font-family: RoAkazie, serif !important;
+}
+
+.portal-grid {
+    display: grid;
+    gap: 1.25rem;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+@media (min-width: 768px) {
+    .portal-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
 
-@media (prefers-color-scheme: dark) {
-    .visible {
-        color: white;
+@media (min-width: 1280px) {
+    .portal-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
     }
+}
 
-    .blurred {
-        color: transparent;
-        text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-    }
+.portal-button {
+    color: white;
+    line-height: 0.5rem !important;
+    font-family: RoAkazie, serif;
+    text-decoration: none !important;
+
+    background-blend-mode: luminosity;
+    background-size: 250px, cover !important;
+    height: 145px;
+
+    align-self: flex-start;
+    text-align: start;
+    padding: 2rem 1.25rem;
+    border-radius: 0.75rem;
+    font-size: 28px;
+    flex-shrink: 0;
+
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+
+    --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    --tw-shadow-colored: 0 1px 3px 0 var(--bs-black), 0 1px 2px -1px var(--bs-black);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.portal-button:hover {
+    transform: scaleX(1.05) scaleY(1.05);
 }

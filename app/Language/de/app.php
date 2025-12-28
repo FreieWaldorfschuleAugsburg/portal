@@ -2,9 +2,9 @@
 
 return [
     'name' => [
-        'short' => 'Kontoverwaltung',
-        'full' => 'Kontoverwaltung',
-        'headline' => 'Kontoverwaltung'
+        'short' => 'Portal',
+        'full' => 'Portal der Freien Waldorfschule und Waldorfkindergärten Augsburg',
+        'headline' => 'Portal'
     ],
     'copyright' => '&copy; 2025 Freie Waldorfschule und Waldorfkindergärten Augsburg e. V.<br><small>Entwickelt von <a href="https://linusgke.de" target="_blank">Linus Groschke</a> <br/> <a href="https://github.com/FreieWaldorfschuleAugsburg/account" target="_blank">Quellcode auf GitHub</a> – <a href="https://waldorf-augsburg.de/impressum" target="_blank">Impressum</a></small></small>',
     'error' => [

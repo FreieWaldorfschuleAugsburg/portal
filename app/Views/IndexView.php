@@ -1,34 +1,20 @@
-<?php
+<div class="row portal-grid">
+    <?php foreach ($entries as $entry): ?>
+        <?php $id = md5(rand()) ?>
 
-use function App\Helpers\user;
+        <a class="col portal-button background-<?= $id ?>"
+           href="<?= $entry->url ?>">
+            <p><?= $entry->name ?></p>
+        </a>
 
-?>
-<div class="row">
-    <div class="text-center">
-        <h1><?= sprintf(lang('index.welcome'), user()->getDisplayName()) ?> </h1>
-    </div>
-
-    <div class="col-lg-12">
-        <div class="card mt-3 mb-3">
-            <div class="card-header">
-                <?= lang('index.actions') ?>
-            </div>
-            <div class="card-body text-center">
-                <div class="d-grid gap-2">
-                    <a class="btn btn-primary btn-lg" href="<?= base_url('profile') ?>">
-                        <i class="fas fa-user-cog fa-2x mb-2"></i><br>
-                        Profil bearbeiten
-                    </a>
-                    <a class="btn btn-primary btn-lg" href="<?= base_url('change_password') ?>">
-                        <i class="fas fa-key fa-2x mb-2"></i><br>
-                        Passwort ändern
-                    </a>
-                    <a class="btn btn-primary btn-lg" href="<?= base_url('student_reset') ?>">
-                        <i class="fas fa-user-graduate fa-2x mb-2"></i><br>
-                        Schülerzugang zurücksetzen
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
+        <style>
+            .background-<?= $id ?> {
+                background: url("<?= $entry->image ?>") no-repeat 150px 0px, linear-gradient(to bottom right,<?= $entry->color1 ?>, <?= $entry->color2 ?>);
+            }
+        </style>
+    <?php endforeach; ?>
 </div>
+
+<style>
+
+</style>

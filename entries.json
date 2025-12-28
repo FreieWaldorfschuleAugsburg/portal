@@ -1,0 +1,107 @@
+[
+  {
+    "name": "Ticket-System",
+    "url": "https://support.waldorf-augsburg.de",
+    "image": "assets/img/ticket-system.png",
+    "color1": "#eb4d3d",
+    "color2": "#e632c4"
+  },
+  {
+    "name": "Wiki",
+    "url": "https://wiki.waldorf-augsburg.de",
+    "image": "assets/img/wiki.png",
+    "color1": "#f3ba8f",
+    "color2": "#fe9225"
+  },
+  {
+    "name": "Cloud",
+    "url": "https://cloud.waldorf-augsburg.de",
+    "image": "assets/img/cloud.png",
+    "color1": "#1b449b",
+    "color2": "#7575ff"
+  },
+  {
+    "name": "MensaMax",
+    "url": "https://mensastadt.de/?projekt=A2366&einrichtung=Schule",
+    "image": "assets/img/mensamax.png",
+    "color1": "#ff9500",
+    "color2": "#fff700"
+  },
+  {
+    "name": "Outlook",
+    "url": "https://outlook.office.com",
+    "image": "assets/img/ms365.png",
+    "color1": "#4cbdee",
+    "color2": "#b989d3"
+  },
+  {
+    "name": "Bildungsplattform",
+    "url": "https://go.bildungsplattform.org",
+    "image": "assets/img/tk.png",
+    "color1": "#01c7fc",
+    "color2": "#004d65"
+  },
+  {
+    "name": "Tipp10",
+    "url": "https://fwa.tipp10.com",
+    "image": "assets/img/tipp10.png",
+    "color1": "#F97E00",
+    "color2": "#edaa66"
+  },
+  {
+    "name": "Vertretungsplan",
+    "url": "https://monitor.vertretungsplan.me/",
+    "image": "assets/img/vertretungsplan.png",
+    "color1": "#5677FC",
+    "color2": "#244ced"
+  },
+  {
+    "name": "mebis",
+    "url": "https://lernplattform.mebis.bycs.de/",
+    "image": "assets/img/mebis.png",
+    "color1": "#01A8D8",
+    "color2": "#185086"
+  },
+  {
+    "name": "TK Planung",
+    "url": "https://planung.tks.eu",
+    "image": "assets/img/tk.png",
+    "color1": "#FCD05F",
+    "color2": "#b89333"
+  },
+  {
+    "name": "TK Zeugnis",
+    "url": "https://zeugnis.tks.eu",
+    "image": "assets/img/tk.png",
+    "color1": "#843576",
+    "color2": "#e675d2"
+  },
+  {
+    "name": "Abwesenheiten",
+    "url": "https://abwesenheiten.waldorf-augsburg.de",
+    "image": "assets/img/abwesenheiten.png",
+    "color1": "#8c0000",
+    "color2": "#ff0000"
+  },
+  {
+    "name": "WLAN",
+    "url": "https://wifi.waldorf-augsburg.de",
+    "image": "assets/img/wifi.png",
+    "color1": "#285ff4",
+    "color2": "#52d6fc"
+  },
+  {
+    "name": "Procurat!5",
+    "url": "https://procurat.waldorf-augsburg.de",
+    "image": "assets/img/procurat.png",
+    "color1": "#20415C",
+    "color2": "#4f84b0"
+  },
+  {
+    "name": "Timecard",
+    "url": "https://timecard.waldorf-augsburg.de",
+    "image": "assets/img/timecard.png",
+    "color1": "#F5A127",
+    "color2": "#FFDB3C"
+  }
+]

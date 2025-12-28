@@ -6,6 +6,7 @@ class IndexController extends BaseController
 {
     public function index(): string
     {
-        return view('IndexView');
+        $entries = json_decode(file_get_contents(ROOTPATH . 'entries.json'));
+        return view('IndexView', ['entries' => $entries]);
     }
 }
