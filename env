@@ -11,6 +11,7 @@ CI_ENVIRONMENT = development
 app.baseURL = 'http://localhost:8080'
 app.forceGlobalSecureRequests = false
 app.jwtSecret = ''
+app.jwtExpirationSeconds = 300
 
 --------------------------------------------------------------------
 # OIDC

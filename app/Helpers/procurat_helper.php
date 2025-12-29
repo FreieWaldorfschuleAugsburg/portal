@@ -1,8 +1,8 @@
 <?php
 
 use App\Models\ProcuratContactInformation;
-use App\Models\ProcuratContactPersonMapping;
 use App\Models\ProcuratGroupMembership;
+use App\Models\ProcuratPerson;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\HandlerStack;
@@ -22,6 +22,21 @@ function createAPIClient(): Client
             'Accept' => 'application/json'
         ]
     ]);
+}
+
+/**
+ * @param int $id
+ * @return ?ProcuratPerson
+ */
+function getProcuratPerson(int $id): ?ProcuratPerson
+{
+    $client = createAPIClient();
+    try {
+        $response = decodeResponse($client->get('persons/' . $id));
+        return new ProcuratPerson($response->id, $response->firstName, $response->lastName);
+    } catch (GuzzleException) {
+        return null;
+    }
 }
 
 function findPersonIdByUsername(string $username): ?int

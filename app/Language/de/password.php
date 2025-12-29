@@ -7,25 +7,22 @@ return [
     ],
     'reset' => [
         'headline' => 'Passwort zurücksetzen',
-        'back' => 'Zurück',
-        'text' => 'Du hast dein Passwort vergessen und möchtest es zurücksetzen? Zum Zurücksetzen deines Passworts stehen dir die untenstehenden Möglichkeiten zur Verfügung. <br>Um die Zurücksetzung zu starten, wähle eine Möglichkeit aus.',
-        'method' => [
-            'email' => [
-                'headline' => 'E-Mail-Adresse',
-                'description' => 'Wir senden einen Zurücksetzungslink an eine private E-Mail-Adresse.',
-                'text' => ' Sofern deine, oder die private E-Mail-Adresse eines Erziehungsberechtigten, bei uns hinterlegt ist, können wir dir eine E-Mail mit einem Zurücksetzungslink zusenden. Gib hierfür deinen Benutzernamen und die private E-Mail-Adresse unten an. Wenn deine Angaben korrekt sind, erhältst du den Link innerhalb weniger Minuten auf die angegebene E-Mail-Adresse. ',
-                'invalidUsername' => 'Ungültiger Benutzername!',
-                'invalidEmail' => 'Ungültige E-Mail-Adresse!',
-            ],
-            'teacher' => [
-                'headline' => 'Durch eine Lehrkraft',
-                'description' => 'Jede Lehrkraft kann dein Passwort zurücksetzen.',
-                'text' => 'Jede Lehrkraft kann dein Passwort für dich zurücksetzen. Gehe hierzu z. B. in einer Pause zum Lehrerzimmer, klopfe und frage höflich, ob dir jemand helfen kann.'
-            ]
+        'text' => 'Vergebe nun dein neues Passwort! Achte bitte darauf, dass es die Passwortanforderungen erfüllt.',
+        'invalidToken' => 'Ungültiger Token! Bitte beachte, dass der Zurücksetzungslink nur für eine begrenzte Zeit gültig ist.',
+        'insufficientPassword' => 'Das gewählte Passwort entspricht den den Anforderungen.',
+        'ldapError' => 'LDAP-Fehler: %s',
+        'start' => [
+            'text' => 'Du hast dein Passwort vergessen und möchtest es zurücksetzen? Sofern deine, oder die private E-Mail-Adresse eines Erziehungsberechtigten, bei uns hinterlegt ist, können wir dir eine E-Mail mit einem Zurücksetzungslink zusenden. Gib hierfür deinen Benutzernamen und die private E-Mail-Adresse unten an. Wenn deine Angaben korrekt sind, erhältst du den Link innerhalb weniger Minuten auf die angegebene E-Mail-Adresse. ',
+            'invalidUsername' => 'Ungültiger Benutzername!',
+            'invalidEmail' => 'Ungültige E-Mail-Adresse!',
         ],
-        'init' => [
+        'confirm' => [
             'headline' => 'Vielen Dank!',
             'text' => 'Sofern deine Angaben korrekt sind, erhältst du in den nächsten Minuten auf der angegebenen E-Mail einen Zurücksetzungslink. Du kannst diese Seite nun schließen!',
+        ],
+        'success' => [
+            'headline' => 'Passwort geändert!',
+            'text' => 'Dein Passwort wurde erfolgreich geändert.',
         ]
     ]
 ];

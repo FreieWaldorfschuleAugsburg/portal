@@ -1,15 +1,22 @@
 <div class="row">
     <div class="text-center">
-        <h1><?= lang('password.change.headline') ?> </h1>
+        <h1><?= lang('password.reset.headline') ?></h1>
     </div>
+</div>
 
+<div class="row">
+    <p>
+        <?= lang('password.reset.text') ?>
+    </p>
+</div>
+
+<div class="row">
     <div class="col-lg-12">
-        <div class="card mt-3 mb-3">
-            <div class="card-header">
-                <i class="fas fa-key"></i> <?= lang('password.change.cardHeadline') ?>
-            </div>
+        <div class="card">
             <div class="card-body">
                 <?= form_open() ?>
+                <?= form_hidden('token', $token) ?>
+
                 <div class="input-group row mb-3">
                     <label for="inputNewPassword" class="col-form-label col-md-4 col-lg-3">Neues Passwort</label>
                     <div class="col-md-8 col-lg-9">
@@ -26,7 +33,7 @@
                     </div>
                 </div>
 
-                <button class="btn btn-primary btn-block" type="submit">Speichern</button>
+                <button class="btn btn-primary btn-block" type="submit">Passwort ändern</button>
                 <?= form_close() ?>
             </div>
         </div>

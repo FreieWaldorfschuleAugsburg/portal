@@ -8,8 +8,8 @@
     <div class="col-lg-12">
         <div class="card bg-success">
             <div class="card-body card">
-                <h1><?= lang('password.reset.init.headline') ?></h1>
-                <p><?= lang('password.reset.init.text') ?></p>
+                <h1><?= lang('password.reset.confirm.headline') ?></h1>
+                <p><?= lang('password.reset.confirm.text') ?></p>
             </div>
         </div>
     </div>
