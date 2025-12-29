@@ -34,7 +34,7 @@ abstract class BaseController extends Controller
      *
      * @var list<string>
      */
-    protected $helpers = ['oauth', 'password', 'form'];
+    protected $helpers = ['oauth', 'password', 'mail', 'procurat', 'form'];
 
     /**
      * @return void

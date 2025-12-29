@@ -10,6 +10,7 @@ CI_ENVIRONMENT = development
 
 app.baseURL = 'http://localhost:8080'
 app.forceGlobalSecureRequests = false
+app.jwtSecret = ''
 
 --------------------------------------------------------------------
 # OIDC
@@ -26,3 +27,17 @@ oidc.group = ''
 
 procurat.endpoint = ''
 procurat.apiKey = ''
+procurat.rootGroupId = ''
+procurat.usernameUdf = ''
+
+#--------------------------------------------------------------------
+# MAIL
+#--------------------------------------------------------------------
+
+mail.host = ''
+mail.username = ''
+mail.password = ''
+mail.from.address = ''
+mail.from.name = ''
+
+mail.techContact = 'it@waldorf-augsburg.de'
