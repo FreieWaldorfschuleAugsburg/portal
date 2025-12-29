@@ -32,6 +32,16 @@ procurat.rootGroupId = ''
 procurat.usernameUdf = ''
 
 #--------------------------------------------------------------------
+# LDAP
+#--------------------------------------------------------------------
+
+ldap.host = ''
+ldap.baseDN = ''
+ldap.admin.username = ''
+ldap.admin.password = ''
+
+
+#--------------------------------------------------------------------
 # MAIL
 #--------------------------------------------------------------------
 
@@ -41,4 +51,4 @@ mail.password = ''
 mail.from.address = ''
 mail.from.name = ''
 
-mail.techContact = 'it@waldorf-augsburg.de'
+mail.techContact = ''
