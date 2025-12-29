@@ -9,6 +9,7 @@
                 <i class="fas fa-user-graduate"></i> <?= lang('studentReset.cardHeadline') ?>
             </div>
             <div class="card-body">
+
             </div>
         </div>
     </div>
