@@ -6,6 +6,7 @@ use App\Models\InsufficientPasswordException;
 use App\Models\InvalidEmailException;
 use App\Models\InvalidUsernameException;
 use App\Models\LDAPException;
+use App\Models\OAuthException;
 use CodeIgniter\HTTP\RedirectResponse;
 use function App\Helpers\changePassword;
 use function App\Helpers\decodeToken;
@@ -14,10 +15,38 @@ use function App\Helpers\user;
 
 class PasswordController extends BaseController
 {
+    /**
+     * @throws OAuthException
+     */
     public function changePassword(): string
     {
         $user = user();
         return view('password/PasswordChangeView', ['user' => $user]);
+    }
+
+    /**
+     * @throws OAuthException
+     */
+    public function handleChangePassword(): RedirectResponse
+    {
+        $user = user();
+
+        $newPassword = esc(trim($this->request->getPost('newPassword')));
+        $newPasswordConfirm = esc(trim($this->request->getPost('newPasswordConfirm')));
+
+        if ($newPassword != $newPasswordConfirm) {
+            return redirect()->back()->with('error', lang('password.change.passwordMismatch'));
+        }
+
+        try {
+            changePassword($user->getUsername(), $newPassword);
+        } catch (InsufficientPasswordException) {
+            return redirect()->back()->with('error', lang('password.change.insufficientPassword'));
+        } catch (LDAPException $e) {
+            return redirect()->back()->with('error', sprintf(lang('password.change.ldapError'), $e->getMessage()));
+        }
+
+        return redirect()->back()->with('success', lang('password.change.success'));
     }
 
     public function resetPassword(): RedirectResponse|string

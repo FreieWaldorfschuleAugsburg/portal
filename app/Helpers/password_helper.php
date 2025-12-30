@@ -85,7 +85,7 @@ function initPasswordReset(string $username, string $email): void
 
     // Send info to requester
     try {
-        sendMail($email, 'Passwortzurücksetzung', view('mail/PasswordResetRequestMail', ['name' => $person->getFullName(), 'username' => $username, 'link' => $resetLink]));
+        sendMail($email, 'Passwortzurücksetzung', view('mail/PasswordResetMail', ['name' => $person->getFullName(), 'username' => $username, 'link' => $resetLink]));
     } catch (Exception) {
     }
 }
@@ -94,7 +94,7 @@ function initPasswordReset(string $username, string $email): void
  * @throws LDAPException
  * @throws InsufficientPasswordException
  */
-function changePassword(string $username, string $newPassword): void
+function changePassword(string $username, string $newPassword, string $changedBy = null): void
 {
     openLDAPConnection();
 
@@ -111,16 +111,31 @@ function changePassword(string $username, string $newPassword): void
         throw new LDAPException($errorCode);
     }
 
-    // Send info to tech contact
-    try {
-        sendTechMail('[' . $username . '] Passwortzurücksetzung erfolgreich', 'Passwortzurücksetzung erfolgreich', "Die Passwortzurücksetzung für den Benutzer <b>$username</b> war erfolgreich.");
-    } catch (Exception) {
-    }
+    // Self change or change by other
+    if ($changedBy) {
+        // Send info to tech contact
+        try {
+            sendTechMail('[' . $username . '] Passwort geändert', 'Passwortänderung', "<b>$changedBy</b> hat das Passwort des Benutzers <b>$username</b> geändert.");
+        } catch (Exception) {
+        }
 
-    // Send info to user
-    try {
-        sendMail($adUser->mail[0], 'Passwort zurückgesetzt', view('mail/PasswordResetSuccessMail', ['name' => $adUser->displayName[0], 'username' => $username]));
-    } catch (Exception) {
+        // Send info to user
+        try {
+            sendMail($adUser->mail[0], 'Passwort geändert', view('mail/PasswordChangedByMail', ['name' => $adUser->displayName[0], 'username' => $username, 'changedBy' => $changedBy]));
+        } catch (Exception) {
+        }
+    } else {
+        // Send info to tech contact
+        try {
+            sendTechMail('[' . $username . '] Passwort geändert', 'Passwortänderung', "Der Benutzer <b>$username</b> hat sein Passwort geändert.");
+        } catch (Exception) {
+        }
+
+        // Send info to user
+        try {
+            sendMail($adUser->mail[0], 'Passwort geändert', view('mail/PasswordChangedMail', ['name' => $adUser->displayName[0], 'username' => $username]));
+        } catch (Exception) {
+        }
     }
 }
 

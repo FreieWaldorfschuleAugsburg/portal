@@ -330,7 +330,7 @@
 
                                     <div style="font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:1.5;text-align:left;color:#000000;">
                                         <p style="font-family: Helvetica, Arial, sans-serif; font-size: 11px;"><span
-                                                    style="font-size: 14px;"><strong>Passwort zur&uuml;ckgesetzt</strong></span>
+                                                    style="font-size: 14px;"><strong>Passwort ge&auml;ndert</strong></span>
                                         </p></div>
 
                                 </td>
@@ -347,12 +347,12 @@
                                             &nbsp;</p>
                                         <p style="font-family: Helvetica, Arial, sans-serif; font-size: 11px;"><span
                                                     style="font-size: 12px;">das Passwort f&uuml;r dein Konto</span><span
-                                                    style="font-size: 12px;">&nbsp;<strong><?= $username ?></strong> wurde zur&uuml;ckgesetzt.</span>
+                                                    style="font-size: 12px;">&nbsp;<strong><?= $username ?></strong> wurde durch <strong><?= $changedBy ?></strong> ge&auml;ndert.</span>
                                         </p>
                                         <p style="font-family: Helvetica, Arial, sans-serif; font-size: 11px;">
                                             &nbsp;</p>
                                         <p style="font-family: Helvetica, Arial, sans-serif; font-size: 11px;"><span
-                                                    style="font-size: 12px;">Wenn du keine Passwortzur&uuml;cksetzung durchgef&uuml;hrt hast, kontaktiere bitte <span
+                                                    style="font-size: 12px;">Wenn du dein Passwort nicht ge&auml;ndert hast, kontaktiere bitte&nbsp;<span
                                                         style="text-decoration: underline;">umgehend</span> den <a
                                                         href="https://ticket.waldorf-augsburg.de" target="_blank"
                                                         rel="noopener" style="color: #0000EE;">IT-Support</a>!</span>

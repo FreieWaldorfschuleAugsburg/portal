@@ -11,6 +11,8 @@ $routes->get('/profile', 'ProfileController::index', ['filter' => ['login', 'com
 $routes->get('/student_reset', 'StudentResetController::index', ['filter' => ['login', 'components']]);
 
 $routes->get('/change_password', 'PasswordController::changePassword', ['filter' => ['login', 'components']]);
+$routes->post('/change_password', 'PasswordController::handleChangePassword', ['filter' => ['login', 'components']]);
+
 $routes->get('/reset_password', 'PasswordController::resetPassword', ['filter' => ['components']]);
 $routes->post('/reset_password', 'PasswordController::handleResetPassword', ['filter' => ['components']]);
 

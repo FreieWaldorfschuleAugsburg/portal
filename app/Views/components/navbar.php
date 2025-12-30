@@ -63,7 +63,17 @@
 <div class="container px-4 mt-4">
     <div class="row mt- 3justify-content-center">
         <div class="col-lg-12">
-            <?= isset($error) ? '<div class="alert alert-danger mb-3"> <i class="fas fa-exclamation-triangle"></i> <b>' . lang('app.error.alert') . '</b> ' . $error . '</div>' : '' ?>
-            <?= !empty(session('error')) ? '<div class="alert alert-danger mb-3"> <i class="fas fa-exclamation-triangle"></i> <b>' . lang('app.error.alert') . '</b> ' . session('error') . '</div>' : '' ?>
+            <?php if (!empty(session('error'))): ?>
+                <div class="alert alert-danger mb-3">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <b><?= lang('app.error.alert') ?></b> <?= session('error') ?>
+                </div>
+            <?php endif; ?>
+
+            <?php if (!empty(session('success'))): ?>
+                <div class="alert alert-danger mb-3">
+                    <i class="fas fa-check-square"></i> <b> <?= session('success') ?>
+                </div>
+            <?php endif; ?>
         </div>
     </div>

@@ -3,12 +3,16 @@
 return [
     'change' => [
         'headline' => 'Passwort ändern',
-        'cardHeadline' => 'Neues Passwort vergeben'
+        'passwordMismatch' => 'Die eingegebenen Passwörter stimmen nicht überein.',
+        'insufficientPassword' => 'Das gewählte Passwort entspricht den den Anforderungen.',
+        'ldapError' => 'LDAP-Fehler: %s',
+        'success' => 'Passwort erfolgreich geändert!'
     ],
     'reset' => [
         'headline' => 'Passwort zurücksetzen',
         'text' => 'Vergebe nun dein neues Passwort! Achte bitte darauf, dass es die Passwortanforderungen erfüllt.',
         'invalidToken' => 'Ungültiger Token! Bitte beachte, dass der Zurücksetzungslink nur für eine begrenzte Zeit gültig ist.',
+        'passwordMismatch' => 'Die eingegebenen Passwörter stimmen nicht überein.',
         'insufficientPassword' => 'Das gewählte Passwort entspricht den den Anforderungen.',
         'ldapError' => 'LDAP-Fehler: %s',
         'start' => [
