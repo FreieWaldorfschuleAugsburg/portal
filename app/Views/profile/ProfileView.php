@@ -5,9 +5,6 @@
 
     <div class="col-lg-12">
         <div class="card mt-3 mb-3">
-            <div class="card-header">
-                <i class="fas fa-info-circle"></i> <?= lang('profile.cardHeadline') ?>
-            </div>
             <div class="card-body">
                 <?= form_open_multipart('profile') ?>
 
