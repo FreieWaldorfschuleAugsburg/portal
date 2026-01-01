@@ -4,6 +4,7 @@ namespace Config;
 
 use App\Filters\ComponentsFilter;
 use App\Filters\LoginFilter;
+use App\Filters\StudentManagementFilter;
 use CodeIgniter\Config\Filters as BaseFilters;
 use CodeIgniter\Filters\Cors;
 use CodeIgniter\Filters\CSRF;
@@ -37,6 +38,7 @@ class Filters extends BaseFilters
         'pagecache' => PageCache::class,
         'performance' => PerformanceMetrics::class,
         'login' => LoginFilter::class,
+        'studentManagement' => StudentManagementFilter::class,
         'components' => ComponentsFilter::class,
     ];
 

@@ -15,9 +15,12 @@ use function App\Helpers\user;
 
     <link href="<?= base_url('/') ?>/assets/img/logo.png" rel="icon">
     <link href="<?= base_url('/') ?>/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?= base_url('assets/css/bootstrap-table.min.css') ?>" rel="stylesheet">
     <link rel="stylesheet" href="<?= base_url('/') ?>/assets/css/fontawesome.min.css"/>
 
     <link href="<?= base_url('/') ?>/assets/css/style.css" rel="stylesheet">
+
+    <script src="<?= base_url('assets/js/jquery.min.js') ?>"></script>
 
     <!-- Matomo -->
     <script>

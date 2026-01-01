@@ -1,3 +1,8 @@
+<?php
+
+use function App\Helpers\isStudentManagementPermitted;
+
+?>
 <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container">
         <a class="navbar-brand" href="<?= base_url('/') ?>">
@@ -10,7 +15,14 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarMobileToggle">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <?php if (isset($user) && isStudentManagementPermitted($user)): ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= base_url('students') ?>"><i class="fas fa-user-graduate"></i>
+                            <?= lang('navbar.students') ?></a>
+                    </li>
+                <?php endif; ?>
+            </ul>
             <ul class="navbar-nav">
                 <?php if (isset($user)): ?>
                     <li class="nav-item dropdown">
@@ -71,7 +83,7 @@
             <?php endif; ?>
 
             <?php if (!empty(session('success'))): ?>
-                <div class="alert alert-danger mb-3">
+                <div class="alert alert-success mb-3">
                     <i class="fas fa-check-square"></i> <b> <?= session('success') ?>
                 </div>
             <?php endif; ?>

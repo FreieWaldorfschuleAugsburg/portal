@@ -9,7 +9,6 @@ use App\Models\LDAPException;
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 use LdapRecord\LdapRecordException;
-use LdapRecord\Models\ActiveDirectory\User;
 use LogicException;
 use PHPMailer\PHPMailer\Exception;
 use UnexpectedValueException;
@@ -100,6 +99,7 @@ function changePassword(string $username, string $newPassword, string $changedBy
 
     $adUser = getADUser($username);
     $adUser->unicodepwd = $newPassword;
+    $adUser->lockouttime = 0;
 
     try {
         $adUser->save();
@@ -147,13 +147,4 @@ function decodeToken(string $token): ?object
         log_message('error', 'Error decoding jwt: ' . $e->getMessage());
         return null;
     }
-}
-
-/**
- * @param string $username
- * @return ?User
- */
-function getADUser(string $username): ?object
-{
-    return User::query()->findBy('sAMAccountName', $username);
 }

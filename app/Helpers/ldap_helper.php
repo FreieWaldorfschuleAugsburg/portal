@@ -8,6 +8,16 @@ use LdapRecord\Configuration\ConfigurationException;
 use LdapRecord\Connection;
 use LdapRecord\Container;
 use LdapRecord\LdapRecordException;
+use LdapRecord\Models\ActiveDirectory\User;
+
+/**
+ * @param string $username
+ * @return ?User
+ */
+function getADUser(string $username): ?object
+{
+    return User::query()->findBy('sAMAccountName', $username);
+}
 
 /**
  * Create LDAP connection

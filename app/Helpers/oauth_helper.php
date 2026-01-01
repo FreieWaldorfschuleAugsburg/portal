@@ -109,3 +109,8 @@ function isPermitted(UserModel $user): bool
 {
     return in_array(getenv('oidc.group'), $user->getGroups());
 }
+
+function isStudentManagementPermitted(UserModel $user): bool
+{
+    return in_array(getenv('oidc.studentManagementGroup'), $user->getGroups());
+}
