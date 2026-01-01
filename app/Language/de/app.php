@@ -6,7 +6,7 @@ return [
         'full' => 'Portal der Freien Waldorfschule und Waldorfkindergärten Augsburg',
         'headline' => 'Portal'
     ],
-    'copyright' => '&copy; %s Freie Waldorfschule und Waldorfkindergärten Augsburg e. V.<br><small>Entwickelt von <a href="https://linusgke.de" target="_blank">Linus Groschke</a> <br/> <a href="https://github.com/FreieWaldorfschuleAugsburg/account" target="_blank">Quellcode auf GitHub</a> – <a href="https://waldorf-augsburg.de/impressum" target="_blank">Impressum</a></small></small>',
+    'copyright' => '&copy; %s Freie Waldorfschule und Waldorfkindergärten Augsburg e. V.<br><small>Entwickelt von <a href="https://linusgke.de" target="_blank">Linus Groschke</a> <br/> <a href="https://github.com/FreieWaldorfschuleAugsburg/portal" target="_blank">Quellcode auf GitHub</a> – <a href="https://waldorf-augsburg.de/impressum" target="_blank">Impressum</a></small></small>',
     'error' => [
         'alert' => 'Fehler:',
         'portalHyperlink' => 'Klicken Sie hier, um zum Portal zu gelangen.',
