@@ -6,9 +6,11 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 $routes->get('/', 'IndexController::index', ['filter' => ['components']]);
-$routes->get('/profile', 'ProfileController::index', ['filter' => ['login', 'components']]);
 $routes->get('/login', 'IndexController::index', ['filter' => ['login', 'components']]);
 $routes->get('/logout', 'OAuthController::logout');
+
+$routes->get('/profile', 'ProfileController::index', ['filter' => ['login', 'components']]);
+$routes->get('/credentials', 'CredentialsController::index', ['filter' => ['login', 'components']]);
 
 $routes->get('/students', 'StudentManagementController::index', ['filter' => ['studentManagement', 'components']]);
 $routes->get('/students/(:any)/password_reset', 'StudentManagementController::resetPassword/$1', ['filter' => ['studentManagement', 'components']]);

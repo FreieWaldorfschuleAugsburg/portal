@@ -30,6 +30,8 @@ procurat.endpoint = ''
 procurat.apiKey = ''
 procurat.rootGroupId = ''
 procurat.usernameUdf = ''
+procurat.threema.usernameUdf = ''
+procurat.threema.passwordUdf = ''
 
 #--------------------------------------------------------------------
 # LDAP

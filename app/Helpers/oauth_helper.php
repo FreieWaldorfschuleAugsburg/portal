@@ -31,13 +31,17 @@ function login(): RedirectResponse
         $email = $oidc->requestUserInfo('email');
         $firstName = $oidc->requestUserInfo('given_name');
         $lastName = $oidc->requestUserInfo('family_name');
+        $procuratId = $oidc->requestUserInfo('procurat_id');
+        if ($procuratId) {
+            $procuratId = intval($procuratId);
+        }
         $claims = $oidc->getVerifiedClaims();
         $groups = property_exists($claims, 'groups') ? $oidc->getVerifiedClaims()->groups : [];
 
-        $userModel = createUserModel($username, $email, $firstName, $lastName, $oidc->getIdToken(), $oidc->getRefreshToken(), $groups);
+        $userModel = createUserModel($username, $email, $firstName, $lastName, $procuratId, $oidc->getIdToken(), $oidc->getRefreshToken(), $groups);
         session()->set('USER', $userModel);
 
-        return redirect('/');
+        return redirect()->to($oidc->getRedirectURL());
     } catch (OpenIDConnectClientException $e) {
         throw new OAuthException('login', $e);
     }
@@ -88,9 +92,9 @@ function user(): ?UserModel
     }
 }
 
-function createUserModel(string $username, string $email, string $firstName, string $lastName, string $idToken, string $refreshToken, array $groups): UserModel
+function createUserModel(string $username, string $email, string $firstName, string $lastName, int $procuratId, string $idToken, string $refreshToken, array $groups): UserModel
 {
-    return new UserModel($username, $email, $firstName, $lastName, $idToken, $refreshToken, $groups);
+    return new UserModel($username, $email, $firstName, $lastName, $procuratId, $idToken, $refreshToken, $groups);
 }
 
 /**

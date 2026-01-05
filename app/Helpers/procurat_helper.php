@@ -3,6 +3,7 @@
 use App\Models\ProcuratContactInformation;
 use App\Models\ProcuratGroupMembership;
 use App\Models\ProcuratPerson;
+use App\Models\ThreemaCredentialsModel;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\HandlerStack;
@@ -100,6 +101,32 @@ function getGroupMembershipsByGroupId(int $groupId): array
     return $memberships;
 }
 
+
+/**
+ * @param int $groupId
+ * @param int $personId
+ * @return ?ProcuratGroupMembership
+ */
+function getGroupMembershipByGroupAndPersonId(int $groupId, int $personId): ?object
+{
+    $client = createAPIClient();
+    try {
+        $rawMembership = decodeResponse($client->get('groups/' . $groupId . '/members/' . $personId));
+        return constructProcuratGroupMembership($rawMembership);
+    } catch (GuzzleException) {
+    }
+    return null;
+}
+
+/**
+ * @param int $personId
+ * @return ?ProcuratGroupMembership
+ */
+function getRootGroupMembershipByPersonId(int $personId): ?object
+{
+    return getGroupMembershipByGroupAndPersonId(intval(getenv('procurat.rootGroupId')), $personId);
+}
+
 /**
  * @param int $personId
  * @return ProcuratContactInformation[]
@@ -134,6 +161,24 @@ function getContactPersonIdsByPersonId(int $personId): array
     } catch (GuzzleException) {
     }
     return $contactPersonIds;
+}
+
+/**
+ * @param int $personId
+ * @return ?ThreemaCredentialsModel
+ */
+function getThreemaCredentials(int $personId): ?ThreemaCredentialsModel
+{
+    $threemaUsernameUdf = getenv('procurat.threema.usernameUdf');
+    $threemaPasswordUdf = getenv('procurat.threema.passwordUdf');
+    $rootMembership = getRootGroupMembershipByPersonId($personId);
+
+    if (property_exists($rootMembership->getData(), $threemaUsernameUdf)
+        && property_exists($rootMembership->getData(), $threemaPasswordUdf)) {
+        return new ThreemaCredentialsModel($rootMembership->getData()->{$threemaUsernameUdf}, $rootMembership->getData()->{$threemaPasswordUdf});
+    }
+
+    return null;
 }
 
 

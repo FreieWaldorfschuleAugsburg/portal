@@ -32,6 +32,12 @@ use function App\Helpers\isStudentManagementPermitted;
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                             <li>
+                                <a class="dropdown-item" href="<?= base_url('credentials') ?>">
+                                    <i class="fas fa-school-lock"></i>&nbsp; <?= lang('navbar.credentials') ?>
+                                </a>
+                            </li>
+                            <li class="dropdown-divider"></li>
+                            <li>
                                 <a class="dropdown-item" href="<?= base_url('profile') ?>">
                                     <i class="fas fa-user-cog"></i>&nbsp; <?= lang('navbar.profile') ?>
                                 </a>
