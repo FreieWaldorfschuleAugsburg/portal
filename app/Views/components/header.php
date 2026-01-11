@@ -13,14 +13,13 @@ use function App\Helpers\user;
 
     <title><?= lang('app.name.short') ?></title>
 
-    <link href="<?= base_url('/') ?>/assets/img/logo.png" rel="icon">
-    <link href="<?= base_url('/') ?>/assets/css/bootstrap.min.css" rel="stylesheet">
-    <link href="<?= base_url('assets/css/bootstrap-table.min.css') ?>" rel="stylesheet">
-    <link rel="stylesheet" href="<?= base_url('/') ?>/assets/css/fontawesome.min.css"/>
+    <link href="<?= base_url('/') ?>assets/img/logo.png" rel="icon">
+    <link href="<?= base_url('/') ?>assets/css/bootstrap.min.css?build=1768163594032" rel="stylesheet">
+    <link href="<?= base_url('/') ?>assets/css/bootstrap-table.min.css?build=1768163594032" rel="stylesheet">
+    <link rel="stylesheet" href="<?= base_url('/') ?>assets/css/fontawesome.min.css?build=1768163594032"/>
 
-    <link href="<?= base_url('/') ?>/assets/css/style.css" rel="stylesheet">
-
-    <script src="<?= base_url('assets/js/jquery.min.js') ?>"></script>
+    <link href="<?= base_url('/') ?>assets/css/style.css?build=1768163594032" rel="stylesheet">
+    <script src="<?= base_url('/') ?>assets/js/jquery.min.js?build=1768163594032"></script>
 
     <!-- Matomo -->
     <script>
@@ -33,7 +32,7 @@ use function App\Helpers\user;
             _paq.push(['setTrackerUrl', u + 'matomo.php']);
             _paq.push(['setSiteId', '3']);
 
-            <?php if (function_exists('user') && $user = user()): ?>
+            <?php if ($user): ?>
             _paq.push(['setUserId', '<?= $user->getUsername() ?>'])
             <?php endif; ?>
 

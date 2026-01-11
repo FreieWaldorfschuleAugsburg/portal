@@ -16,10 +16,9 @@ class ComponentsFilter implements FilterInterface
 
     public function after(RequestInterface $request, ResponseInterface $response, $arguments = null): ResponseInterface
     {
-        $beforeContent = view('components/header');
+        helper('oauth');
+        $beforeContent = view('components/header', ['user' => user()]);
         if (is_null($arguments) || !in_array('noNavbar', $arguments)) {
-            helper('oauth');
-
             $appName = $_GET['app_name'] ?? null;
             $appUrl = $_GET['app_url'] ?? null;
             $beforeContent .= view('components/navbar', ['user' => user(), 'appName' => esc($appName), 'appUrl' => esc($appUrl)]);
