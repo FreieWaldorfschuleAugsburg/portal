@@ -57,7 +57,7 @@ function findContactInformationByPersonId(int $personId, string $type, string $m
     $information = getContactInformationByPersonId($personId);
     foreach ($information as $info) {
         if ($info->getType() == $type && $info->getMedium() == $medium) {
-            return $info->getContent();
+            return strtolower($info->getContent());
         }
     }
     return null;
@@ -69,7 +69,7 @@ function findContactInformationByMediumAndPersonId(int $personId, string $medium
     $information = getContactInformationByPersonId($personId);
     foreach ($information as $info) {
         if ($info->getMedium() == $medium) {
-            $content[] = $info->getContent();
+            $content[] = strtolower($info->getContent());
         }
     }
     return $content;

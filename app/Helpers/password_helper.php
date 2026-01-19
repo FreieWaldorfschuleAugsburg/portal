@@ -20,8 +20,9 @@ use UnexpectedValueException;
  */
 function initPasswordReset(string $username, string $email): void
 {
-    // Lowercase username for better regex matching
+    // Lowercase username email for better matching
     $username = strtolower($username);
+    $email = strtolower($email);
 
     // Check for valid username
     if (!preg_match("/fwa\d[a-zA-Z]{4}$/", $username)) {
