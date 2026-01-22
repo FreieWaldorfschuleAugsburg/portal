@@ -445,7 +445,7 @@
 
                                     <div style="font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:1.5;text-align:left;color:#000000;">
                                         <p style="font-family: Helvetica, Arial, sans-serif; font-size: 11px;">&copy;
-                                            2025 Freie Waldorfschule und Waldorfkinderg&auml;rten Augsburg e. V.<br><a
+                                            <?= date("Y") ?> Freie Waldorfschule und Waldorfkinderg&auml;rten Augsburg e. V.<br><a
                                                     href="https://waldorf-augsburg.de/impressum" target="_blank"
                                                     rel="noopener" style="color: #0000EE;"> Impressum</a> &ndash; <a
                                                     href="https://waldorf-augsburg.de/datenschutz" target="_blank"
